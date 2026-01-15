@@ -14,7 +14,7 @@ from .const import (
     DEFAULT_END_HOUR,
     DEFAULT_ENABLED,
     DEFAULT_USE_CHIME,
-    DOMAIN,  # ← AGGIUNTO
+    DOMAIN, 
 )
 
 
