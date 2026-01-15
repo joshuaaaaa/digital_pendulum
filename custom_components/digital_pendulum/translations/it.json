@@ -1,0 +1,55 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configurazione Digital Pendulum",
+        "description": "Configura il tuo orologio a pendolo digitale",
+        "data": {
+          "player_device": "Dispositivo Alexa",
+          "start_hour": "Ora di inizio",
+          "end_hour": "Ora di fine",
+          "enabled": "Abilitato",
+          "use_chime": "Usa suono campanella"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opzioni Digital Pendulum",
+        "description": "Modifica le impostazioni del pendolo",
+        "data": {
+          "player_device": "Dispositivo Alexa",
+          "start_hour": "Ora di inizio",
+          "end_hour": "Ora di fine",
+          "use_chime": "Usa suono campanella"
+        }
+      }
+    }
+  },
+  "entity": {
+    "switch": {
+      "digital_pendulum_enabled": {
+        "name": "Abilitato"
+      }
+    },
+    "button": {
+      "test_announcement": {
+        "name": "Test Annuncio"
+      }
+    }
+  },
+  "services": {
+    "test_announcement": {
+      "name": "Test Annuncio",
+      "description": "Testa l'annuncio dell'ora immediatamente"
+    }
+  },
+  "time_announcements": {
+    "hour": "Ore {hour}",
+    "hour_and_half": "Ore {hour} e trenta",
+    "hour_exact": "Ore {hour} in punto",
+    "hour_and_minutes": "Ore {hour} e {minutes}"
+  }
+}

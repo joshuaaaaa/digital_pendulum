@@ -1,0 +1,55 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configuration Digital Pendulum",
+        "description": "Configurez votre horloge à balancier numérique",
+        "data": {
+          "player_device": "Appareil Alexa",
+          "start_hour": "Heure de début",
+          "end_hour": "Heure de fin",
+          "enabled": "Activé",
+          "use_chime": "Utiliser le carillon"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options Digital Pendulum",
+        "description": "Modifier les paramètres du balancier",
+        "data": {
+          "player_device": "Appareil Alexa",
+          "start_hour": "Heure de début",
+          "end_hour": "Heure de fin",
+          "use_chime": "Utiliser le carillon"
+        }
+      }
+    }
+  },
+  "entity": {
+    "switch": {
+      "digital_pendulum_enabled": {
+        "name": "Activé"
+      }
+    },
+    "button": {
+      "test_announcement": {
+        "name": "Test d'annonce"
+      }
+    }
+  },
+  "services": {
+    "test_announcement": {
+      "name": "Test d'annonce",
+      "description": "Tester l'annonce de l'heure immédiatement"
+    }
+  },
+  "time_announcements": {
+    "hour": "Il est {hour} heures",
+    "hour_and_half": "Il est {hour} heures trente",
+    "hour_exact": "Il est {hour} heures pile",
+    "hour_and_minutes": "Il est {hour} heures {minutes}"
+  }
+}
