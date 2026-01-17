@@ -1,7 +1,7 @@
 {
   "domain": "digital_pendulum",
   "name": "Digital Pendulum",
-  "version": "0.1.0",
+  "version": "1.0.5",
   "documentation": "https://github.com/Dregi56/digital_pendulum",
   "config_flow": true,
   "dependencies": ["alexa_media"],
