@@ -20,7 +20,6 @@ from .const import (
     DOMAIN, 
 )
 
-
 class DigitalPendulum:
     def __init__(self, hass, entry):
         self.hass = hass
