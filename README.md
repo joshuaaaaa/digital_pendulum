@@ -26,7 +26,7 @@ Utilizzando un dispositivo Alexa come speaker, il sistema:
 - 📢 annuncia l’ora ogni 30 minuti  
 - 🌍 parla automaticamente nella lingua impostata in Home Assistant  
 - ⏰ funziona solo in una fascia oraria configurabile  
-- 🔔 può riprodurre un suono di campanella (chime) prima dell’annuncio  
+- 🔔 può riprodurre un suono (di default suono 'announce' (chime) prima dell’annuncio  
 
 Il risultato è un effetto elegante e discreto, ideale per casa o ufficio.
 
@@ -50,6 +50,7 @@ fallback automatico in italiano
 
 ### 🔔 Chime opzionale
 - breve annuncio silenzioso prima del TTS
+- se definita una path, suono loacale
 
 ### 🧪 Funzione di test
 - per provare immediatamente l’annuncio
