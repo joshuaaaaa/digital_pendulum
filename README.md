@@ -12,9 +12,10 @@ Un pendolo digitale parlante per Home Assistant
 🌍 Lingue disponibili:
 [Italiano](README.it.md) |
 [English](README.en.md) |
+[Español](README.es.md) |
 [Deutsch](README.de.md) |
-[Français](README.fr.md) |
-[Español](README.es.md)
+[Français](README.fr.md) 
+
 
 ## ❤️ Ti piace Digital Pendulum?
 
