@@ -25,8 +25,8 @@ Utilizzando un dispositivo Alexa come speaker, il sistema:
 
 - 📢 annuncia l’ora ogni 30 minuti  
 - 🌍 parla automaticamente nella lingua impostata in Home Assistant  
-- ⏰ funziona solo in una fascia oraria configurabile  
-- 🔔 può riprodurre un suono (di default suono 'announce' (chime) prima dell’annuncio  
+- ⏰ funziona solo in una fascia oraria configurabile 
+- 🔔 può riprodurre un suono personalizzato (di default suono 'announce' (chime) prima dell’annuncio  
 
 Il risultato è un effetto elegante e discreto, ideale per casa o ufficio.
 
@@ -48,9 +48,9 @@ fallback automatico in italiano
 ### ⏱️ Fascia oraria configurabile
 - es. solo dalle 8:00 alle 22:00
 
-### 🔔 Chime opzionale
-- breve annuncio silenzioso prima del TTS
-- se definita una path, suono loacale
+###  🔔 Chime opzionale
+- 🔕 breve annuncio silenzioso prima del TTS
+- 🎵 suoni personalizzati. Se definita una path, suono loacale
 
 ### 🧪 Funzione di test
 - per provare immediatamente l’annuncio
@@ -144,7 +144,6 @@ Utile per verificare: lingua, volume, chime, corretto funzionamento del TTS
 - ⏳ Annunci ogni 15 minuti
 - 🔇 Volume automatico notturno
 - 🗓️ Annuncio del giorno
-- 🎵 Suoni personalizzati
 - 📣 Supporto ad altri TTS
 
 ---
