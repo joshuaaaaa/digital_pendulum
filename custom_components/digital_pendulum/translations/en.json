@@ -9,7 +9,11 @@
           "start_hour": "Start Hour",
           "end_hour": "End Hour",
           "enabled": "Enabled",
-          "use_chime": "Use Chime Sound"
+          "use_chime": "Use Chime Sound",
+          "custom_chime_path": "Custom chime path (optional)"
+        },
+        "data_description": {
+          "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)"
         }
       }
     }
@@ -23,7 +27,11 @@
           "player_device": "Alexa Device",
           "start_hour": "Start Hour",
           "end_hour": "End Hour",
-          "use_chime": "Use Chime Sound"
+          "use_chime": "Use Chime Sound",
+          "custom_chime_path": "Custom chime path (optional)"
+        },
+        "data_description": {
+          "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)"
         }
       }
     }

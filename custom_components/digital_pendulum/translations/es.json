@@ -9,7 +9,11 @@
           "start_hour": "Hora de inicio",
           "end_hour": "Hora de fin",
           "enabled": "Activado",
-          "use_chime": "Usar sonido de campana"
+          "use_chime": "Usar sonido de campana",
+          "custom_chime_path": "Ruta del sonido personalizado (opcional)"
+        },
+        "data_description": {
+          "custom_chime_path": "Ej: www/sounds/campana.mp3 (Formatos: MP3, WAV, OGG - dejar vacío para sonido predeterminado)"
         }
       }
     }
@@ -23,7 +27,11 @@
           "player_device": "Dispositivo Alexa",
           "start_hour": "Hora de inicio",
           "end_hour": "Hora de fin",
-          "use_chime": "Usar sonido de campana"
+          "use_chime": "Usar sonido de campana",
+          "custom_chime_path": "Ruta del sonido personalizado (opcional)"
+        },
+        "data_description": {
+          "custom_chime_path": "Ej: www/sounds/campana.mp3 (Formatos: MP3, WAV, OGG - dejar vacío para sonido predeterminado)"
         }
       }
     }

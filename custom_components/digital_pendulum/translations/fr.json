@@ -9,7 +9,11 @@
           "start_hour": "Heure de début",
           "end_hour": "Heure de fin",
           "enabled": "Activé",
-          "use_chime": "Utiliser le carillon"
+          "use_chime": "Utiliser le carillon",
+          "custom_chime_path": "Chemin du son personnalisé (optionnel)"
+        },
+        "data_description": {
+          "custom_chime_path": "Ex: www/sounds/cloche.mp3 (Formats: MP3, WAV, OGG - laisser vide pour le son par défaut)"
         }
       }
     }
@@ -23,7 +27,11 @@
           "player_device": "Appareil Alexa",
           "start_hour": "Heure de début",
           "end_hour": "Heure de fin",
-          "use_chime": "Utiliser le carillon"
+          "use_chime": "Utiliser le carillon",
+          "custom_chime_path": "Chemin du son personnalisé (optionnel)"
+        },
+        "data_description": {
+          "custom_chime_path": "Ex: www/sounds/cloche.mp3 (Formats: MP3, WAV, OGG - laisser vide pour le son par défaut)"
         }
       }
     }

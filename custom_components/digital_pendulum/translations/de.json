@@ -9,7 +9,11 @@
           "start_hour": "Startstunde",
           "end_hour": "Endstunde",
           "enabled": "Aktiviert",
-          "use_chime": "Glocke verwenden"
+          "use_chime": "Glocke verwenden",
+          "custom_chime_path": "Pfad zum benutzerdefinierten Ton (optional)"
+        },
+        "data_description": {
+          "custom_chime_path": "Z.B.: www/sounds/glocke.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standardton)"
         }
       }
     }
@@ -23,7 +27,11 @@
           "player_device": "Alexa Gerät",
           "start_hour": "Startstunde",
           "end_hour": "Endstunde",
-          "use_chime": "Glocke verwenden"
+          "use_chime": "Glocke verwenden",
+          "custom_chime_path": "Pfad zum benutzerdefinierten Ton (optional)"
+        },
+        "data_description": {
+          "custom_chime_path": "Z.B.: www/sounds/glocke.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standardton)"
         }
       }
     }
@@ -37,19 +45,3 @@
     "button": {
       "test_announcement": {
         "name": "Ankündigung testen"
-      }
-    }
-  },
-  "services": {
-    "test_announcement": {
-      "name": "Ankündigung testen",
-      "description": "Die Zeitansage sofort testen"
-    }
-  },
-  "time_announcements": {
-    "hour": "Es ist {hour} Uhr",
-    "hour_and_half": "Es ist halb {next_hour}",
-    "hour_exact": "Es ist genau {hour} Uhr",
-    "hour_and_minutes": "Es ist {hour} Uhr {minutes}"
-  }
-}
