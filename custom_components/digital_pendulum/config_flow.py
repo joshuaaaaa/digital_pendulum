@@ -97,14 +97,14 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
 
     def __init__(self, config_entry):
         """Initialize options flow."""
-        self.config_entry = config_entry
+        self.entry = config_entry
 
     async def async_step_init(self, user_input=None):
         """Manage the options."""
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
 
-        current_options = self.config_entry.options or self.config_entry.data
+        current_options = self.entry.options or self.entry.data
 
         schema = vol.Schema(
             {
