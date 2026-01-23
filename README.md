@@ -55,12 +55,19 @@ fallback automatico in italiano
 ### ⏱️ Fascia oraria configurabile
 - es. solo dalle 8:00 alle 22:00
 
-###  🔔 Chime opzionale
+###  🔔 Campana opzionale
 - 🔕 breve annuncio silenzioso prima del TTS
 - 🎵 suoni personalizzati. Se definita una path, suono locale
 
 ### 🧪 Funzione di test
 - per provare immediatamente l’annuncio
+
+### 🎯 Comportamento
+- Preset: "church-bell": suono predefinito
+- Preset: "simple-bell" campana scelta da libreria
+- Preset: "custom" + path vuoto: suono 'announce' di Alexa
+- Preset: "custom" + path valido: suona un file scelto
+- Use Chime: OFF: nessun suono, solo TTS (annuncio dell'orario)
 
 ## ⚙️ Come funziona
 
