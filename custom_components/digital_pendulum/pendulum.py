@@ -12,13 +12,17 @@ from .const import (
     CONF_ENABLED,
     CONF_USE_CHIME,
     CONF_CUSTOM_CHIME_PATH,
+    CONF_PRESET_CHIME,
     DEFAULT_START_HOUR,
     DEFAULT_END_HOUR,
     DEFAULT_ENABLED,
     DEFAULT_USE_CHIME,
     DEFAULT_CUSTOM_CHIME_PATH,
+    DEFAULT_PRESET_CHIME,
+    PRESET_CHIMES,
     DOMAIN, 
 )
+
 
 class DigitalPendulum:
     def __init__(self, hass, entry):
@@ -36,6 +40,7 @@ class DigitalPendulum:
         self.player = config.get(CONF_PLAYER_DEVICE)
         self.enabled = config.get(CONF_ENABLED, DEFAULT_ENABLED)
         self.use_chime = config.get(CONF_USE_CHIME, DEFAULT_USE_CHIME)
+        self.preset_chime = config.get(CONF_PRESET_CHIME, DEFAULT_PRESET_CHIME)
         self.custom_chime_path = config.get(CONF_CUSTOM_CHIME_PATH, DEFAULT_CUSTOM_CHIME_PATH)
 
     def update_config(self):
@@ -149,11 +154,10 @@ class DigitalPendulum:
 
     async def _play_chime(self):
         """Play chime sound (custom or default)."""
-        if self.custom_chime_path and self.custom_chime_path.strip():
-            # Usa file audio personalizzato
+        # Determina se usare suono personalizzato o default
+        if self.preset_chime or self.custom_chime_path:
             await self._play_custom_chime()
         else:
-            # Usa suono announce di default
             await self._play_default_chime()
 
     async def _play_default_chime(self):
@@ -170,33 +174,46 @@ class DigitalPendulum:
         )
 
     async def _play_custom_chime(self):
-        """Play custom audio file."""
-        # Costruisci il percorso completo
-        config_path = self.hass.config.path()
-        full_path = os.path.join(config_path, self.custom_chime_path.strip())
+        """Play custom audio file or preset chime."""
         
-        # Verifica che il file esista
-        if not os.path.isfile(full_path):
-            # Se il file non esiste, usa il suono di default come fallback
+        # Determina quale URL usare
+        chime_url = None
+        
+        # Se ha selezionato un preset (non "custom")
+        if self.preset_chime and self.preset_chime != "custom":
+            chime_info = PRESET_CHIMES.get(self.preset_chime)
+            if chime_info and chime_info["url"]:
+                chime_url = chime_info["url"]
+        
+        # Altrimenti usa custom path se "custom" è selezionato
+        elif self.preset_chime == "custom" and self.custom_chime_path and self.custom_chime_path.strip():
+            chime_url = self.custom_chime_path.strip()
+        
+        # Se non ha URL valido, usa default
+        if not chime_url:
             await self._play_default_chime()
             return
         
-        # Riproduci il file audio personalizzato
-        await self.hass.services.async_call(
-            "media_player",
-            "play_media",
-            {
-                "entity_id": self.player,
-                "media_content_id": full_path,
-                "media_content_type": "music",
-            },
-            blocking=False,
-        )
+        # Riproduci tramite TTS con SSML (come nel tuo script)
+        try:
+            await self.hass.services.async_call(
+                "notify",
+                "alexa_media",
+                {
+                    "target": self.player,
+                    "message": f"<audio src='{chime_url}'/>",
+                    "data": {"type": "tts"},
+                },
+                blocking=False,
+            )
+        except Exception:
+            # Se fallisce, usa suono default
+            await self._play_default_chime()
 
     async def _speak(self, text: str):
         if self.use_chime:
             await self._play_chime()
-            await asyncio.sleep(1.3)
+            await asyncio.sleep(1.2)
         
         await self.hass.services.async_call(
             "notify",
