@@ -33,7 +33,8 @@ Utilizzando un dispositivo Alexa come speaker, il sistema:
 - 📢 annuncia l’ora ogni 30 minuti  
 - 🌍 parla automaticamente nella lingua impostata in Home Assistant  
 - ⏰ funziona solo in una fascia oraria configurabile 
-- 🔔 può riprodurre un suono personalizzato (di default suono 'announce' (chime) prima dell’annuncio  
+- 🔔 può riprodurre un suono personalizzato (di default suono 'announce' (chime) prima dell’annuncio
+-   
 
 Il risultato è un effetto elegante e discreto, ideale per casa o ufficio.
 
@@ -67,6 +68,7 @@ fallback automatico in italiano
 - Preset: "simple-bell" campana scelta da libreria
 - Preset: "custom" + path vuoto: suono 'announce' di Alexa
 - Preset: "custom" + path valido: suona un file scelto
+- Preset: "tower-clock": alle 12 melodia di westminster
 - Use Chime: OFF: nessun suono, solo TTS (annuncio dell'orario)
 
 ## ⚙️ Come funziona
