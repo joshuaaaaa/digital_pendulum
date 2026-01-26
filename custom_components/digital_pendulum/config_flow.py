@@ -44,6 +44,7 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         schema = vol.Schema(
             {
+                # 1) Device
                 vol.Required(
                     CONF_PLAYER_DEVICE
                 ): selector.EntitySelector(
@@ -52,6 +53,7 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         integration="alexa_media"
                     )
                 ),
+                # 2) Orario di lavoro
                 vol.Required(
                     CONF_START_HOUR,
                     default=DEFAULT_START_HOUR,
@@ -72,18 +74,22 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         mode=selector.NumberSelectorMode.BOX,
                     )
                 ),
+                # 3) Enabled
                 vol.Required(
                     CONF_ENABLED,
                     default=DEFAULT_ENABLED,
                 ): bool,
+                # 4) Tower Clock
                 vol.Required(
                     CONF_TOWER_CLOCK,
                     default=DEFAULT_TOWER_CLOCK,
                 ): bool,
+                # 5) Chime
                 vol.Required(
                     CONF_USE_CHIME,
                     default=DEFAULT_USE_CHIME,
                 ): bool,
+                # 6) Scelta chimes
                 vol.Required(
                     CONF_PRESET_CHIME,
                     default=DEFAULT_PRESET_CHIME,
@@ -93,6 +99,7 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         mode=selector.SelectSelectorMode.DROPDOWN,
                     )
                 ),
+                # 7) Percorso path (opzionale)
                 vol.Optional(
                     CONF_CUSTOM_CHIME_PATH,
                     default=DEFAULT_CUSTOM_CHIME_PATH,
@@ -101,7 +108,6 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         type=selector.TextSelectorType.TEXT,
                     )
                 ),
-                
             }
         )
 
@@ -139,6 +145,7 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
 
         schema = vol.Schema(
             {
+                # 1) Device
                 vol.Required(
                     CONF_PLAYER_DEVICE,
                     default=current_options.get(CONF_PLAYER_DEVICE)
@@ -148,6 +155,7 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                         integration="alexa_media"
                     )
                 ),
+                # 2) Orario di lavoro
                 vol.Required(
                     CONF_START_HOUR,
                     default=current_options.get(CONF_START_HOUR, DEFAULT_START_HOUR),
@@ -168,10 +176,22 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                         mode=selector.NumberSelectorMode.BOX,
                     )
                 ),
+                # 3) Enabled - AGGIUNTO (era mancante)
+                vol.Required(
+                    CONF_ENABLED,
+                    default=current_options.get(CONF_ENABLED, DEFAULT_ENABLED),
+                ): bool,
+                # 4) Tower Clock - AGGIUNTO (era mancante)
+                vol.Required(
+                    CONF_TOWER_CLOCK,
+                    default=current_options.get(CONF_TOWER_CLOCK, DEFAULT_TOWER_CLOCK),
+                ): bool,
+                # 5) Chime
                 vol.Required(
                     CONF_USE_CHIME,
                     default=current_options.get(CONF_USE_CHIME, DEFAULT_USE_CHIME),
                 ): bool,
+                # 6) Scelta chimes
                 vol.Required(
                     CONF_PRESET_CHIME,
                     default=current_options.get(CONF_PRESET_CHIME, DEFAULT_PRESET_CHIME),
@@ -181,6 +201,7 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                         mode=selector.SelectSelectorMode.DROPDOWN,
                     )
                 ),
+                # 7) Percorso path (opzionale)
                 vol.Optional(
                     CONF_CUSTOM_CHIME_PATH,
                     default=current_options.get(CONF_CUSTOM_CHIME_PATH, DEFAULT_CUSTOM_CHIME_PATH),
@@ -189,7 +210,6 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                         type=selector.TextSelectorType.TEXT,
                     )
                 ),
-                
             }
         )
 
@@ -197,5 +217,3 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
             step_id="init",
             data_schema=schema,
         )
-
-
