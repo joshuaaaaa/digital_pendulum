@@ -5,7 +5,7 @@ from .const import DOMAIN
 from .pendulum import DigitalPendulum
 from . import config_flow
 
-PLATFORMS = ["switch", "button"]
+PLATFORMS = ["switch", "button", "binary_sensor"]
 
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
@@ -55,5 +55,6 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     pendulum = hass.data[DOMAIN].pop(entry.entry_id)
     await pendulum.async_stop()
+
 
     return True
