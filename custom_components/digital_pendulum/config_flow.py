@@ -12,14 +12,16 @@ from .const import (
     CONF_ENABLED,
     CONF_USE_CHIME,
     CONF_CUSTOM_CHIME_PATH,
-    CONF_PRESET_CHIME,  
+    CONF_PRESET_CHIME,
+    CONF_TOWER_CLOCK,
     DEFAULT_START_HOUR,
     DEFAULT_END_HOUR,
     DEFAULT_ENABLED,
     DEFAULT_USE_CHIME,
     DEFAULT_CUSTOM_CHIME_PATH,
-    DEFAULT_PRESET_CHIME, 
-    PRESET_CHIMES,  
+    DEFAULT_PRESET_CHIME,
+    DEFAULT_TOWER_CLOCK,
+    PRESET_CHIMES,
 )
 
 
@@ -78,7 +80,6 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     CONF_USE_CHIME,
                     default=DEFAULT_USE_CHIME,
                 ): bool,
-                #-- Dropdown suoni predefiniti
                 vol.Required(
                     CONF_PRESET_CHIME,
                     default=DEFAULT_PRESET_CHIME,
@@ -88,7 +89,6 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         mode=selector.SelectSelectorMode.DROPDOWN,
                     )
                 ),
-                # ← Campo custom path (visibile solo se selezione "custom")
                 vol.Optional(
                     CONF_CUSTOM_CHIME_PATH,
                     default=DEFAULT_CUSTOM_CHIME_PATH,
@@ -97,6 +97,10 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         type=selector.TextSelectorType.TEXT,
                     )
                 ),
+                vol.Required(
+                    CONF_TOWER_CLOCK,
+                    default=DEFAULT_TOWER_CLOCK,
+                ): bool,
             }
         )
 
@@ -126,7 +130,7 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
 
         current_options = self.entry.options or self.entry.data
 
-        #-- Crea lista opzioni per dropdown
+        # Crea lista opzioni per dropdown
         chime_options = [
             selector.SelectOptionDict(value=key, label=info["name"])
             for key, info in PRESET_CHIMES.items()
@@ -167,7 +171,6 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                     CONF_USE_CHIME,
                     default=current_options.get(CONF_USE_CHIME, DEFAULT_USE_CHIME),
                 ): bool,
-                #--- Dropdown suoni
                 vol.Required(
                     CONF_PRESET_CHIME,
                     default=current_options.get(CONF_PRESET_CHIME, DEFAULT_PRESET_CHIME),
@@ -185,6 +188,10 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                         type=selector.TextSelectorType.TEXT,
                     )
                 ),
+                vol.Required(
+                    CONF_TOWER_CLOCK,
+                    default=current_options.get(CONF_TOWER_CLOCK, DEFAULT_TOWER_CLOCK),
+                ): bool,
             }
         )
 
