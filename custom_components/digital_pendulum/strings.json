@@ -1,1 +1,63 @@
-copia di
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Digital Pendulum Setup",
+        "description": "The pendulum will operate between the set start and end times",
+        "data": {
+          "player_device": "Alexa Device",
+          "start_hour": "Start Hour",
+          "end_hour": "End Hour",
+          "enabled": "Enabled",
+          "use_chime": "Use Chime Sound",
+          "custom_chime_path": "Custom chime path (optional)"
+        },
+        "data_description": {
+          "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Digital Pendulum Options",
+        "description": "The pendulum will operate between the set start and end times",
+        "data": {
+          "player_device": "Alexa Device",
+          "start_hour": "Start Hour",
+          "end_hour": "End Hour",
+          "use_chime": "Use Chime Sound",
+          "custom_chime_path": "Custom chime path (optional)"
+        },
+        "data_description": {
+          "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "switch": {
+      "digital_pendulum_enabled": {
+        "name": "Enabled"
+      }
+    },
+    "button": {
+      "test_announcement": {
+        "name": "Test Announcement"
+      }
+    }
+  },
+  "services": {
+    "test_announcement": {
+      "name": "Test Announcement",
+      "description": "Test the time announcement immediately"
+    }
+  },
+  "time_announcements": {
+    "hour": "It's {hour} o'clock",
+    "hour_and_half": "It's {hour} thirty",
+    "hour_exact": "It's {hour} o'clock exactly",
+    "hour_and_minutes": "It's {hour} {minutes}"
+  }
+}
