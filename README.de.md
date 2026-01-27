@@ -17,8 +17,10 @@ Ein sprechendes digitales Pendel für Home Assistant
 [Français](README.fr.md) 
 <br>👉Dies ist die deutsche README. Verwenden Sie oben die Sprachauswahl
 
+
 > ⚠️ **Digital Pendulum ist eine reine HACS-Integration**
-> Es erfordert die installierte und funktionierende **Alexa Media Player** Integration.
+<br> Es erfordert die installierte und funktionierende **Alexa Media Player** Integration.
+
 
 ## ❤️ Gefällt dir Digital Pendulum?
 
