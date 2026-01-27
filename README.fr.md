@@ -12,9 +12,10 @@ Un pendule numérique parlant pour Home Assistant
 🌍 Langues disponibles :
 [Italiano](README.it.md) |
 [English](README.en.md) |
+[Español](README.es.md) |
 [Deutsch](README.de.md) |
-[Français](README.fr.md) |
-[Español](README.es.md)
+[Français](README.fr.md) 
+<br>👉Ceci est le README en français. Utilisez le sélecteur de langue ci-dessus
 
 ## ❤️ Vous aimez Digital Pendulum ?
 
@@ -24,22 +25,23 @@ S’il vous est utile, pensez à laisser une ⭐ sur GitHub :
 
 ## 📌 Description
 
-Digital Pendulum est une intégration personnalisée pour Home Assistant qui annonce l’heure vocalement, tout comme un pendule numérique 🕰️.
+Digital Pendulum est une intégration personnalisée pour Home Assistant qui annonce vocalement l’heure, comme un pendule numérique 🕰️.
 
 
 En utilisant un appareil Alexa comme haut-parleur, le système :
 
 - 📢 annonce l’heure toutes les 30 minutes  
-- 🌍 parle automatiquement la langue définie dans Home Assistant  
-- ⏰ fonctionne uniquement dans une plage horaire configurable  
-- 🔔 peut jouer un son personnalisé (par défaut le son « announce » (chime) avant l’annonce  
+- 🌍 parle automatiquement dans la langue définie dans Home Assistant  
+- ⏰ fonctionne uniquement dans une plage horaire configurable 
+- 🔔 peut lire un son personnalisé (par défaut le son Alexa « announce » (carillon)) avant l’annonce
+- 🏰 peut jouer la mélodie de Westminster à 12 heures  
 
 Le résultat est un effet élégant et discret, idéal pour la maison ou le bureau.
 
 ## ✨ Fonctionnalités principales
 
 ### 🕑 Annonce automatique de l’heure
-- chaque heure (xx:00)
+- chaque heure pile (xx:00)
 - chaque demi-heure (xx:30)
 
 ### 🌐 Support multilingue automatique
@@ -49,17 +51,25 @@ Le résultat est un effet élégant et discret, idéal pour la maison ou le bure
 - Allemand 🇩🇪 (avec gestion correcte de « halb »)
 - Espagnol 🇪🇸
 
-retour automatique vers l’italien
+repli automatique vers l’italien
 
 ### ⏱️ Plage horaire configurable
 - ex. uniquement de 8:00 à 22:00
 
-###  🔔 Chime optionnel
-- 🔕 courte annonce silencieuse avant le TTS
+### 🔔 Carillon optionnel
+- 🔕 brève annonce silencieuse avant le TTS
 - 🎵 sons personnalisés. Si un chemin est défini, son local
 
 ### 🧪 Fonction de test
 - pour tester immédiatement l’annonce
+
+### 🎯 Comportement
+- Preset : "church-bell" : son par défaut
+- Preset : "simple-bell" : cloche choisie dans la bibliothèque
+- Preset : "custom" + chemin vide : son Alexa « announce »
+- Preset : "custom" + chemin valide : joue un fichier sélectionné
+- Preset : "tower-clock" : mélodie de Westminster à 12 heures
+- Use Chime : OFF : aucun son, uniquement le TTS (annonce de l’heure)
 
 ## ⚙️ Fonctionnement
 
@@ -73,7 +83,7 @@ qui :
   - si l’intégration est activée
   - si l’heure est dans la plage autorisée
   - si la minute est 00 ou 30
-- construit le texte parlé en fonction de la langue
+- construit le texte parlé selon la langue
 - envoie l’annonce à l’appareil Alexa configuré
 
 ## 🗣️ Gestion des langues
@@ -92,24 +102,25 @@ Exemples d’annonces :
 | 🇩🇪 DE | 16:30 | Es ist halb 17 |
 | 🇪🇸 ES | 11:00 | Son las 11 en punto |
 
-## 🔔 Chime (sonnerie initiale)
+## 🔔 Chime (carillon initial)
 
-Si l’option use_chime est active :
+Si l’option use_chime est activée :
 - une annonce vide est envoyée
 - le système attend 1,3 seconde
 - le TTS avec l’heure démarre  
 
-Cela crée un effet similaire à un véritable pendule 🎶.
+Cela crée un effet similaire à un vrai pendule 🎶.
 
 ## 🧩 Options de configuration
 
 | Option | Description |
 |------|------------|
-| enabled | Active ou désactive le pendule |
-| start_hour | Heure de début de fonctionnement |
-| end_hour | Heure de fin de fonctionnement |
 | player | Appareil Alexa cible |
-| use_chime | Active/désactive la sonnerie |
+| start_hour | Heure de début |
+| end_hour | Heure de fin |
+| enabled | Activer/désactiver le pendule |
+| tower-clock | Activer/désactiver la mélodie de 12 heures |
+| use_chime | Activer/désactiver le carillon |
 
 Valeurs par défaut :
 
@@ -126,16 +137,16 @@ async_test_announcement()
 
 Qui :
 - lit l’heure actuelle
-- génère une phrase complète (ex. « Ore 15 e 42 »)
+- génère une phrase complète (ex. « Il est 15:42 »)
 - la joue immédiatement sur l’appareil Alexa  
 
-Utile pour vérifier : langue, volume, chime, bon fonctionnement du TTS
+Utile pour vérifier : langue, volume, carillon, bon fonctionnement du TTS
 
 ## 📦 Prérequis
 
 - 🏠 Home Assistant
 - 🔊 Alexa Media Player installé et fonctionnel
-- 📡 Appareil Alexa configuré comme player
+- 📡 Appareil Alexa configuré comme lecteur
 
 ## 🎯 Utilisation idéale
 
@@ -143,14 +154,14 @@ Utile pour vérifier : langue, volume, chime, bon fonctionnement du TTS
 - ✔️ Bureaux
 - ✔️ Espaces communs
 - ✔️ Effet « pendule moderne »
-- ✔️ Rappel temporel non intrusif
+- ✔️ Rappel du temps non intrusif
 
 ## 🚀 Évolutions futures possibles
 
 - ⏳ Annonces toutes les 15 minutes
-- 🔇 Volume automatique nocturne
+- 🔇 Volume nocturne automatique
 - 🗓️ Annonce du jour
-- 📣 Support d’autres moteurs TTS
+- 📣 Support d’autres systèmes TTS
 
 ---
 
@@ -158,9 +169,10 @@ Utile pour vérifier : langue, volume, chime, bon fonctionnement du TTS
 
 ## ☕ Soutenir le projet
 
-Vous aimez ce projet ? S’il vous est utile, offrez-moi un café virtuel pour soutenir les évolutions futures ! Chaque petite contribution est très appréciée. 🙏
+Vous aimez ce projet ? S’il vous est utile, offrez-moi un café virtuel pour soutenir les évolutions futures ! Chaque petite contribution est grandement appréciée. 🙏
 
 **Digital Pendulum est et restera toujours gratuit et open source.** Les dons sont entièrement volontaires ! ❤️
+
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/dregi56)
 
