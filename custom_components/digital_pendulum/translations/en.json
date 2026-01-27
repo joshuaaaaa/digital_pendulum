@@ -46,6 +46,11 @@
       "test_announcement": {
         "name": "Test Announcement"
       }
+    },
+    "binary_sensor": {
+      "status_warning": {
+        "name": "Status Warning"
+      }
     }
   },
   "services": {
@@ -60,4 +65,5 @@
     "hour_exact": "It's {hour} o'clock exactly",
     "hour_and_minutes": "It's {hour} {minutes}"
   }
+
 }
