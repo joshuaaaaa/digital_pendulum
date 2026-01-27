@@ -12,9 +12,10 @@ A talking digital pendulum for Home Assistant
 🌍 Available languages:
 [Italiano](README.it.md) |
 [English](README.en.md) |
+[Español](README.es.md) |
 [Deutsch](README.de.md) |
-[Français](README.fr.md) |
-[Español](README.es.md)
+[Français](README.fr.md) 
+<br>👉This is the English README. Use the language selector above
 
 ## ❤️ Do you like Digital Pendulum?
 
@@ -24,17 +25,18 @@ If you find it useful, consider leaving a ⭐ on GitHub:
 
 ## 📌 Description
 
-Digital Pendulum is a custom integration for Home Assistant that announces the time by voice, just like a digital pendulum 🕰️.
+Digital Pendulum is a custom integration for Home Assistant that announces the time vocally, just like a digital pendulum 🕰️.
 
 
 Using an Alexa device as a speaker, the system:
 
 - 📢 announces the time every 30 minutes  
-- 🌍 automatically speaks the language set in Home Assistant  
-- ⏰ works only within a configurable time range  
-- 🔔 can play a custom sound (by default the 'announce' sound (chime) before the announcement  
+- 🌍 automatically speaks in the language set in Home Assistant  
+- ⏰ works only within a configurable time range 
+- 🔔 can play a custom sound (by default the 'announce' (chime) sound) before the announcement
+- 🏰 can play the Westminster melody at 12 o'clock  
 
-The result is an elegant and discreet effect, ideal for home or office use.
+The result is an elegant and discreet effect, ideal for home or office.
 
 ## ✨ Main features
 
@@ -54,24 +56,32 @@ automatic fallback to Italian
 ### ⏱️ Configurable time range
 - e.g. only from 8:00 to 22:00
 
-###  🔔 Optional chime
+### 🔔 Optional chime
 - 🔕 short silent announcement before TTS
 - 🎵 custom sounds. If a path is defined, local sound
 
 ### 🧪 Test function
 - to immediately test the announcement
 
+### 🎯 Behavior
+- Preset: "church-bell": default sound
+- Preset: "simple-bell": bell chosen from library
+- Preset: "custom" + empty path: Alexa 'announce' sound
+- Preset: "custom" + valid path: plays a selected file
+- Preset: "tower-clock": Westminster melody at 12 o'clock
+- Use Chime: OFF: no sound, TTS only (time announcement)
+
 ## ⚙️ How it works
 
-The core of the system is the class:
+The heart of the system is the class:
 
 class DigitalPendulum
 
 which:
-- registers itself to an internal timer (every 1 minute)
+- registers to an internal timer (every 1 minute)
 - checks:
   - whether the integration is enabled
-  - whether the current time is within the allowed range
+  - whether the time is within the allowed range
   - whether the minute is 00 or 30
 - builds the spoken text based on the language
 - sends the announcement to the configured Alexa device
@@ -105,11 +115,12 @@ This creates an effect similar to a real pendulum 🎶.
 
 | Option | Description |
 |------|------------|
-| enabled | Enables or disables the pendulum |
-| start_hour | Start time of operation |
-| end_hour | End time of operation |
 | player | Target Alexa device |
-| use_chime | Enables/disables the chime |
+| start_hour | Start time |
+| end_hour | End time |
+| enabled | Enable/disable the pendulum |
+| tower-clock | Enable/disable 12 o'clock melody |
+| use_chime | Enable/disable the chime |
 
 Default values:
 
@@ -126,7 +137,7 @@ async_test_announcement()
 
 Which:
 - reads the current time
-- generates a complete sentence (e.g. “Ore 15 e 42”)
+- generates a full sentence (e.g. “It's 15:42”)
 - immediately plays it on the Alexa device  
 
 Useful to verify: language, volume, chime, correct TTS operation
@@ -137,11 +148,11 @@ Useful to verify: language, volume, chime, correct TTS operation
 - 🔊 Alexa Media Player installed and working
 - 📡 Alexa device configured as player
 
-## 🎯 Ideal use cases
+## 🎯 Ideal use
 
 - ✔️ Smart homes
 - ✔️ Offices
-- ✔️ Common areas
+- ✔️ Shared spaces
 - ✔️ “Modern pendulum” effect
 - ✔️ Non-intrusive time reminder
 
@@ -158,9 +169,10 @@ Useful to verify: language, volume, chime, correct TTS operation
 
 ## ☕ Support the project
 
-Do you like this project? If you find it useful, offer me a virtual coffee to support future developments! Every small contribution is greatly appreciated. 🙏
+Do you like this project? If you find it useful, buy me a virtual coffee to support future developments! Every small contribution is greatly appreciated. 🙏
 
 **Digital Pendulum is and will always remain free and open source.** Donations are completely voluntary! ❤️
+
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/dregi56)
 
