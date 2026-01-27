@@ -13,12 +13,14 @@ from .const import (
     CONF_USE_CHIME,
     CONF_CUSTOM_CHIME_PATH,
     CONF_PRESET_CHIME,
+    CONF_TOWER_CLOCK,
     DEFAULT_START_HOUR,
     DEFAULT_END_HOUR,
     DEFAULT_ENABLED,
     DEFAULT_USE_CHIME,
     DEFAULT_CUSTOM_CHIME_PATH,
     DEFAULT_PRESET_CHIME,
+    DEFAULT_TOWER_CLOCK,
     PRESET_CHIMES,
     DOMAIN, 
 )
@@ -42,6 +44,7 @@ class DigitalPendulum:
         self.use_chime = config.get(CONF_USE_CHIME, DEFAULT_USE_CHIME)
         self.preset_chime = config.get(CONF_PRESET_CHIME, DEFAULT_PRESET_CHIME)
         self.custom_chime_path = config.get(CONF_CUSTOM_CHIME_PATH, DEFAULT_CUSTOM_CHIME_PATH)
+        self.tower_clock = config.get(CONF_TOWER_CLOCK, DEFAULT_TOWER_CLOCK)
 
     def update_config(self):
         """Update configuration when options change."""
@@ -76,7 +79,7 @@ class DigitalPendulum:
             return
 
         text = self._build_text(hour, minute)
-        await self._speak(text)
+        await self._speak(text, hour, minute)
 
     def _build_text(self, hour: int, minute: int) -> str:
         """Build announcement text using translations."""
@@ -153,8 +156,14 @@ class DigitalPendulum:
         
         return translations.get(language, fallback)
 
-    async def _play_chime(self):
-        """Play chime sound (custom or default)."""
+    async def _play_chime(self, hour: int = None, minute: int = None):
+        """Play chime sound (custom, default, or Westminster for tower clock)."""
+        # Se tower_clock è attivo e sono le 12:00, suona Westminster
+        if self.tower_clock and hour == 12 and minute == 0:
+            await self._play_westminster()
+            return
+        
+        # Altrimenti comportamento normale
         # Determina se usare suono personalizzato o default
         if self.preset_chime or self.custom_chime_path:
             await self._play_custom_chime()
@@ -173,6 +182,25 @@ class DigitalPendulum:
             },
             blocking=False,
         )
+
+    async def _play_westminster(self):
+        """Play Westminster chime for tower clock at 12:00."""
+        westminster_url = "https://raw.githubusercontent.com/Dregi56/digital_pendulum/main/sounds/westminster.mp3"
+        
+        try:
+            await self.hass.services.async_call(
+                "notify",
+                "alexa_media",
+                {
+                    "target": self.player,
+                    "message": f"<audio src='{westminster_url}'/>",
+                    "data": {"type": "tts"},
+                },
+                blocking=False,
+            )
+        except Exception:
+            # Se fallisce, usa suono default
+            await self._play_default_chime()
 
     async def _play_custom_chime(self):
         """Play custom audio file or preset chime."""
@@ -211,9 +239,9 @@ class DigitalPendulum:
             # Se fallisce, usa suono default
             await self._play_default_chime()
 
-    async def _speak(self, text: str):
+    async def _speak(self, text: str, hour: int = None, minute: int = None):
         if self.use_chime:
-            await self._play_chime()
+            await self._play_chime(hour, minute)
             await asyncio.sleep(1.2)
         
         await self.hass.services.async_call(
