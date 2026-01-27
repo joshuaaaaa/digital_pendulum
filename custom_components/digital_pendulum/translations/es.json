@@ -46,6 +46,11 @@
       "test_announcement": {
         "name": "Probar anuncio"
       }
+    },
+    "binary_sensor": {
+      "status_warning": {
+        "name": "Alerta de estado"
+      }
     }
   },
   "services": {
