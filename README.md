@@ -115,10 +115,11 @@ Questo crea un effetto simile a un vero pendolo 🎶.
 
 | Opzione | Descrizione |
 |------|------------|
-| enabled | Abilita o disabilita il pendolo |
+| player | Dispositivo Alexa target |
 | start_hour | Ora di inizio funzionamento |
 | end_hour | Ora di fine funzionamento |
-| player | Dispositivo Alexa target |
+| enabled | Abilita o disabilita il pendolo |
+| tower-clock | Abilita o disabilita melodia ore 12
 | use_chime | Attiva/disattiva la campana |
 
 Valori di default:
