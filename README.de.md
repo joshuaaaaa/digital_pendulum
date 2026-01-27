@@ -12,9 +12,10 @@ Ein sprechendes digitales Pendel für Home Assistant
 🌍 Verfügbare Sprachen:
 [Italiano](README.it.md) |
 [English](README.en.md) |
+[Español](README.es.md) |
 [Deutsch](README.de.md) |
-[Français](README.fr.md) |
-[Español](README.es.md)
+[Français](README.fr.md) 
+<br>👉Dies ist die deutsche README. Verwenden Sie oben die Sprachauswahl
 
 ## ❤️ Gefällt dir Digital Pendulum?
 
@@ -24,17 +25,18 @@ Wenn es dir nützlich ist, hinterlasse bitte einen ⭐ auf GitHub:
 
 ## 📌 Beschreibung
 
-Digital Pendulum ist eine benutzerdefinierte Integration für Home Assistant, die die Uhrzeit per Sprachausgabe ankündigt – genau wie ein digitales Pendel 🕰️.
+Digital Pendulum ist eine benutzerdefinierte Integration für Home Assistant, die die Uhrzeit sprachlich ansagt – genau wie ein digitales Pendel 🕰️.
 
 
-Mit einem Alexa-Gerät als Lautsprecher verwendet das System:
+Mit einem Alexa-Gerät als Lautsprecher kann das System:
 
-- 📢 kündigt die Uhrzeit alle 30 Minuten an  
-- 🌍 spricht automatisch die in Home Assistant eingestellte Sprache  
-- ⏰ funktioniert nur innerhalb eines konfigurierbaren Zeitfensters  
-- 🔔 kann einen benutzerdefinierten Ton abspielen (standardmäßig der „announce“-Ton (Chime) vor der Ansage  
+- 📢 die Uhrzeit alle 30 Minuten ansagen  
+- 🌍 automatisch in der in Home Assistant eingestellten Sprache sprechen  
+- ⏰ nur innerhalb eines konfigurierbaren Zeitfensters arbeiten 
+- 🔔 vor der Ansage einen benutzerdefinierten Ton abspielen (standardmäßig der Alexa-„announce“-Ton (Chime))
+- 🏰 um 12 Uhr die Westminster-Melodie abspielen  
 
-Das Ergebnis ist ein eleganter und unaufdringlicher Effekt, ideal für Zuhause oder Büro.
+Das Ergebnis ist ein eleganter und diskreter Effekt, ideal für Zuhause oder das Büro.
 
 ## ✨ Hauptfunktionen
 
@@ -52,23 +54,31 @@ Das Ergebnis ist ein eleganter und unaufdringlicher Effekt, ideal für Zuhause o
 automatischer Fallback auf Italienisch
 
 ### ⏱️ Konfigurierbares Zeitfenster
-- z. B. nur von 8:00 bis 22:00
+- z. B. nur von 8:00 bis 22:00 Uhr
 
-###  🔔 Optionaler Chime
+### 🔔 Optionale Glocke
 - 🔕 kurze stille Ankündigung vor dem TTS
 - 🎵 benutzerdefinierte Sounds. Wenn ein Pfad definiert ist, lokaler Sound
 
 ### 🧪 Testfunktion
 - um die Ansage sofort zu testen
 
+### 🎯 Verhalten
+- Preset: "church-bell": Standardsound
+- Preset: "simple-bell": Glocke aus der Bibliothek
+- Preset: "custom" + leerer Pfad: Alexa-„announce“-Sound
+- Preset: "custom" + gültiger Pfad: spielt eine ausgewählte Datei ab
+- Preset: "tower-clock": Westminster-Melodie um 12 Uhr
+- Use Chime: OFF: kein Sound, nur TTS (Zeitansage)
+
 ## ⚙️ Funktionsweise
 
-Das Herzstück des Systems ist die Klasse:
+Das Herz des Systems ist die Klasse:
 
 class DigitalPendulum
 
 die:
-- sich bei einem internen Timer registriert (jede 1 Minute)
+- sich an einen internen Timer registriert (jede 1 Minute)
 - prüft:
   - ob die Integration aktiviert ist
   - ob die Uhrzeit innerhalb des erlaubten Zeitfensters liegt
@@ -78,7 +88,7 @@ die:
 
 ## 🗣️ Sprachverwaltung
 
-Die Sprache wird automatisch ermittelt aus:
+Die Sprache wird automatisch erkannt über:
 
 self.hass.config.language
 
@@ -92,12 +102,12 @@ Beispiele für Ansagen:
 | 🇩🇪 DE | 16:30 | Es ist halb 17 |
 | 🇪🇸 ES | 11:00 | Son las 11 en punto |
 
-## 🔔 Chime (Startglocke)
+## 🔔 Chime (Anfangsglocke)
 
 Wenn die Option use_chime aktiviert ist:
 - wird eine leere Ankündigung gesendet
 - das System wartet 1,3 Sekunden
-- die TTS-Zeitansage startet  
+- anschließend startet das TTS mit der Uhrzeit  
 
 Dies erzeugt einen Effekt ähnlich einem echten Pendel 🎶.
 
@@ -105,11 +115,12 @@ Dies erzeugt einen Effekt ähnlich einem echten Pendel 🎶.
 
 | Option | Beschreibung |
 |------|------------|
-| enabled | Aktiviert oder deaktiviert das Pendel |
-| start_hour | Startzeit des Betriebs |
-| end_hour | Endzeit des Betriebs |
 | player | Ziel-Alexa-Gerät |
-| use_chime | Aktiviert/deaktiviert den Chime |
+| start_hour | Startzeit |
+| end_hour | Endzeit |
+| enabled | Pendel aktivieren/deaktivieren |
+| tower-clock | 12-Uhr-Melodie aktivieren/deaktivieren |
+| use_chime | Glocke aktivieren/deaktivieren |
 
 Standardwerte:
 
@@ -124,10 +135,10 @@ Eine manuelle Testmethode ist verfügbar:
 
 async_test_announcement()
 
-Die:
-- die aktuelle Uhrzeit liest
-- einen vollständigen Satz erzeugt (z. B. „Ore 15 e 42“)
-- ihn sofort auf dem Alexa-Gerät wiedergibt  
+Diese:
+- liest die aktuelle Uhrzeit
+- erzeugt einen vollständigen Satz (z. B. „Es ist 15:42“)
+- spielt ihn sofort auf dem Alexa-Gerät ab  
 
 Nützlich zur Überprüfung von: Sprache, Lautstärke, Chime, korrekter TTS-Funktion
 
@@ -137,9 +148,9 @@ Nützlich zur Überprüfung von: Sprache, Lautstärke, Chime, korrekter TTS-Funk
 - 🔊 Alexa Media Player installiert und funktionsfähig
 - 📡 Alexa-Gerät als Player konfiguriert
 
-## 🎯 Ideale Verwendung
+## 🎯 Idealer Einsatz
 
-- ✔️ Smart Homes
+- ✔️ Smarte Wohnungen
 - ✔️ Büros
 - ✔️ Gemeinschaftsbereiche
 - ✔️ „Modernes Pendel“-Effekt
@@ -150,17 +161,18 @@ Nützlich zur Überprüfung von: Sprache, Lautstärke, Chime, korrekter TTS-Funk
 - ⏳ Ansagen alle 15 Minuten
 - 🔇 Automatische Nachtlautstärke
 - 🗓️ Tagesansage
-- 📣 Unterstützung weiterer TTS-Engines
+- 📣 Unterstützung weiterer TTS-Systeme
 
 ---
 
 ## 
 
-## ☕ Projekt unterstützen
+## ☕ Unterstütze das Projekt
 
-Gefällt dir dieses Projekt? Wenn du es nützlich findest, spendiere mir einen virtuellen Kaffee, um zukünftige Weiterentwicklungen zu unterstützen! Jeder kleine Beitrag wird sehr geschätzt. 🙏
+Gefällt dir dieses Projekt? Wenn du es nützlich findest, spendiere mir einen virtuellen Kaffee, um zukünftige Entwicklungen zu unterstützen! Jeder noch so kleine Beitrag wird sehr geschätzt. 🙏
 
-**Digital Pendulum ist und bleibt immer kostenlos und Open Source.** Spenden sind völlig freiwillig! ❤️
+**Digital Pendulum ist und bleibt immer kostenlos und Open Source.** Spenden sind vollkommen freiwillig! ❤️
+
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/dregi56)
 
