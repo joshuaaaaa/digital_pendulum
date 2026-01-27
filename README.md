@@ -8,9 +8,6 @@ Un pendolo digitale parlante per Home Assistant
 ![License](https://img.shields.io/github/license/Dregi56/digital_pendulum)
 [![GitHub stars](https://img.shields.io/github/stars/Dregi56/digital_pendulum?style=social)](https://github.com/Dregi56/digital_pendulum)
 
-##> ⚠️ **Digital Pendulum è un’integrazione HACS-only**  
-> Richiede l’integrazione **Alexa Media Player** installata e funzionante.
-
 🌍 Lingue disponibili:
 [Italiano](README.it.md) |
 [English](README.en.md) |
@@ -18,6 +15,9 @@ Un pendolo digitale parlante per Home Assistant
 [Deutsch](README.de.md) |
 [Français](README.fr.md) 
 <br>👉This is the Italian README. Use the language selector above
+
+> ⚠️ **Digital Pendulum è un’integrazione HACS-only**  
+> Richiede l’integrazione **Alexa Media Player** installata e funzionante.
 
 ## ❤️ Ti piace Digital Pendulum?
 
