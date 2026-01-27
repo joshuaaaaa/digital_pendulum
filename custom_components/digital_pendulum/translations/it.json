@@ -47,6 +47,11 @@
         "name": "Test Annuncio"
       }
     }
+    "binary_sensor": {
+      "status_warning": {
+        "name": "Avviso Stato"
+      }
+    }
   },
   "services": {
     "test_announcement": {
@@ -60,4 +65,5 @@
     "hour_exact": "Ore {hour} in punto",
     "hour_and_minutes": "Ore {hour} e {minutes}"
   }
+
 }
