@@ -18,10 +18,6 @@ A talking digital pendulum for Home Assistant
 <br>👉This is the English README. Use the language selector above
 
 
-> ⚠️ **Digital Pendulum is a HACS-only integration**
-<br> It requires the **Alexa Media Player** integration installed and working.
-
-
 ## ❤️ Do you like Digital Pendulum?
 
 If you find it useful, consider leaving a ⭐ on GitHub:  
@@ -152,6 +148,9 @@ Useful to verify: language, volume, chime, correct TTS operation
 - 🏠 Home Assistant
 - 🔊 Alexa Media Player installed and working
 - 📡 Alexa device configured as player
+
+> ⚠️ **Digital Pendulum is a HACS-only integration**
+<br> It requires the **Alexa Media Player** integration installed and working.
 
 ## 🎯 Ideal use
 
