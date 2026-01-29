@@ -1,0 +1,8 @@
+test_announcement:
+  name: Test Announcement
+  description: Test the time announcement immediately with current time
+  fields:
+    entity_id:
+      description: The Digital Pendulum entity to test
+      example: "digital_pendulum.speaking_clock"
+      required: false
