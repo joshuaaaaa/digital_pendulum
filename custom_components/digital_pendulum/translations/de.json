@@ -3,17 +3,19 @@
     "step": {
       "user": {
         "title": "Digital Pendulum Einrichtung",
-        "description": "Das Pendel wird zwischen den eingestellten Start- und Endzeiten funktionieren",
+        "description": "Das Pendel arbeitet zwischen den eingestellten Start- und Endzeiten",
         "data": {
           "player_device": "Alexa Gerät",
           "start_hour": "Startstunde",
           "end_hour": "Endstunde",
           "enabled": "Aktiviert",
-          "use_chime": "Glocke verwenden",
-          "custom_chime_path": "Pfad zum benutzerdefinierten Ton (optional)"
+          "tower_clock": "Turmuhr (Westminster um 12:00)",
+          "use_chime": "Glockenton verwenden",
+          "preset_chime": "Glockenton",
+          "custom_chime_path": "Benutzerdefinierter Glockenpfad (optional)"
         },
         "data_description": {
-          "custom_chime_path": "Z.B.: www/sounds/glocke.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standardton)"
+          "custom_chime_path": "Z.B.: www/sounds/bell.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standard)"
         }
       }
     }
@@ -22,16 +24,19 @@
     "step": {
       "init": {
         "title": "Digital Pendulum Optionen",
-        "description": "Das Pendel wird zwischen den eingestellten Start- und Endzeiten funktionieren",
+        "description": "Das Pendel arbeitet zwischen den eingestellten Start- und Endzeiten",
         "data": {
           "player_device": "Alexa Gerät",
           "start_hour": "Startstunde",
           "end_hour": "Endstunde",
-          "use_chime": "Glocke verwenden",
-          "custom_chime_path": "Pfad zum benutzerdefinierten Ton (optional)"
+          "enabled": "Aktiviert",
+          "tower_clock": "Turmuhr (Westminster um 12:00)",
+          "use_chime": "Glockenton verwenden",
+          "preset_chime": "Glockenton",
+          "custom_chime_path": "Benutzerdefinierter Glockenpfad (optional)"
         },
         "data_description": {
-          "custom_chime_path": "Z.B.: www/sounds/glocke.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standardton)"
+          "custom_chime_path": "Z.B.: www/sounds/bell.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standard)"
         }
       }
     }
@@ -44,19 +49,19 @@
     },
     "button": {
       "test_announcement": {
-        "name": "Ankündigung testen"
+        "name": "Ansage testen"
       }
     },
     "binary_sensor": {
       "status_warning": {
-        "name": "Status-Warnung"
+        "name": "Statuswarnung"
       }
     }
   },
   "services": {
     "test_announcement": {
-      "name": "Ankündigung testen",
-      "description": "Testet die Zeitansage sofort"
+      "name": "Ansage testen",
+      "description": "Teste die Zeitansage sofort"
     }
-  },
+  }
 }
