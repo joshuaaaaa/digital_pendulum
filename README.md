@@ -176,7 +176,6 @@ Do you like this project? If you find it useful, buy me a virtual coffee to supp
 
 **Digital Pendulum is and will always remain free and open source.** Donations are completely voluntary! ❤️
 
-
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/dregi56)
 
 💡 **Prefer other methods?** You can use:
