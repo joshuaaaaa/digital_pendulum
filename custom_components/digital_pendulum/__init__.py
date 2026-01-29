@@ -1,9 +1,13 @@
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, ServiceCall
+from homeassistant.helpers import config_validation as cv
 
 from .const import DOMAIN
 from .pendulum import DigitalPendulum
 from . import config_flow
+
+# Questa integrazione supporta solo config entries (configurazione via UI)
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 PLATFORMS = ["switch", "button", "binary_sensor"]
 
@@ -58,3 +62,4 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 
     return True
+
