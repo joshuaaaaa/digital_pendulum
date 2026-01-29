@@ -3,17 +3,19 @@
     "step": {
       "user": {
         "title": "Configuration Digital Pendulum",
-        "description": "Le balancier fonctionnera entre les heures de début et de fin définies",
+        "description": "Le pendule fonctionnera entre les heures de début et de fin définies",
         "data": {
           "player_device": "Appareil Alexa",
-          "start_hour": "Heure de début",
-          "end_hour": "Heure de fin",
+          "start_hour": "Heure de Début",
+          "end_hour": "Heure de Fin",
           "enabled": "Activé",
-          "use_chime": "Utiliser le carillon",
-          "custom_chime_path": "Chemin du son personnalisé (optionnel)"
+          "tower_clock": "Horloge de Tour (Westminster à 12h00)",
+          "use_chime": "Utiliser le Carillon",
+          "preset_chime": "Son de Carillon",
+          "custom_chime_path": "Chemin du carillon personnalisé (optionnel)"
         },
         "data_description": {
-          "custom_chime_path": "Ex: www/sounds/cloche.mp3 (Formats: MP3, WAV, OGG - laisser vide pour le son par défaut)"
+          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)"
         }
       }
     }
@@ -22,16 +24,19 @@
     "step": {
       "init": {
         "title": "Options Digital Pendulum",
-        "description": "Le balancier fonctionnera entre les heures de début et de fin définies",
+        "description": "Le pendule fonctionnera entre les heures de début et de fin définies",
         "data": {
           "player_device": "Appareil Alexa",
-          "start_hour": "Heure de début",
-          "end_hour": "Heure de fin",
-          "use_chime": "Utiliser le carillon",
-          "custom_chime_path": "Chemin du son personnalisé (optionnel)"
+          "start_hour": "Heure de Début",
+          "end_hour": "Heure de Fin",
+          "enabled": "Activé",
+          "tower_clock": "Horloge de Tour (Westminster à 12h00)",
+          "use_chime": "Utiliser le Carillon",
+          "preset_chime": "Son de Carillon",
+          "custom_chime_path": "Chemin du carillon personnalisé (optionnel)"
         },
         "data_description": {
-          "custom_chime_path": "Ex: www/sounds/cloche.mp3 (Formats: MP3, WAV, OGG - laisser vide pour le son par défaut)"
+          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)"
         }
       }
     }
@@ -44,21 +49,19 @@
     },
     "button": {
       "test_announcement": {
-        "name": "Test d'annonce"
+        "name": "Test d'Annonce"
       }
     },
     "binary_sensor": {
       "status_warning": {
-        "name": "Alerte d'état"
+        "name": "Avertissement d'État"
       }
     }
   },
   "services": {
     "test_announcement": {
-      "name": "Test d'annonce",
-      "description": "Tester l'annonce de l'heure immédiatement"
+      "name": "Test d'Annonce",
+      "description": "Teste l'annonce de l'heure immédiatement"
     }
-  },
+  }
 }
-
-
