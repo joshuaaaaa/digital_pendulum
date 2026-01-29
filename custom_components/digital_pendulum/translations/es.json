@@ -59,10 +59,8 @@
       "description": "Probar el anuncio de la hora inmediatamente"
     }
   },
-  "time_announcements": {
-    "hour": "Son las {hour}",
-    "hour_and_half": "Son las {hour} y media",
-    "hour_exact": "Son las {hour} en punto",
-    "hour_and_minutes": "Son las {hour} y {minutes}"
-  }
+  "time_announcements_hour": "Son las {hour}",
+  "time_announcements_hour_and_half": "Son las {hour} y media",
+  "time_announcements_hour_exact": "Son las {hour} en punto",
+  "time_announcements_hour_and_minutes": "Son las {hour} y {minutes}"
 }
