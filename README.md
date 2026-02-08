@@ -31,10 +31,11 @@ Digital Pendulum is a custom integration for Home Assistant that announces the t
 
 Using an Alexa device as a speaker, the system:
 
-- 📢 announces the time every 30 minutes  
+- 📢 announces the time every hour or 30 minutes  
 - 🌍 automatically speaks in the language set in Home Assistant  
 - ⏰ works only within a configurable time range 
 - 🔔 can play a custom sound (by default the 'announce' (chime) sound) before the announcement
+- 🔕 can disable voice announcement (chime only)
 - 🏰 can play the Westminster melody at 12 o'clock  
 
 The result is an elegant and discreet effect, ideal for home or office.
