@@ -30,10 +30,11 @@ Digital Pendulum è un’integrazione personalizzata per Home Assistant che annu
 
 Utilizzando un dispositivo Alexa come speaker, il sistema:
 
-- 📢 annuncia l’ora ogni 30 minuti  
+- 📢 annuncia l’orario ogni ora o 30 minuti  
 - 🌍 parla automaticamente nella lingua impostata in Home Assistant  
 - ⏰ funziona solo in una fascia oraria configurabile 
 - 🔔 può riprodurre un suono personalizzato (di default suono 'announce' (chime) prima dell’annuncio
+- 🔕 può disabilitare l'annuncio vocale (solo campana)
 - 🏰 può riprodurre la melodia di westminster alle ore 12  
 
 Il risultato è un effetto elegante e discreto, ideale per casa o ufficio.
@@ -119,6 +120,8 @@ Questo crea un effetto simile a un vero pendolo 🎶.
 | start_hour | Ora di inizio funzionamento |
 | end_hour | Ora di fine funzionamento |
 | enabled | Abilita/disabilita il pendolo |
+| enabled | Abilita l'annuncio ogni mezz'ora o ogni ora
+| enabled | Abilita/disabilita l'annuncio vocale
 | tower-clock | Abilita/disabilita melodia ore 12
 | use_chime | Attiva/disattiva la campana |
 
@@ -126,7 +129,7 @@ Valori di default:
 
 - ⏰ start_hour → DEFAULT_START_HOUR  
 - ⏰ end_hour → DEFAULT_END_HOUR  
-- 🔔 use_chime → DEFAULT_USE_CHIME  
+- 🔔 use_chime → DEFAULT_USE_CHIME
 - ✅ enabled → DEFAULT_ENABLED  
 
 ## 🧪 Test immediato
