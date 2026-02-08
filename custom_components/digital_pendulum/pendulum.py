@@ -1,10 +1,8 @@
 import asyncio
 import os
 from datetime import datetime, timedelta
-
 from homeassistant.helpers.event import async_track_time_change
 from homeassistant.util import dt as dt_util
-
 from .const import (
     CONF_START_HOUR,
     CONF_END_HOUR,
@@ -14,6 +12,8 @@ from .const import (
     CONF_CUSTOM_CHIME_PATH,
     CONF_PRESET_CHIME,
     CONF_TOWER_CLOCK,
+    CONF_ANNOUNCE_HALF_HOURS,
+    CONF_VOICE_ANNOUNCEMENT,
     DEFAULT_START_HOUR,
     DEFAULT_END_HOUR,
     DEFAULT_ENABLED,
@@ -21,10 +21,11 @@ from .const import (
     DEFAULT_CUSTOM_CHIME_PATH,
     DEFAULT_PRESET_CHIME,
     DEFAULT_TOWER_CLOCK,
+    DEFAULT_ANNOUNCE_HALF_HOURS,
+    DEFAULT_VOICE_ANNOUNCEMENT,
     PRESET_CHIMES,
     DOMAIN, 
 )
-
 
 class DigitalPendulum:
     def __init__(self, hass, entry):
@@ -45,6 +46,9 @@ class DigitalPendulum:
         self.preset_chime = config.get(CONF_PRESET_CHIME, DEFAULT_PRESET_CHIME)
         self.custom_chime_path = config.get(CONF_CUSTOM_CHIME_PATH, DEFAULT_CUSTOM_CHIME_PATH)
         self.tower_clock = config.get(CONF_TOWER_CLOCK, DEFAULT_TOWER_CLOCK)
+        # NUOVE OPZIONI
+        self.announce_half_hours = config.get(CONF_ANNOUNCE_HALF_HOURS, DEFAULT_ANNOUNCE_HALF_HOURS)
+        self.voice_announcement = config.get(CONF_VOICE_ANNOUNCEMENT, DEFAULT_VOICE_ANNOUNCEMENT)
 
     def update_config(self):
         """Update configuration when options change."""
@@ -66,18 +70,22 @@ class DigitalPendulum:
     async def _time_tick(self, now: datetime):
         if not self.enabled:
             return
-
+        
         local_time = dt_util.as_local(now)
         
         hour = local_time.hour
         minute = local_time.minute
-
+        
         if minute not in (0, 30):
             return
-
+        
+        # NUOVA LOGICA: Salta le mezz'ore se disabilitate
+        if minute == 30 and not self.announce_half_hours:
+            return
+        
         if not (self.start_hour <= hour <= self.end_hour):
             return
-
+        
         text = self._build_text(hour, minute)
         await self._speak(text, hour, minute)
 
@@ -244,16 +252,18 @@ class DigitalPendulum:
             await self._play_chime(hour, minute)
             await asyncio.sleep(1.2)
         
-        await self.hass.services.async_call(
-            "notify",
-            "alexa_media",
-            {
-                "target": self.player,
-                "message": text,
-                "data": {"type": "tts"},
-            },
-            blocking=False,
-        )
+        # NUOVA LOGICA: Annuncio vocale solo se abilitato
+        if self.voice_announcement:
+            await self.hass.services.async_call(
+                "notify",
+                "alexa_media",
+                {
+                    "target": self.player,
+                    "message": text,
+                    "data": {"type": "tts"},
+                },
+                blocking=False,
+            )
 
     async def async_test_announcement(self):
         """Test immediato dell'annuncio con orario completo."""
