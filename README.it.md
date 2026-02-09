@@ -106,8 +106,8 @@ Esempi di annunci:
 ## 🔔 Chime (campana iniziale)
 
 Se l’opzione use_chime è attiva:
-- viene inviato un announce vuoto
-- il sistema attende 1,3 secondi
+- viene riprodotto il suono di notifica di Alexa (announce)
+- il sistema attende circa 1 secondo
 - parte il TTS con l’orario  
 
 Questo crea un effetto simile a un vero pendolo 🎶.
