@@ -120,10 +120,11 @@ Questo crea un effetto simile a un vero pendolo 🎶.
 | start_hour | Ora di inizio funzionamento |
 | end_hour | Ora di fine funzionamento |
 | enabled | Abilita/disabilita il pendolo |
-| enabled | Abilita l'annuncio ogni mezz'ora o ogni ora
-| enabled | Abilita/disabilita l'annuncio vocale
-| tower-clock | Abilita/disabilita melodia ore 12
-| use_chime | Attiva/disattiva la campana |
+| half_hour | Abilita annunci ogni mezz'ora (altrimenti solo ogni ora) |
+| tower_clock | Abilita melodia Westminster alle ore 12 |
+| use_chime | Attiva/disattiva la campana prima dell'annuncio |
+| preset_chime | Scelta del suono campana (12 preset disponibili) |
+| custom_chime_path | Path per suono campana personalizzato |
 
 Valori di default:
 
