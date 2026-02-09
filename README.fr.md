@@ -3,8 +3,7 @@
 Un pendule numérique parlant pour Home Assistant  
 <br>**Auteur :** Egidio Ziggiotto (Dregi56)  e-mail : [dregi@cyberservices.com](mailto:dregi@cyberservices.com)
 
-
-[![HACS](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://hacs.xyz/)
+[![HACS](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://hacs.xyz/)
 [![Version](https://img.shields.io/github/v/release/Dregi56/digital_pendulum)](https://github.com/Dregi56/digital_pendulum/releases)
 ![License](https://img.shields.io/github/license/Dregi56/digital_pendulum)
 [![GitHub stars](https://img.shields.io/github/stars/Dregi56/digital_pendulum?style=social)](https://github.com/Dregi56/digital_pendulum)
@@ -20,7 +19,7 @@ Un pendule numérique parlant pour Home Assistant
 
 ## ❤️ Vous aimez Digital Pendulum ?
 
-S’il vous est utile, pensez à laisser une ⭐ sur GitHub :  
+Si cela vous est utile, pensez à laisser une ⭐ sur GitHub :  
 👉 **https://github.com/Dregi56/digital_pendulum**
 <br>Merci.
 
@@ -31,19 +30,20 @@ Digital Pendulum est une intégration personnalisée pour Home Assistant qui ann
 
 En utilisant un appareil Alexa comme haut-parleur, le système :
 
-- 📢 annonce l’heure toutes les 30 minutes  
+- 📢 annonce l’heure toutes les heures et/ou toutes les demi-heures (configurable)
 - 🌍 parle automatiquement dans la langue définie dans Home Assistant  
 - ⏰ fonctionne uniquement dans une plage horaire configurable 
-- 🔔 peut lire un son personnalisé (par défaut le son Alexa « announce » (carillon)) avant l’annonce
-- 🏰 peut jouer la mélodie de Westminster à 12 heures  
+- 🔔 peut jouer un son personnalisé avant l’annonce
+- 🔕 peut désactiver l’annonce vocale (cloche uniquement)
+- 🏰 peut jouer la mélodie Westminster à 12 heures
 
 Le résultat est un effet élégant et discret, idéal pour la maison ou le bureau.
 
 ## ✨ Fonctionnalités principales
 
 ### 🕑 Annonce automatique de l’heure
-- chaque heure pile (xx:00)
-- chaque demi-heure (xx:30)
+- chaque heure (xx:00)
+- chaque demi-heure (xx:30) – optionnel
 
 ### 🌐 Support multilingue automatique
 - Italien 🇮🇹
@@ -57,20 +57,34 @@ repli automatique vers l’italien
 ### ⏱️ Plage horaire configurable
 - ex. uniquement de 8:00 à 22:00
 
-### 🔔 Carillon optionnel
-- 🔕 brève annonce silencieuse avant le TTS
-- 🎵 sons personnalisés. Si un chemin est défini, son local
+###  🔔 Cloche optionnelle
+- 🎵 12 sons prédéfinis au choix
+- 🎶 possibilité d’utiliser un fichier audio personnalisé
+- 🔕 son de notification Alexa « announce » (par défaut)
 
 ### 🧪 Fonction de test
 - pour tester immédiatement l’annonce
 
 ### 🎯 Comportement
-- Preset : "church-bell" : son par défaut
-- Preset : "simple-bell" : cloche choisie dans la bibliothèque
-- Preset : "custom" + chemin vide : son Alexa « announce »
-- Preset : "custom" + chemin valide : joue un fichier sélectionné
-- Preset : "tower-clock" : mélodie de Westminster à 12 heures
-- Use Chime : OFF : aucun son, uniquement le TTS (annonce de l’heure)
+
+**Cloche (Chime) :**
+- **Préréglages disponibles** : 12 sons dont church-bell, simple-bell, clock-chime, etc.
+- **Son personnalisé** : Sélectionnez « custom » et entrez le chemin de votre fichier audio
+- **Par défaut** : Son « announce » d’Alexa (si rien n’est sélectionné)
+- **Désactivé** : Désactivez « use_chime » pour aucun son avant l’annonce
+
+**Mélodie Westminster (Tower Clock) :**
+- Option séparée « tower_clock »
+- Joue **uniquement à 12:00** (midi)
+- Remplace la cloche normale à cette heure
+
+**Annonce vocale :**
+- **Activée** (par défaut) : Alexa annonce l’heure après la cloche
+- **Désactivée** : Cloche uniquement, aucune annonce vocale
+
+**Annonces à la demi-heure :**
+- **Activées** (par défaut) : Annonces à :00 et :30
+- **Désactivées** : Annonces uniquement à :00
 
 ## ⚙️ Fonctionnement
 
@@ -79,17 +93,18 @@ Le cœur du système est la classe :
 class DigitalPendulum
 
 qui :
-- s’enregistre sur un minuteur interne (toutes les 1 minute)
+- s’enregistre sur un minuteur interne synchronisé (chaque minute à la seconde :00)
 - vérifie :
   - si l’intégration est activée
   - si l’heure est dans la plage autorisée
-  - si la minute est 00 ou 30
+  - si la minute est :00 (ou :30 si activé)
 - construit le texte parlé selon la langue
-- envoie l’annonce à l’appareil Alexa configuré
+- joue la cloche (si activée)
+- envoie l’annonce vocale à l’appareil Alexa (si activée)
 
 ## 🗣️ Gestion des langues
 
-La langue est détectée automatiquement à partir de :
+La langue est détectée automatiquement depuis :
 
 self.hass.config.language
 
@@ -103,14 +118,14 @@ Exemples d’annonces :
 | 🇩🇪 DE | 16:30 | Es ist halb 17 |
 | 🇪🇸 ES | 11:00 | Son las 11 |
 
-## 🔔 Chime (carillon initial)
+## 🔔 Cloche (signal initial)
 
 Si l’option use_chime est activée :
-- une annonce vide est envoyée
-- le système attend 1,3 seconde
-- le TTS avec l’heure démarre  
+- le son de notification Alexa ou le son sélectionné est joué
+- le système attend 1,2 seconde
+- l’annonce vocale démarre (si activée)
 
-Cela crée un effet similaire à un vrai pendule 🎶.
+Cela crée un effet similaire à un véritable pendule 🎶.
 
 ## 🧩 Options de configuration
 
@@ -120,15 +135,22 @@ Cela crée un effet similaire à un vrai pendule 🎶.
 | start_hour | Heure de début |
 | end_hour | Heure de fin |
 | enabled | Activer/désactiver le pendule |
-| tower-clock | Activer/désactiver la mélodie de 12 heures |
-| use_chime | Activer/désactiver le carillon |
+| announce_half_hours | Activer les annonces à la demi-heure (sinon seulement chaque heure) |
+| voice_announcement | Activer/désactiver l’annonce vocale |
+| tower_clock | Activer la mélodie Westminster à 12:00 |
+| use_chime | Activer/désactiver la cloche avant l’annonce |
+| preset_chime | Sélection du son de cloche (12 préréglages disponibles) |
+| custom_chime_path | Chemin du son personnalisé |
 
 Valeurs par défaut :
 
-- ⏰ start_hour → DEFAULT_START_HOUR  
-- ⏰ end_hour → DEFAULT_END_HOUR  
-- 🔔 use_chime → DEFAULT_USE_CHIME  
-- ✅ enabled → DEFAULT_ENABLED  
+- ⏰ start_hour → 8
+- ⏰ end_hour → 22
+- 🔔 use_chime → True
+- 🗣️ voice_announcement → True
+- ⏰ announce_half_hours → True
+- 🏰 tower_clock → False
+- ✅ enabled → True
 
 ## 🧪 Test immédiat
 
@@ -138,17 +160,19 @@ async_test_announcement()
 
 Qui :
 - lit l’heure actuelle
-- génère une phrase complète (ex. « Il est 15:42 »)
+- génère une phrase complète (ex. « Ore 15 e 42 »)
 - la joue immédiatement sur l’appareil Alexa  
 
-Utile pour vérifier : langue, volume, carillon, bon fonctionnement du TTS
+Utile pour vérifier : langue, volume, cloche, bon fonctionnement du TTS
 
 ## 📦 Prérequis
-> ⚠️ **Digital Pendulum est une intégration via HACS uniquement**
-> 
-- 🏠 Home Assistant
+
+> ✨ **Disponible sur HACS** – installation et mises à jour simplifiées !
+
+- 🏠 Home Assistant 2024.1.0 ou supérieur
 - 🔊 Alexa Media Player installé et fonctionnel
 - 📡 Appareil Alexa configuré comme lecteur
+
 
 ## 🎯 Utilisation idéale
 
@@ -163,10 +187,9 @@ Utile pour vérifier : langue, volume, carillon, bon fonctionnement du TTS
 - ⏳ Annonces toutes les 15 minutes
 - 🔇 Volume nocturne automatique
 - 🗓️ Annonce du jour
-- 📣 Support d’autres systèmes TTS
+- 📣 Support d’autres TTS
 
 ---
-
 ## 
 
 ## ☕ Soutenir le projet
