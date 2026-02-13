@@ -14,10 +14,13 @@
           "tower_clock": "Tower Clock (Westminster at 12:00)",
           "use_chime": "Use Chime Sound",
           "preset_chime": "Chime Sound",
-          "custom_chime_path": "Custom chime path (optional)"
+          "custom_chime_path": "Custom chime path (optional)",
+          "use_volume_control": "Enable volume control",
+          "announcement_volume": "Announcement volume"
         },
         "data_description": {
-          "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)"
+          "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)",
+          "announcement_volume": "Volume level used during announcements (0.0 - 1.0)"
         }
       }
     }
@@ -37,10 +40,13 @@
           "tower_clock": "Tower Clock (Westminster at 12:00)",
           "use_chime": "Use Chime Sound",
           "preset_chime": "Chime Sound",
-          "custom_chime_path": "Custom chime path (optional)"
+          "custom_chime_path": "Custom chime path (optional)",
+          "use_volume_control": "Enable volume control",
+          "announcement_volume": "Announcement volume"
         },
         "data_description": {
-          "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)"
+          "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)",
+          "announcement_volume": "Volume level used during announcements (0.0 - 1.0)"
         }
       }
     }
