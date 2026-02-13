@@ -1,9 +1,7 @@
 import voluptuous as vol
-
 from homeassistant import config_entries
 from homeassistant.core import callback
 from homeassistant.helpers import selector
-
 from .const import (
     DOMAIN,
     CONF_START_HOUR,
@@ -16,6 +14,8 @@ from .const import (
     CONF_TOWER_CLOCK,
     CONF_ANNOUNCE_HALF_HOURS,
     CONF_VOICE_ANNOUNCEMENT,
+    CONF_USE_VOLUME_CONTROL,
+    CONF_ANNOUNCEMENT_VOLUME,
     DEFAULT_START_HOUR,
     DEFAULT_END_HOUR,
     DEFAULT_ENABLED,
@@ -25,9 +25,10 @@ from .const import (
     DEFAULT_TOWER_CLOCK,
     DEFAULT_ANNOUNCE_HALF_HOURS,
     DEFAULT_VOICE_ANNOUNCEMENT,
+    DEFAULT_USE_VOLUME_CONTROL,
+    DEFAULT_ANNOUNCEMENT_VOLUME,
     PRESET_CHIMES,
 )
-
 
 class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 1
@@ -83,7 +84,7 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     CONF_ENABLED,
                     default=DEFAULT_ENABLED,
                 ): bool,
-                # 4) NUOVE OPZIONI - Annunci
+                # 4) Annunci
                 vol.Required(
                     CONF_ANNOUNCE_HALF_HOURS,
                     default=DEFAULT_ANNOUNCE_HALF_HOURS,
@@ -119,6 +120,23 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 ): selector.TextSelector(
                     selector.TextSelectorConfig(
                         type=selector.TextSelectorType.TEXT,
+                    )
+                ),
+                # 9) Controllo volume
+                vol.Required(
+                    CONF_USE_VOLUME_CONTROL,
+                    default=DEFAULT_USE_VOLUME_CONTROL,
+                ): bool,
+                # 10) Volume per gli annunci (0.0 - 1.0)
+                vol.Optional(
+                    CONF_ANNOUNCEMENT_VOLUME,
+                    default=DEFAULT_ANNOUNCEMENT_VOLUME,
+                ): selector.NumberSelector(
+                    selector.NumberSelectorConfig(
+                        min=0.0,
+                        max=1.0,
+                        step=0.05,
+                        mode=selector.NumberSelectorMode.SLIDER,
                     )
                 ),
             }
@@ -194,7 +212,7 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                     CONF_ENABLED,
                     default=current_options.get(CONF_ENABLED, DEFAULT_ENABLED),
                 ): bool,
-                # 4) NUOVE OPZIONI - Annunci
+                # 4) Annunci
                 vol.Required(
                     CONF_ANNOUNCE_HALF_HOURS,
                     default=current_options.get(CONF_ANNOUNCE_HALF_HOURS, DEFAULT_ANNOUNCE_HALF_HOURS),
@@ -232,6 +250,23 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                         type=selector.TextSelectorType.TEXT,
                     )
                 ),
+                # 9) Controllo volume
+                vol.Required(
+                    CONF_USE_VOLUME_CONTROL,
+                    default=current_options.get(CONF_USE_VOLUME_CONTROL, DEFAULT_USE_VOLUME_CONTROL),
+                ): bool,
+                # 10) Volume per gli annunci (0.0 - 1.0)
+                vol.Optional(
+                    CONF_ANNOUNCEMENT_VOLUME,
+                    default=current_options.get(CONF_ANNOUNCEMENT_VOLUME, DEFAULT_ANNOUNCEMENT_VOLUME),
+                ): selector.NumberSelector(
+                    selector.NumberSelectorConfig(
+                        min=0.0,
+                        max=1.0,
+                        step=0.05,
+                        mode=selector.NumberSelectorMode.SLIDER,
+                    )
+                ),
             }
         )
 
@@ -239,3 +274,4 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
             step_id="init",
             data_schema=schema,
         )
+
