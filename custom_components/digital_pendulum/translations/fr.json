@@ -14,10 +14,13 @@
           "tower_clock": "Horloge de Tour (Westminster à 12h00)",
           "use_chime": "Utiliser le Carillon",
           "preset_chime": "Son de Carillon",
-          "custom_chime_path": "Chemin du carillon personnalisé (optionnel)"
+          "custom_chime_path": "Chemin du carillon personnalisé (optionnel)",
+          "use_volume_control": "Activer le contrôle du volume",
+          "announcement_volume": "Volume des annonces"
         },
         "data_description": {
-          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)"
+          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)",
+          "announcement_volume": "Niveau de volume utilisé pendant les annonces (0.0 - 1.0)"
         }
       }
     }
@@ -37,10 +40,13 @@
           "tower_clock": "Horloge de Tour (Westminster à 12h00)",
           "use_chime": "Utiliser le Carillon",
           "preset_chime": "Son de Carillon",
-          "custom_chime_path": "Chemin du carillon personnalisé (optionnel)"
+          "custom_chime_path": "Chemin du carillon personnalisé (optionnel)",
+          "use_volume_control": "Activer le contrôle du volume",
+          "announcement_volume": "Volume des annonces"
         },
         "data_description": {
-          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)"
+          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)",
+          "announcement_volume": "Niveau de volume utilisé pendant les annonces (0.0 - 1.0)"
         }
       }
     }
@@ -69,4 +75,5 @@
     }
   }
 }
+
 
