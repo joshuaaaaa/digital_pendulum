@@ -17,8 +17,7 @@
           "custom_chime_path": "Benutzerdefinierter Glockenpfad (optional)"
         },
         "data_description": {
-          "custom_chime_path": "Z.B.: www/sounds/bell.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standard)",
-          "announcement_volume": "Lautstärke für Ansagen (0.0 - 1.0)"
+          "custom_chime_path": "Z.B.: www/sounds/bell.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standard)"
         }
       }
     }
@@ -41,8 +40,7 @@
           "custom_chime_path": "Benutzerdefinierter Glockenpfad (optional)"
         },
         "data_description": {
-          "custom_chime_path": "Z.B.: www/sounds/bell.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standard)",
-          "announcement_volume": "Lautstärke für Ansagen (0.0 - 1.0)"
+          "custom_chime_path": "Z.B.: www/sounds/bell.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standard)"
         }
       }
     }
