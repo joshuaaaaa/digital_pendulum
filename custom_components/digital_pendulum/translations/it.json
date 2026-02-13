@@ -14,9 +14,7 @@
           "tower_clock": "Orologio a Torre (Westminster alle 12:00)",
           "use_chime": "Usa Suono Campana",
           "preset_chime": "Suono Campana",
-          "custom_chime_path": "Percorso campana personalizzata (opzionale)",
-          "use_volume_control": "Abilita controllo volume",
-          "announcement_volume": "Volume annunci"
+          "custom_chime_path": "Percorso campana personalizzata (opzionale)"
         },
         "data_description": {
           "custom_chime_path": "Es.: www/sounds/bell.mp3 (Formati: MP3, WAV, OGG - lascia vuoto per default)",
@@ -40,9 +38,7 @@
           "tower_clock": "Orologio a Torre (Westminster alle 12:00)",
           "use_chime": "Usa Suono Campana",
           "preset_chime": "Suono Campana",
-          "custom_chime_path": "Percorso campana personalizzata (opzionale)",
-          "use_volume_control": "Abilita controllo volume",
-          "announcement_volume": "Volume annunci"
+          "custom_chime_path": "Percorso campana personalizzata (opzionale)"
         },
         "data_description": {
           "custom_chime_path": "Es.: www/sounds/bell.mp3 (Formati: MP3, WAV, OGG - lascia vuoto per default)",
@@ -75,6 +71,7 @@
     }
   }
 }
+
 
 
 
