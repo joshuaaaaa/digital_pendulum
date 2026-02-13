@@ -1,6 +1,5 @@
 import asyncio
 import os
-import logging
 from datetime import datetime, timedelta
 from homeassistant.helpers.event import async_track_time_change
 from homeassistant.util import dt as dt_util
@@ -15,8 +14,6 @@ from .const import (
     CONF_TOWER_CLOCK,
     CONF_ANNOUNCE_HALF_HOURS,
     CONF_VOICE_ANNOUNCEMENT,
-    CONF_USE_VOLUME_CONTROL,
-    CONF_ANNOUNCEMENT_VOLUME,
     DEFAULT_START_HOUR,
     DEFAULT_END_HOUR,
     DEFAULT_ENABLED,
@@ -26,13 +23,9 @@ from .const import (
     DEFAULT_TOWER_CLOCK,
     DEFAULT_ANNOUNCE_HALF_HOURS,
     DEFAULT_VOICE_ANNOUNCEMENT,
-    DEFAULT_USE_VOLUME_CONTROL,
-    DEFAULT_ANNOUNCEMENT_VOLUME,
     PRESET_CHIMES,
     DOMAIN, 
 )
-
-_LOGGER = logging.getLogger(__name__)
 
 
 class DigitalPendulum:
@@ -54,12 +47,9 @@ class DigitalPendulum:
         self.preset_chime = config.get(CONF_PRESET_CHIME, DEFAULT_PRESET_CHIME)
         self.custom_chime_path = config.get(CONF_CUSTOM_CHIME_PATH, DEFAULT_CUSTOM_CHIME_PATH)
         self.tower_clock = config.get(CONF_TOWER_CLOCK, DEFAULT_TOWER_CLOCK)
+        # NUOVE OPZIONI
         self.announce_half_hours = config.get(CONF_ANNOUNCE_HALF_HOURS, DEFAULT_ANNOUNCE_HALF_HOURS)
         self.voice_announcement = config.get(CONF_VOICE_ANNOUNCEMENT, DEFAULT_VOICE_ANNOUNCEMENT)
-        
-        # OPZIONI VOLUME
-        self.use_volume_control = config.get(CONF_USE_VOLUME_CONTROL, DEFAULT_USE_VOLUME_CONTROL)
-        self.announcement_volume = config.get(CONF_ANNOUNCEMENT_VOLUME, DEFAULT_ANNOUNCEMENT_VOLUME)
 
     def update_config(self):
         """Update configuration when options change."""
@@ -90,7 +80,7 @@ class DigitalPendulum:
         if minute not in (0, 30):
             return
         
-        # Salta le mezz'ore se disabilitate
+        # NUOVA LOGICA: Salta le mezz'ore se disabilitate
         if minute == 30 and not self.announce_half_hours:
             return
         
@@ -178,36 +168,6 @@ class DigitalPendulum:
         
         return translations.get(language, fallback)
 
-    async def _get_current_volume(self) -> float:
-        """Get current volume level from media player."""
-        try:
-            state = self.hass.states.get(self.player)
-            if state and state.attributes:
-                volume = state.attributes.get("volume_level")
-                if volume is not None:
-                    return float(volume)
-        except Exception:
-            pass
-        
-        # Se non riesce a leggere, ritorna un valore di default
-        return 0.5
-
-    async def _set_volume(self, volume_level: float):
-        """Set volume on media player without beep."""
-        try:
-            await self.hass.services.async_call(
-                "alexa_media",
-                "volume_set",
-                {
-                    "entity_id": self.player,
-                    "volume_level": volume_level,
-                },
-                blocking=False,
-            )
-            await asyncio.sleep(0.5)
-        except Exception:
-            pass
-
     async def _play_chime(self, hour: int = None, minute: int = None):
         """Play chime sound (custom, default, or Westminster for tower clock)."""
         # Se tower_clock è attivo e sono le 12:00, suona Westminster
@@ -275,7 +235,7 @@ class DigitalPendulum:
             await self._play_default_chime()
             return
         
-        # Riproduci tramite TTS con SSML
+        # Riproduci tramite TTS con SSML (come nel tuo script)
         try:
             await self.hass.services.async_call(
                 "notify",
@@ -292,21 +252,11 @@ class DigitalPendulum:
             await self._play_default_chime()
 
     async def _speak(self, text: str, hour: int = None, minute: int = None):
-        original_volume = None
-        
-        # SALVA E IMPOSTA VOLUME se il controllo volume è abilitato
-        if self.use_volume_control:
-            original_volume = await self._get_current_volume()
-            _LOGGER.info(f"Volume originale letto: {original_volume}")
-            await self._set_volume(self.announcement_volume)
-            _LOGGER.info(f"Volume impostato a: {self.announcement_volume}")
-        
-        # Riproduci chime se abilitato
         if self.use_chime:
             await self._play_chime(hour, minute)
             await asyncio.sleep(1.2)
         
-        # Annuncio vocale solo se abilitato
+        # NUOVA LOGICA: Annuncio vocale solo se abilitato
         if self.voice_announcement:
             await self.hass.services.async_call(
                 "notify",
@@ -318,16 +268,6 @@ class DigitalPendulum:
                 },
                 blocking=False,
             )
-            # Attendi che l'annuncio finisca (stima basata sulla lunghezza del testo)
-            estimated_duration = len(text) * 0.08
-            await asyncio.sleep(estimated_duration + 1.5)
-        
-        # RIPRISTINA VOLUME ORIGINALE se il controllo volume era abilitato
-        if self.use_volume_control and original_volume is not None:
-            await asyncio.sleep(0.3)
-            _LOGGER.info(f"Ripristino volume a: {original_volume}")
-            await self._set_volume(original_volume)
-            _LOGGER.info("Volume ripristinato")
 
     async def async_test_announcement(self):
         """Test immediato dell'annuncio con orario completo."""
@@ -355,6 +295,4 @@ class DigitalPendulum:
             else:
                 text = translations.get("hour_and_minutes", f"Ore {hour} e {minute:02d}").format(hour=hour, minutes=f"{minute:02d}")
         
-        # Usa la stessa logica di volume del metodo _speak
-        await self._speak(text, hour, minute)
-
+        await self._speak(text)
