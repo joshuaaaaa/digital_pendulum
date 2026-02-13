@@ -17,8 +17,7 @@
           "custom_chime_path": "Ruta de campana personalizada (opcional)"
         },
         "data_description": {
-          "custom_chime_path": "Ej.: www/sounds/bell.mp3 (Formatos: MP3, WAV, OGG - dejar vacío para predeterminado)",
-          "announcement_volume": "Nivel de volumen usado durante los anuncios (0.0 - 1.0)"
+          "custom_chime_path": "Ej.: www/sounds/bell.mp3 (Formatos: MP3, WAV, OGG - dejar vacío para predeterminado)"
         }
       }
     }
@@ -41,8 +40,7 @@
           "custom_chime_path": "Ruta de campana personalizada (opcional)"
         },
         "data_description": {
-          "custom_chime_path": "Ej.: www/sounds/bell.mp3 (Formatos: MP3, WAV, OGG - dejar vacío para predeterminado)",
-          "announcement_volume": "Nivel de volumen usado durante los anuncios (0.0 - 1.0)"
+          "custom_chime_path": "Ej.: www/sounds/bell.mp3 (Formatos: MP3, WAV, OGG - dejar vacío para predeterminado)"
         }
       }
     }
