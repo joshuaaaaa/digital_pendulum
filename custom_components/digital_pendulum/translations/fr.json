@@ -17,8 +17,7 @@
           "custom_chime_path": "Chemin du carillon personnalisé (optionnel)"
         },
         "data_description": {
-          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)",
-          "announcement_volume": "Niveau de volume utilisé pendant les annonces (0.0 - 1.0)"
+          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)"
         }
       }
     }
@@ -41,8 +40,7 @@
           "custom_chime_path": "Chemin du carillon personnalisé (optionnel)"
         },
         "data_description": {
-          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)",
-          "announcement_volume": "Niveau de volume utilisé pendant les annonces (0.0 - 1.0)"
+          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)"
         }
       }
     }
@@ -71,6 +69,7 @@
     }
   }
 }
+
 
 
 
