@@ -1,5 +1,6 @@
 import asyncio
 import os
+import logging
 from datetime import datetime, timedelta
 from homeassistant.helpers.event import async_track_time_change
 from homeassistant.util import dt as dt_util
@@ -30,6 +31,8 @@ from .const import (
     PRESET_CHIMES,
     DOMAIN, 
 )
+
+_LOGGER = logging.getLogger(__name__)
 
 
 class DigitalPendulum:
@@ -190,7 +193,7 @@ class DigitalPendulum:
         return 0.5
 
     async def _set_volume(self, volume_level: float):
-        """Set volume on media player."""
+        """Set volume on media player without beep."""
         try:
             await self.hass.services.async_call(
                 "media_player",
@@ -199,9 +202,9 @@ class DigitalPendulum:
                     "entity_id": self.player,
                     "volume_level": volume_level,
                 },
-                blocking=True,
+                blocking=False,
             )
-            await asyncio.sleep(0.3)  # Piccola pausa per applicare il volume
+            await asyncio.sleep(0.5)
         except Exception:
             pass
 
@@ -294,7 +297,9 @@ class DigitalPendulum:
         # SALVA E IMPOSTA VOLUME se il controllo volume è abilitato
         if self.use_volume_control:
             original_volume = await self._get_current_volume()
+            _LOGGER.info(f"Volume originale letto: {original_volume}")
             await self._set_volume(self.announcement_volume)
+            _LOGGER.info(f"Volume impostato a: {self.announcement_volume}")
         
         # Riproduci chime se abilitato
         if self.use_chime:
@@ -314,13 +319,15 @@ class DigitalPendulum:
                 blocking=False,
             )
             # Attendi che l'annuncio finisca (stima basata sulla lunghezza del testo)
-            estimated_duration = len(text) * 0.08  # ~80ms per carattere
+            estimated_duration = len(text) * 0.08
             await asyncio.sleep(estimated_duration + 1.5)
         
         # RIPRISTINA VOLUME ORIGINALE se il controllo volume era abilitato
         if self.use_volume_control and original_volume is not None:
-            await asyncio.sleep(0.3)  # Piccola pausa prima di ripristinare
+            await asyncio.sleep(0.3)
+            _LOGGER.info(f"Ripristino volume a: {original_volume}")
             await self._set_volume(original_volume)
+            _LOGGER.info("Volume ripristinato")
 
     async def async_test_announcement(self):
         """Test immediato dell'annuncio con orario completo."""
@@ -350,4 +357,3 @@ class DigitalPendulum:
         
         # Usa la stessa logica di volume del metodo _speak
         await self._speak(text, hour, minute)
-
