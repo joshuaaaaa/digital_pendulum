@@ -1,9 +1,7 @@
 import voluptuous as vol
-
 from homeassistant import config_entries
 from homeassistant.core import callback
 from homeassistant.helpers import selector
-
 from .const import (
     DOMAIN,
     CONF_START_HOUR,
@@ -14,6 +12,8 @@ from .const import (
     CONF_CUSTOM_CHIME_PATH,
     CONF_PRESET_CHIME,
     CONF_TOWER_CLOCK,
+    CONF_ANNOUNCE_HALF_HOURS,
+    CONF_VOICE_ANNOUNCEMENT,
     DEFAULT_START_HOUR,
     DEFAULT_END_HOUR,
     DEFAULT_ENABLED,
@@ -21,9 +21,10 @@ from .const import (
     DEFAULT_CUSTOM_CHIME_PATH,
     DEFAULT_PRESET_CHIME,
     DEFAULT_TOWER_CLOCK,
+    DEFAULT_ANNOUNCE_HALF_HOURS,
+    DEFAULT_VOICE_ANNOUNCEMENT,
     PRESET_CHIMES,
 )
-
 
 class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 1
@@ -79,17 +80,26 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     CONF_ENABLED,
                     default=DEFAULT_ENABLED,
                 ): bool,
-                # 4) Tower Clock
+                # 4) NUOVE OPZIONI - Annunci
+                vol.Required(
+                    CONF_ANNOUNCE_HALF_HOURS,
+                    default=DEFAULT_ANNOUNCE_HALF_HOURS,
+                ): bool,
+                vol.Required(
+                    CONF_VOICE_ANNOUNCEMENT,
+                    default=DEFAULT_VOICE_ANNOUNCEMENT,
+                ): bool,
+                # 5) Tower Clock
                 vol.Required(
                     CONF_TOWER_CLOCK,
                     default=DEFAULT_TOWER_CLOCK,
                 ): bool,
-                # 5) Chime
+                # 6) Chime
                 vol.Required(
                     CONF_USE_CHIME,
                     default=DEFAULT_USE_CHIME,
                 ): bool,
-                # 6) Scelta chimes
+                # 7) Scelta chimes
                 vol.Required(
                     CONF_PRESET_CHIME,
                     default=DEFAULT_PRESET_CHIME,
@@ -99,7 +109,7 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         mode=selector.SelectSelectorMode.DROPDOWN,
                     )
                 ),
-                # 7) Percorso path (opzionale)
+                # 8) Percorso path (opzionale)
                 vol.Optional(
                     CONF_CUSTOM_CHIME_PATH,
                     default=DEFAULT_CUSTOM_CHIME_PATH,
@@ -176,22 +186,31 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                         mode=selector.NumberSelectorMode.BOX,
                     )
                 ),
-                # 3) Enabled - AGGIUNTO (era mancante)
+                # 3) Enabled
                 vol.Required(
                     CONF_ENABLED,
                     default=current_options.get(CONF_ENABLED, DEFAULT_ENABLED),
                 ): bool,
-                # 4) Tower Clock - AGGIUNTO (era mancante)
+                # 4) NUOVE OPZIONI - Annunci
+                vol.Required(
+                    CONF_ANNOUNCE_HALF_HOURS,
+                    default=current_options.get(CONF_ANNOUNCE_HALF_HOURS, DEFAULT_ANNOUNCE_HALF_HOURS),
+                ): bool,
+                vol.Required(
+                    CONF_VOICE_ANNOUNCEMENT,
+                    default=current_options.get(CONF_VOICE_ANNOUNCEMENT, DEFAULT_VOICE_ANNOUNCEMENT),
+                ): bool,
+                # 5) Tower Clock
                 vol.Required(
                     CONF_TOWER_CLOCK,
                     default=current_options.get(CONF_TOWER_CLOCK, DEFAULT_TOWER_CLOCK),
                 ): bool,
-                # 5) Chime
+                # 6) Chime
                 vol.Required(
                     CONF_USE_CHIME,
                     default=current_options.get(CONF_USE_CHIME, DEFAULT_USE_CHIME),
                 ): bool,
-                # 6) Scelta chimes
+                # 7) Scelta chimes
                 vol.Required(
                     CONF_PRESET_CHIME,
                     default=current_options.get(CONF_PRESET_CHIME, DEFAULT_PRESET_CHIME),
@@ -201,7 +220,7 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                         mode=selector.SelectSelectorMode.DROPDOWN,
                     )
                 ),
-                # 7) Percorso path (opzionale)
+                # 8) Percorso path (opzionale)
                 vol.Optional(
                     CONF_CUSTOM_CHIME_PATH,
                     default=current_options.get(CONF_CUSTOM_CHIME_PATH, DEFAULT_CUSTOM_CHIME_PATH),
@@ -217,3 +236,4 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
             step_id="init",
             data_schema=schema,
         )
+

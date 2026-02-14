@@ -3,8 +3,7 @@
 Ein sprechendes digitales Pendel für Home Assistant  
 <br>**Autor:** Egidio Ziggiotto (Dregi56)  E-Mail: [dregi@cyberservices.com](mailto:dregi@cyberservices.com)
 
-
-[![HACS](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://hacs.xyz/)
+[![HACS](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://hacs.xyz/)
 [![Version](https://img.shields.io/github/v/release/Dregi56/digital_pendulum)](https://github.com/Dregi56/digital_pendulum/releases)
 ![License](https://img.shields.io/github/license/Dregi56/digital_pendulum)
 [![GitHub stars](https://img.shields.io/github/stars/Dregi56/digital_pendulum?style=social)](https://github.com/Dregi56/digital_pendulum)
@@ -17,32 +16,34 @@ Ein sprechendes digitales Pendel für Home Assistant
 [Français](README.fr.md) 
 <br>👉Dies ist die deutsche README. Verwenden Sie oben die Sprachauswahl
 
+
 ## ❤️ Gefällt dir Digital Pendulum?
 
-Wenn es dir nützlich ist, hinterlasse bitte einen ⭐ auf GitHub:  
+Wenn du es nützlich findest, hinterlasse bitte einen ⭐ auf GitHub:  
 👉 **https://github.com/Dregi56/digital_pendulum**
 <br>Danke.
 
 ## 📌 Beschreibung
 
-Digital Pendulum ist eine benutzerdefinierte Integration für Home Assistant, die die Uhrzeit sprachlich ansagt – genau wie ein digitales Pendel 🕰️.
+Digital Pendulum ist eine benutzerdefinierte Integration für Home Assistant, die die Uhrzeit per Sprache ankündigt – wie ein digitales Pendel 🕰️.
 
 
-Mit einem Alexa-Gerät als Lautsprecher kann das System:
+Mit einem Alexa-Gerät als Lautsprecher:
 
-- 📢 die Uhrzeit alle 30 Minuten ansagen  
-- 🌍 automatisch in der in Home Assistant eingestellten Sprache sprechen  
-- ⏰ nur innerhalb eines konfigurierbaren Zeitfensters arbeiten 
-- 🔔 vor der Ansage einen benutzerdefinierten Ton abspielen (standardmäßig der Alexa-„announce“-Ton (Chime))
-- 🏰 um 12 Uhr die Westminster-Melodie abspielen  
+- 📢 kündigt die Uhrzeit jede Stunde und/oder jede halbe Stunde an (konfigurierbar)
+- 🌍 spricht automatisch in der in Home Assistant eingestellten Sprache  
+- ⏰ funktioniert nur in einem konfigurierbaren Zeitfenster 
+- 🔔 kann vor der Ansage einen benutzerdefinierten Ton abspielen
+- 🔕 kann die Sprachausgabe deaktivieren (nur Glocke)
+- 🏰 kann um 12 Uhr die Westminster-Melodie abspielen
 
-Das Ergebnis ist ein eleganter und diskreter Effekt, ideal für Zuhause oder das Büro.
+Das Ergebnis ist ein eleganter und dezenter Effekt, ideal für Zuhause oder Büro.
 
 ## ✨ Hauptfunktionen
 
 ### 🕑 Automatische Zeitansage
-- jede volle Stunde (xx:00)
-- jede halbe Stunde (xx:30)
+- jede Stunde (xx:00)
+- jede halbe Stunde (xx:30) – optional
 
 ### 🌐 Automatische Mehrsprachenunterstützung
 - Italienisch 🇮🇹
@@ -54,37 +55,52 @@ Das Ergebnis ist ein eleganter und diskreter Effekt, ideal für Zuhause oder das
 automatischer Fallback auf Italienisch
 
 ### ⏱️ Konfigurierbares Zeitfenster
-- z. B. nur von 8:00 bis 22:00 Uhr
+- z. B. nur von 8:00 bis 22:00
 
-### 🔔 Optionale Glocke
-- 🔕 kurze stille Ankündigung vor dem TTS
-- 🎵 benutzerdefinierte Sounds. Wenn ein Pfad definiert ist, lokaler Sound
+###  🔔 Optionale Glocke
+- 🎵 12 vordefinierte Sounds zur Auswahl
+- 🎶 Möglichkeit zur Verwendung einer eigenen Audiodatei
+- 🔕 Alexa-Benachrichtigungssound „announce“ (Standard)
 
 ### 🧪 Testfunktion
-- um die Ansage sofort zu testen
+- zum sofortigen Testen der Ansage
 
 ### 🎯 Verhalten
-- Preset: "church-bell": Standardsound
-- Preset: "simple-bell": Glocke aus der Bibliothek
-- Preset: "custom" + leerer Pfad: Alexa-„announce“-Sound
-- Preset: "custom" + gültiger Pfad: spielt eine ausgewählte Datei ab
-- Preset: "tower-clock": Westminster-Melodie um 12 Uhr
-- Use Chime: OFF: kein Sound, nur TTS (Zeitansage)
+
+**Glocke (Chime):**
+- **Verfügbare Presets**: 12 Sounds wie church-bell, simple-bell, clock-chime usw.
+- **Benutzerdefinierter Sound**: „custom“ auswählen und den Pfad zur Audiodatei eingeben
+- **Standard**: Alexa-„announce“-Sound (wenn nichts ausgewählt ist)
+- **Deaktiviert**: „use_chime“ deaktivieren, um keinen Ton vor der Ansage abzuspielen
+
+**Westminster-Melodie (Tower Clock):**
+- Separate Option „tower_clock“
+- Spielt **nur um 12:00 Uhr** (Mittag)
+- Ersetzt zu dieser Zeit die normale Glocke
+
+**Sprachansage:**
+- **Aktiviert** (Standard): Alexa spricht die Uhrzeit nach der Glocke
+- **Deaktiviert**: Nur Glocke, keine Sprachansage
+
+**Halbstunden-Ansagen:**
+- **Aktiviert** (Standard): Ansagen um :00 und :30
+- **Deaktiviert**: Nur Ansagen um :00
 
 ## ⚙️ Funktionsweise
 
-Das Herz des Systems ist die Klasse:
+Das Herzstück des Systems ist die Klasse:
 
 class DigitalPendulum
 
 die:
-- sich an einen internen Timer registriert (jede 1 Minute)
-- prüft:
+- sich bei einem synchronisierten internen Timer registriert (jede Minute bei Sekunde :00)
+- überprüft:
   - ob die Integration aktiviert ist
-  - ob die Uhrzeit innerhalb des erlaubten Zeitfensters liegt
-  - ob die Minute 00 oder 30 ist
-- den gesprochenen Text basierend auf der Sprache erstellt
-- die Ansage an das konfigurierte Alexa-Gerät sendet
+  - ob die Uhrzeit im erlaubten Zeitfenster liegt
+  - ob die Minute :00 ist (oder :30, wenn aktiviert)
+- den gesprochenen Text anhand der Sprache erstellt
+- die Glocke abspielt (falls aktiviert)
+- die Sprachansage an das Alexa-Gerät sendet (falls aktiviert)
 
 ## 🗣️ Sprachverwaltung
 
@@ -102,14 +118,14 @@ Beispiele für Ansagen:
 | 🇩🇪 DE | 16:30 | Es ist halb 17 |
 | 🇪🇸 ES | 11:00 | Son las 11 |
 
-## 🔔 Chime (Anfangsglocke)
+## 🔔 Glocke (Startsignal)
 
 Wenn die Option use_chime aktiviert ist:
-- wird eine leere Ankündigung gesendet
-- das System wartet 1,3 Sekunden
-- anschließend startet das TTS mit der Uhrzeit  
+- wird der Alexa-Benachrichtigungston oder der gewählte Sound abgespielt
+- das System wartet 1,2 Sekunden
+- die Sprachansage startet (falls aktiviert)
 
-Dies erzeugt einen Effekt ähnlich einem echten Pendel 🎶.
+Dies erzeugt einen Effekt ähnlich einer echten Pendeluhr 🎶.
 
 ## 🧩 Konfigurationsoptionen
 
@@ -119,39 +135,48 @@ Dies erzeugt einen Effekt ähnlich einem echten Pendel 🎶.
 | start_hour | Startzeit |
 | end_hour | Endzeit |
 | enabled | Pendel aktivieren/deaktivieren |
-| tower-clock | 12-Uhr-Melodie aktivieren/deaktivieren |
-| use_chime | Glocke aktivieren/deaktivieren |
+| announce_half_hours | Halbstunden-Ansagen aktivieren (sonst nur stündlich) |
+| voice_announcement | Sprachansage aktivieren/deaktivieren |
+| tower_clock | Westminster-Melodie um 12:00 aktivieren |
+| use_chime | Glocke vor der Ansage aktivieren/deaktivieren |
+| preset_chime | Auswahl des Glockensounds (12 Presets verfügbar) |
+| custom_chime_path | Pfad für benutzerdefinierten Glockensound |
 
 Standardwerte:
 
-- ⏰ start_hour → DEFAULT_START_HOUR  
-- ⏰ end_hour → DEFAULT_END_HOUR  
-- 🔔 use_chime → DEFAULT_USE_CHIME  
-- ✅ enabled → DEFAULT_ENABLED  
+- ⏰ start_hour → 8
+- ⏰ end_hour → 22
+- 🔔 use_chime → True
+- 🗣️ voice_announcement → True
+- ⏰ announce_half_hours → True
+- 🏰 tower_clock → False
+- ✅ enabled → True
 
-## 🧪 Sofortiger Test
+## 🧪 Soforttest
 
 Eine manuelle Testmethode ist verfügbar:
 
 async_test_announcement()
 
-Diese:
-- liest die aktuelle Uhrzeit
-- erzeugt einen vollständigen Satz (z. B. „Es ist 15:42“)
-- spielt ihn sofort auf dem Alexa-Gerät ab  
+Die:
+- die aktuelle Uhrzeit liest
+- einen vollständigen Satz generiert (z. B. „Ore 15 e 42“)
+- ihn sofort auf dem Alexa-Gerät abspielt  
 
-Nützlich zur Überprüfung von: Sprache, Lautstärke, Chime, korrekter TTS-Funktion
+Nützlich zur Überprüfung von: Sprache, Lautstärke, Glocke, korrekter TTS-Funktion
 
-## 📦 Voraussetzungen
-> ⚠️ **Digital Pendulum ist eine reine HACS-Integration**
-> 
-- 🏠 Home Assistant
+## 📦 Anforderungen
+
+> ✨ **Verfügbar über HACS** – vereinfachte Installation und Updates!
+
+- 🏠 Home Assistant 2024.1.0 oder höher
 - 🔊 Alexa Media Player installiert und funktionsfähig
 - 📡 Alexa-Gerät als Player konfiguriert
 
-## 🎯 Idealer Einsatz
 
-- ✔️ Smarte Wohnungen
+## 🎯 Ideale Nutzung
+
+- ✔️ Smarte Häuser
 - ✔️ Büros
 - ✔️ Gemeinschaftsbereiche
 - ✔️ „Modernes Pendel“-Effekt
@@ -165,7 +190,6 @@ Nützlich zur Überprüfung von: Sprache, Lautstärke, Chime, korrekter TTS-Funk
 - 📣 Unterstützung weiterer TTS-Systeme
 
 ---
-
 ## 
 
 ## ☕ Unterstütze das Projekt
