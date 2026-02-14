@@ -1,6 +1,5 @@
 import asyncio
 import os
-import logging  # ← QUESTA RIGA per log
 from datetime import datetime, timedelta
 from homeassistant.helpers.event import async_track_time_change
 from homeassistant.util import dt as dt_util
@@ -280,12 +279,6 @@ class DigitalPendulum:
             },
         }
         
-        # LOG PER DEBUG
-        import logging
-        _LOGGER = logging.getLogger(__name__)
-        _LOGGER.warning(f"DIGITAL PENDULUM - Chiamata notify con dati: {service_data}")
-        _LOGGER.warning(f"DIGITAL PENDULUM - Player: {self.player}")
-        
         await self.hass.services.async_call(
             "notify",
             "alexa_media",
@@ -320,6 +313,7 @@ class DigitalPendulum:
                 text = translations.get("hour_and_minutes", f"Ore {hour} e {minute:02d}").format(hour=hour, minutes=f"{minute:02d}")
         
         await self._speak(text)
+
 
 
 
