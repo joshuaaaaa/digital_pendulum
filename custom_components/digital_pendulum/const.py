@@ -29,7 +29,7 @@ PRESET_CHIMES = {
         "url": "https://raw.githubusercontent.com/Dregi56/digital_pendulum/main/sounds/church-bell.mp3"
     },
     "chimes-silver": {
-        "name": "Clock Chime",
+        "name": "Chimes silver",
         "url": "https://raw.githubusercontent.com/Dregi56/digital_pendulum/main/sounds/chimes-silver.mp3"
     },
     "bell-grave": {
@@ -41,7 +41,7 @@ PRESET_CHIMES = {
         "url": "https://raw.githubusercontent.com/Dregi56/digital_pendulum/main/sounds/bells-bong.mp3"
     },
     "bells-med": {
-        "name": "Bell Med",
+        "name": "Bells Med",
         "url": "https://raw.githubusercontent.com/Dregi56/digital_pendulum/main/sounds/bells-med.mp3"
     },
     "church-bell-distant": {
@@ -65,11 +65,11 @@ PRESET_CHIMES = {
         "url": "https://raw.githubusercontent.com/Dregi56/digital_pendulum/main/sounds/clock-strikes.mp3"
     },
     "oldclock-bell": {
-        "name": "Clock Strikes",
+        "name": "Oldclock Bell",
         "url": "https://raw.githubusercontent.com/Dregi56/digital_pendulum/main/sounds/oldclock-bell.mp3"
     },
     "grandfathers-ding-dong": {
-        "name": "Clock Strikes",
+        "name": "Grandfathers ding dong",
         "url": "https://raw.githubusercontent.com/Dregi56/digital_pendulum/main/sounds/grandfathers-ding-dong.mp3"
     },
     "westminster": {
@@ -81,6 +81,7 @@ PRESET_CHIMES = {
         "url": ""
     }
 }
+
 
 
 
