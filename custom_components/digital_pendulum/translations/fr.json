@@ -6,25 +6,31 @@
         "description": "Le pendule fonctionnera entre les heures de début et de fin définies",
         "data": {
           "player_type": "Type de lecteur",
-          "player_device": "Appareil de lecture",
+          "player_device": "Appareil(s) lecteur",
           "tts_entity": "Entité TTS (pour Media Player / Browser Mod)",
           "start_hour": "Heure de Début",
           "end_hour": "Heure de Fin",
           "enabled": "Activé",
-          "announce_half_hours": "Annoncer les demi-heures",
           "voice_announcement": "Annonce vocale",
           "tower_clock": "Horloge de Tour (Westminster à 12h00)",
           "use_chime": "Utiliser le Carillon",
           "preset_chime": "Son de Carillon",
           "custom_chime_path": "Chemin du carillon personnalisé (optionnel)",
           "chime_delay": "Délai carillon (s)",
-          "volume": "Volume (0 = conserver le réglage de l'appareil)"
+          "volume": "Volume (0 = conserver le réglage de l'appareil)",
+          "announce_interval": "Intervalle d'annonce",
+          "announce_day_of_week": "Annoncer le jour de la semaine",
+          "day_announce_hour": "Heure d'annonce du jour",
+          "pause_for_announcement": "Mettre en pause pendant l'annonce"
         },
         "data_description": {
           "tts_entity": "Requis uniquement pour le type Media Player (ex. tts.google_translate_fr)",
           "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)",
           "chime_delay": "Délai entre le carillon et l'annonce vocale. Par défaut : 3 s.",
-          "volume": "Volume 1–100 %. 0 = ne pas modifier le volume de l'appareil. Par défaut : 15 %."
+          "volume": "Volume 1–100 %. 0 = ne pas modifier le volume de l'appareil. Par défaut : 15 %.",
+          "announce_interval": "À quelle fréquence annoncer l'heure : toutes les heures, toutes les 30 ou 15 minutes.",
+          "day_announce_hour": "À quelle heure pleine le nom du jour est ajouté à l'annonce.",
+          "pause_for_announcement": "Si le lecteur est en cours de lecture, il sera mis en pause avant l'annonce et repris ensuite."
         }
       }
     }
@@ -36,25 +42,31 @@
         "description": "Le pendule fonctionnera entre les heures de début et de fin définies",
         "data": {
           "player_type": "Type de lecteur",
-          "player_device": "Appareil de lecture",
+          "player_device": "Appareil(s) lecteur",
           "tts_entity": "Entité TTS (pour Media Player / Browser Mod)",
           "start_hour": "Heure de Début",
           "end_hour": "Heure de Fin",
           "enabled": "Activé",
-          "announce_half_hours": "Annoncer les demi-heures",
           "voice_announcement": "Annonce vocale",
           "tower_clock": "Horloge de Tour (Westminster à 12h00)",
           "use_chime": "Utiliser le Carillon",
           "preset_chime": "Son de Carillon",
           "custom_chime_path": "Chemin du carillon personnalisé (optionnel)",
           "chime_delay": "Délai carillon (s)",
-          "volume": "Volume (0 = conserver le réglage de l'appareil)"
+          "volume": "Volume (0 = conserver le réglage de l'appareil)",
+          "announce_interval": "Intervalle d'annonce",
+          "announce_day_of_week": "Annoncer le jour de la semaine",
+          "day_announce_hour": "Heure d'annonce du jour",
+          "pause_for_announcement": "Mettre en pause pendant l'annonce"
         },
         "data_description": {
           "tts_entity": "Requis uniquement pour le type Media Player (ex. tts.google_translate_fr)",
           "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)",
           "chime_delay": "Délai entre le carillon et l'annonce vocale. Par défaut : 3 s.",
-          "volume": "Volume 1–100 %. 0 = ne pas modifier le volume de l'appareil. Par défaut : 15 %."
+          "volume": "Volume 1–100 %. 0 = ne pas modifier le volume de l'appareil. Par défaut : 15 %.",
+          "announce_interval": "À quelle fréquence annoncer l'heure : toutes les heures, toutes les 30 ou 15 minutes.",
+          "day_announce_hour": "À quelle heure pleine le nom du jour est ajouté à l'annonce.",
+          "pause_for_announcement": "Si le lecteur est en cours de lecture, il sera mis en pause avant l'annonce et repris ensuite."
         }
       }
     }

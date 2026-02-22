@@ -6,25 +6,31 @@
         "description": "Das Pendel arbeitet zwischen den eingestellten Start- und Endzeiten",
         "data": {
           "player_type": "Gerätetyp",
-          "player_device": "Abspielgerät",
+          "player_device": "Abspielgerät(e)",
           "tts_entity": "TTS-Entität (für Media Player / Browser Mod)",
           "start_hour": "Startstunde",
           "end_hour": "Endstunde",
           "enabled": "Aktiviert",
-          "announce_half_hours": "Halbe Stunden ansagen",
           "voice_announcement": "Sprachansage",
           "tower_clock": "Turmuhr (Westminster um 12:00)",
           "use_chime": "Glockenton verwenden",
           "preset_chime": "Glockenton",
           "custom_chime_path": "Benutzerdefinierter Glockenpfad (optional)",
           "chime_delay": "Glockentonverzögerung (s)",
-          "volume": "Lautstärke (0 = Gerätevorgabe beibehalten)"
+          "volume": "Lautstärke (0 = Gerätevorgabe beibehalten)",
+          "announce_interval": "Ansageintervall",
+          "announce_day_of_week": "Wochentag ansagen",
+          "day_announce_hour": "Stunde für Wochentag",
+          "pause_for_announcement": "Wiedergabe während Ansage pausieren"
         },
         "data_description": {
           "tts_entity": "Nur für Gerätetyp Media Player erforderlich (z.B. tts.google_translate_de)",
           "custom_chime_path": "Z.B.: www/sounds/bell.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standard)",
           "chime_delay": "Wartezeit zwischen Glockenton und Sprachansage. Standard: 3 s.",
-          "volume": "Lautstärke 1–100 %. 0 bedeutet keine Änderung der Gerätelautstärke. Standard: 15 %."
+          "volume": "Lautstärke 1–100 %. 0 bedeutet keine Änderung der Gerätelautstärke. Standard: 15 %.",
+          "announce_interval": "Wie oft die Zeit angesagt wird: stündlich, alle 30 oder alle 15 Minuten.",
+          "day_announce_hour": "Zu welcher vollen Stunde der Wochentag zur Ansage hinzugefügt wird.",
+          "pause_for_announcement": "Falls der Player abspielt, wird er vor der Ansage pausiert und danach fortgesetzt."
         }
       }
     }
@@ -36,25 +42,31 @@
         "description": "Das Pendel arbeitet zwischen den eingestellten Start- und Endzeiten",
         "data": {
           "player_type": "Gerätetyp",
-          "player_device": "Abspielgerät",
+          "player_device": "Abspielgerät(e)",
           "tts_entity": "TTS-Entität (für Media Player / Browser Mod)",
           "start_hour": "Startstunde",
           "end_hour": "Endstunde",
           "enabled": "Aktiviert",
-          "announce_half_hours": "Halbe Stunden ansagen",
           "voice_announcement": "Sprachansage",
           "tower_clock": "Turmuhr (Westminster um 12:00)",
           "use_chime": "Glockenton verwenden",
           "preset_chime": "Glockenton",
           "custom_chime_path": "Benutzerdefinierter Glockenpfad (optional)",
           "chime_delay": "Glockentonverzögerung (s)",
-          "volume": "Lautstärke (0 = Gerätevorgabe beibehalten)"
+          "volume": "Lautstärke (0 = Gerätevorgabe beibehalten)",
+          "announce_interval": "Ansageintervall",
+          "announce_day_of_week": "Wochentag ansagen",
+          "day_announce_hour": "Stunde für Wochentag",
+          "pause_for_announcement": "Wiedergabe während Ansage pausieren"
         },
         "data_description": {
           "tts_entity": "Nur für Gerätetyp Media Player erforderlich (z.B. tts.google_translate_de)",
           "custom_chime_path": "Z.B.: www/sounds/bell.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standard)",
           "chime_delay": "Wartezeit zwischen Glockenton und Sprachansage. Standard: 3 s.",
-          "volume": "Lautstärke 1–100 %. 0 bedeutet keine Änderung der Gerätelautstärke. Standard: 15 %."
+          "volume": "Lautstärke 1–100 %. 0 bedeutet keine Änderung der Gerätelautstärke. Standard: 15 %.",
+          "announce_interval": "Wie oft die Zeit angesagt wird: stündlich, alle 30 oder alle 15 Minuten.",
+          "day_announce_hour": "Zu welcher vollen Stunde der Wochentag zur Ansage hinzugefügt wird.",
+          "pause_for_announcement": "Falls der Player abspielt, wird er vor der Ansage pausiert und danach fortgesetzt."
         }
       }
     }
