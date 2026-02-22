@@ -3,10 +3,7 @@
 Un pendule numérique parlant pour Home Assistant
 <br>**Auteur:** Egidio Ziggiotto (Dregi56)  e-mail: [dregi@cyberservices.com](mailto:dregi@cyberservices.com)
 
-[![HACS](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://hacs.xyz/)
-[![Version](https://img.shields.io/github/v/release/Dregi56/digital_pendulum)](https://github.com/Dregi56/digital_pendulum/releases)
-![License](https://img.shields.io/github/license/Dregi56/digital_pendulum)
-[![GitHub stars](https://img.shields.io/github/stars/Dregi56/digital_pendulum?style=social)](https://github.com/Dregi56/digital_pendulum)
+
 
 🌍 Langues disponibles:
 [Italiano](README.it.md) |
