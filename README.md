@@ -21,9 +21,9 @@ A talking digital pendulum for Home Assistant
 
 ## ❤️ Do you like Digital Pendulum?
 
-If you find it useful, consider leaving a ⭐ on GitHub:  
-👉 **https://github.com/Dregi56/digital_pendulum**
-<br>Thank you.
+## http://buymeacoffee.com/jakubhruby
+
+<img width="150" height="150" alt="qr-code" src="https://github.com/user-attachments/assets/2581bf36-7f7d-4745-b792-d1abaca6e57d" />
 
 ## 📌 Description
 
@@ -303,11 +303,7 @@ Digital Pendulum automatically uses the Home Assistant language.
 
 ---
 
-## ☕ Support the project
 
-Do you like this project? If you find it useful, buy me a virtual coffee to support future developments! Every small contribution is greatly appreciated. 🙏
-
-**Digital Pendulum is and will always remain free and open source.** Donations are completely voluntary! ❤️
 
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/dregi56)
