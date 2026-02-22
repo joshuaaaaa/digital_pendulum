@@ -3,10 +3,7 @@
 Mluvící digitální kyvadlové hodiny pro Home Assistant
 <br>**Autor:** Egidio Ziggiotto (Dregi56)  e-mail: [dregi@cyberservices.com](mailto:dregi@cyberservices.com)
 
-[![HACS](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://hacs.xyz/)
-[![Version](https://img.shields.io/github/v/release/Dregi56/digital_pendulum)](https://github.com/Dregi56/digital_pendulum/releases)
-![License](https://img.shields.io/github/license/Dregi56/digital_pendulum)
-[![GitHub stars](https://img.shields.io/github/stars/Dregi56/digital_pendulum?style=social)](https://github.com/Dregi56/digital_pendulum)
+
 
 🌍 Dostupné jazyky:
 [Italiano](README.it.md) |
@@ -19,11 +16,9 @@ Mluvící digitální kyvadlové hodiny pro Home Assistant
 <br>👉 Toto je český README. Pro jiný jazyk použijte výběr výše.
 
 
-## ❤️ Líbí se vám Digital Pendulum?
+## http://buymeacoffee.com/jakubhruby
 
-Pokud vám integration přijde užitečná, zanechte ⭐ na GitHubu:
-👉 **https://github.com/Dregi56/digital_pendulum**
-<br>Děkuji.
+<img width="150" height="150" alt="qr-code" src="https://github.com/user-attachments/assets/2581bf36-7f7d-4745-b792-d1abaca6e57d" />
 
 ## 📌 Popis
 
@@ -290,15 +285,4 @@ Digital Pendulum automaticky používá jazyk Home Assistant.
 
 ---
 
-## ☕ Podpořte projekt
 
-Líbí se vám tento projekt? Pokud vám přijde užitečný, kupte mi virtuální kávu na podporu budoucího vývoje! Každý malý příspěvek je velmi oceňován. 🙏
-
-**Digital Pendulum je a vždy zůstane zdarma a open source.** Dary jsou zcela dobrovolné! ❤️
-
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/dregi56)
-
-💡 **Preferujete jinou metodu?** Můžete použít:
-
-[![revolut](https://img.shields.io/badge/Revolut-0075EB?style=for-the-badge&logo=revolut&logoColor=white)](https://revolut.me/egidio5t9d)
