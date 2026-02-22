@@ -13,7 +13,8 @@ Un pendolo digitale parlante per Home Assistant
 [English](README.en.md) |
 [Español](README.es.md) |
 [Deutsch](README.de.md) |
-[Français](README.fr.md) 
+[Français](README.fr.md) |
+[Čeština](README.cs.md)
 
 <br>👉This is the Italian README. Use the language selector above
 
