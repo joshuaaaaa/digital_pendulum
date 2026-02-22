@@ -31,12 +31,15 @@ Digital Pendulum je vlastní integrace pro Home Assistant, která hlasově oznam
 
 Systém:
 
-- 📢 oznamuje čas každou hodinu a/nebo každou půlhodinu (konfigurovatelné)
+- 📢 oznamuje čas každých 60, 30 nebo 15 minut (konfigurovatelný interval)
 - 🌍 automaticky mluví v jazyce nastaveném v Home Assistant
 - ⏰ funguje pouze v konfigurovatelném časovém rozsahu
 - 🔔 může přehrát vlastní zvuk před oznámením
 - 🔕 může zakázat hlasové oznámení (jen zvon)
 - 🏰 může přehrát melodii Westminster ve 12 hodin
+- 🗓️ může hlásit den v týdnu v nastavenou hodinu
+- ⏸️ pozastaví přehrávání médií před hlášením a po skončení je obnoví
+- 📣 podporuje více přehrávačů najednou
 - 🔊 podporuje Amazon Alexa, Google Home, jiné media přehrávače i Browser Mod
 
 Výsledkem je elegantní a nenápadný efekt, ideální pro domácnost nebo kancelář.
@@ -45,30 +48,35 @@ Výsledkem je elegantní a nenápadný efekt, ideální pro domácnost nebo kanc
 
 ### 🕑 Automatické hlášení času
 - každou hodinu (xx:00)
-- každou půlhodinu (xx:30) – volitelně
+- každých 30 minut (xx:00, xx:30) — volitelně
+- každých 15 minut (xx:00, xx:15, xx:30, xx:45) — volitelně
 
 ### 🌐 Automatická vícejazyčná podpora
 - Italština 🇮🇹
 - Angličtina 🇬🇧
 - Francouzština 🇫🇷
-- Němčina 🇩🇪 (se správným „halb")
+- Němčina 🇩🇪 (se správným „halb" a „Viertel")
 - Španělština 🇪🇸
-- Čeština 🇨🇿 (se správnými gramatickými tvary)
+- Čeština 🇨🇿 (se správnými gramatickými tvary včetně čtvrthodin: čtvrt na / půl / tři čtvrtě na)
 
-automatický záložní jazyk: italština
+automatický záložní jazyk: angličtina
 
 ### ⏱️ Konfigurovatelný časový rozsah
 - např. pouze od 8:00 do 22:00
 
 ### 🔔 Volitelný zvon
-- 🎵 12 přednastavených zvuků na výběr
+- 🎵 14 přednastavených zvuků na výběr
 - 🎶 možnost použít vlastní audio soubor
 - 🔕 výchozí zvuk oznámení (pro Alexa)
 
-### 🔊 Typy přehrávačů
-- **Amazon Alexa** – původní chování, `notify.alexa_media`
-- **Media Player** – Google Home, Sonos a další; zvuk přes `media_player.play_media`, hlas přes `tts.speak`
-- **Browser Mod** – textové oznámení v prohlížeči přes `browser_mod.notification`, zvuk přes `media_player.play_media`
+### 🗓️ Hlášení dne v týdnu
+- Přidá název aktuálního dne k oznámení v nastavenou hodinu (výchozí 8:00)
+
+### ⏸️ Inteligentní pozastavení přehrávání
+- Pokud přehrávač hraje, před hlášením se automaticky pozastaví a po skončení se přehrávání obnoví
+
+### 📣 Více přehrávačů najednou
+- Vyberte několik entit `media_player`; hlášení se odešle na všechny současně
 
 ### 🧪 Funkce testu
 - okamžitě vyzkoušejte hlášení
@@ -76,7 +84,7 @@ automatický záložní jazyk: italština
 ### 🎯 Chování
 
 **Zvon (Chime):**
-- **Dostupné předvolby**: 12 zvuků včetně church-bell, clock-chime atd.
+- **Dostupné předvolby**: 14 zvuků včetně church-bell, clock-chime atd.
 - **Vlastní zvuk**: Vyberte „custom" a zadejte cestu k audio souboru
 - **Výchozí**: zvuk oznámení Alexa (pokud nevyberete nic)
 - **Vypnuto**: deaktivujte „use_chime" pro žádný zvuk před oznámením
@@ -90,75 +98,70 @@ automatický záložní jazyk: italština
 - **Zapnuto** (výchozí): přehrávač vysloví čas po zvonu
 - **Vypnuto**: pouze zvon, žádné hlasové oznámení
 
-**Oznámení půlhodiny:**
-- **Zapnuto** (výchozí): oznámení v :00 a :30
-- **Vypnuto**: pouze oznámení v :00
+**Interval hlášení:**
+- **60 min** (výchozí): pouze v celou hodinu
+- **30 min**: v :00 a :30
+- **15 min**: v :00, :15, :30 a :45
 
 ## ⚙️ Jak to funguje
 
 Digital Pendulum se synchronizuje se systémovými hodinami a automaticky každou minutu kontroluje, zda je čas na oznámení.
 
 **Když se oznámení spustí:**
-1. 🔔 Přehraje zvolený zvon (pokud je zapnut)
-2. ⏱️ Čeká 1,2 sekundy
-3. 🗣️ Přehrávač vysloví čas v jazyce Home Assistant (pokud je zapnuto)
+1. ⏸️ Pozastaví aktivní přehrávání (pokud je pozastavení povoleno)
+2. 🔔 Přehraje zvolený zvon (pokud je zapnut)
+3. ⏱️ Čeká nastavenou prodlevu
+4. 🗣️ Přehrávač vysloví čas v jazyce Home Assistant (pokud je zapnuto)
+5. ▶️ Obnoví pozastavené přehrávání
 
 Vše probíhá automaticky bez nutnosti konfigurovat automatizace!
 
 ## 🗣️ Zpracování jazyka
 
-Jazyk je automaticky detekován z:
-
-```
-self.hass.config.language
-```
+Jazyk je automaticky detekován z `self.hass.config.language`
 
 Příklady oznámení:
 
-| Jazyk | Čas | Oznámení |
-|-------|-----|----------|
-| 🇨🇿 CS | 10:30 | Je půl jedenácté |
-| 🇨🇿 CS | 14:00 | Je čtrnáct hodin |
-| 🇨🇿 CS | 1:00 | Je jedna hodina |
-| 🇨🇿 CS | 2:00 | Jsou dvě hodiny |
-| 🇬🇧 EN | 14:00 | It's 14 o'clock |
-| 🇩🇪 DE | 16:30 | Es ist halb 17 |
+| Čas   | Oznámení |
+|-------|----------|
+| 14:00 | Je čtrnáct hodin |
+| 1:00  | Je jedna hodina |
+| 2:00  | Jsou dvě hodiny |
+| 10:15 | Je čtvrt na jedenáct |
+| 10:30 | Je půl jedenácté |
+| 10:45 | Je tři čtvrtě na jedenáct |
+| 0:30  | Je půl jedné |
 
 ## 🔔 Zvon (počáteční zvonění)
 
 Pokud je aktivní možnost use_chime:
 - přehraje se zvolený zvuk
-- systém čeká 1,2 sekundy
+- systém čeká nastavenou prodlevu
 - spustí se hlasové oznámení (pokud je zapnuto)
 
 Tím vzniká efekt podobný skutečným kyvadlovým hodinám 🎶.
 
 ## 🧩 Možnosti konfigurace
 
-| Možnost | Popis |
-|---------|-------|
-| player_type | Typ přehrávače (Alexa / Media Player / Browser Mod) |
-| player_device | Cílové zařízení (media_player entita) |
-| tts_entity | Entita TTS (jen pro typ Media Player, např. `tts.google_translate_cs`) |
-| start_hour | Čas začátku provozu |
-| end_hour | Čas konce provozu |
-| enabled | Zapíná/vypíná kyvadlové hodiny |
-| announce_half_hours | Zapíná oznámení každou půlhodinu (jinak každou hodinu) |
-| voice_announcement | Zapíná/vypíná hlasové oznámení času |
-| tower_clock | Zapíná melodii Westminster ve 12:00 |
-| use_chime | Zapíná/vypíná zvon před oznámením |
-| preset_chime | Výběr zvuku zvonu (12 dostupných předvoleb) |
-| custom_chime_path | Cesta k vlastnímu zvuku zvonu |
-
-Výchozí hodnoty:
-
-- ⏰ start_hour → 8
-- ⏰ end_hour → 22
-- 🔔 use_chime → True
-- 🗣️ voice_announcement → True
-- ⏰ announce_half_hours → True
-- 🏰 tower_clock → False
-- ✅ enabled → True
+| Možnost | Výchozí | Popis |
+|---------|---------|-------|
+| `player_type` | alexa | Typ přehrávače (Alexa / Media Player / Browser Mod) |
+| `player_device` | — | Cílové zařízení/zařízení — podporuje výběr více položek |
+| `tts_entity` | — | Entita TTS (jen pro typ Media Player) |
+| `start_hour` | 8 | Čas začátku provozu |
+| `end_hour` | 22 | Čas konce provozu |
+| `enabled` | true | Zapíná/vypíná kyvadlové hodiny |
+| `announce_interval` | 60 | Interval v minutách: 60, 30 nebo 15 |
+| `voice_announcement` | true | Zapíná/vypíná hlasové oznámení času |
+| `tower_clock` | false | Zapíná melodii Westminster ve 12:00 |
+| `use_chime` | true | Zapíná/vypíná zvon před oznámením |
+| `preset_chime` | church-bell | Výběr zvuku zvonu (14 dostupných předvoleb) |
+| `custom_chime_path` | — | Cesta k vlastnímu zvuku zvonu |
+| `chime_delay` | 3 s | Prodleva mezi zvonem a hlasovým oznámením |
+| `volume` | 15 % | Hlasitost hlášení (0 = ponechat hlasitost zařízení) |
+| `announce_day_of_week` | false | Hlásí název aktuálního dne v nastavenou hodinu |
+| `day_announce_hour` | 8 | Hodina, ve které se přidá název dne k oznámení |
+| `pause_for_announcement` | true | Pozastaví přehrávání před hlášením a obnoví je po skončení |
 
 ## 🔊 Nastavení pro Google Home / jiné media přehrávače
 
@@ -173,7 +176,6 @@ Výchozí hodnoty:
 2. Jako **Typ přehrávače** vyberte `Browser Mod`
 3. Jako **Zařízení přehrávače** vyberte `media_player.browser_*` entitu
 4. Textová oznámení se zobrazují jako notifikace v prohlížeči (`browser_mod.notification`)
-5. Zvuky zvonu se přehrávají přes `media_player.play_media`
 
 ## 🧪 Okamžitý test
 
@@ -268,6 +270,13 @@ Digital Pendulum automaticky používá jazyk Home Assistant.
 
 ---
 
+### Přehrávání se obnoví příliš brzy nebo příliš pozdě
+
+- Čas pozastavení se odhaduje na základě délky textu
+- Pokud se obnoví příliš brzy, zvyšte hodnotu **Prodlevy zvonu** pro větší rezervu
+
+---
+
 ### Browser Mod — žádné oznámení
 
 - Ověřte, zda je Browser Mod správně nainstalován a připojen
@@ -277,10 +286,7 @@ Digital Pendulum automaticky používá jazyk Home Assistant.
 
 ## 🚀 Možný budoucí vývoj
 
-- ⏳ Oznámení každých 15 minut
 - 🔇 Automatická noční hlasitost
-- 🗓️ Oznámení dne
-- 📣 Podpora dalších TTS
 
 ---
 

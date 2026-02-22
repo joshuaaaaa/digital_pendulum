@@ -29,15 +29,18 @@ Se ti è utile, considera di lasciare una ⭐ su GitHub:
 
 Digital Pendulum è un'integrazione personalizzata per Home Assistant che annuncia vocalmente l'orario, proprio come un pendolo digitale 🕰️.
 
+Il sistema:
 
-Utilizzando un dispositivo Alexa come speaker, il sistema:
-
-- 📢 annuncia l'orario ogni ora e/o ogni mezz'ora (configurabile)
-- 🌍 parla automaticamente nella lingua impostata in Home Assistant  
-- ⏰ funziona solo in una fascia oraria configurabile 
+- 📢 annuncia l'orario ogni 60, 30 o 15 minuti (intervallo configurabile)
+- 🌍 parla automaticamente nella lingua impostata in Home Assistant
+- ⏰ funziona solo in una fascia oraria configurabile
 - 🔔 può riprodurre un suono personalizzato prima dell'annuncio
 - 🔕 può disabilitare l'annuncio vocale (solo campana)
 - 🏰 può riprodurre la melodia Westminster alle ore 12
+- 🗓️ può annunciare il giorno della settimana a un'ora configurabile
+- ⏸️ mette in pausa la riproduzione prima dell'annuncio e la riprende dopo
+- 📣 supporta più dispositivi player contemporaneamente
+- 🔊 supporta Amazon Alexa, Google Home, altri media player e Browser Mod
 
 Il risultato è un effetto elegante e discreto, ideale per casa o ufficio.
 
@@ -45,24 +48,35 @@ Il risultato è un effetto elegante e discreto, ideale per casa o ufficio.
 
 ### 🕑 Annuncio automatico dell'orario
 - ogni ora (xx:00)
-- ogni mezz'ora (xx:30) - opzionale
+- ogni 30 minuti (xx:00, xx:30) — opzionale
+- ogni 15 minuti (xx:00, xx:15, xx:30, xx:45) — opzionale
 
 ### 🌐 Supporto multilingua automatico
 - Italiano 🇮🇹
 - Inglese 🇬🇧
 - Francese 🇫🇷
-- Tedesco 🇩🇪 (con gestione corretta di "halb")
+- Tedesco 🇩🇪 (con gestione corretta di "halb" e "Viertel")
 - Spagnolo 🇪🇸
+- Ceco 🇨🇿 (con forme grammaticalmente corrette inclusi i quarti d'ora)
 
-fallback automatico in italiano
+fallback automatico all'inglese
 
 ### ⏱️ Fascia oraria configurabile
 - es. solo dalle 8:00 alle 22:00
 
-###  🔔 Campana opzionale
-- 🎵 12 suoni predefiniti tra cui scegliere
+### 🔔 Campana opzionale
+- 🎵 14 suoni predefiniti tra cui scegliere
 - 🎶 possibilità di usare un file audio personalizzato
 - 🔕 suono di notifica "announce" di Alexa (default)
+
+### 🗓️ Annuncio del giorno della settimana
+- Aggiunge il nome del giorno corrente all'annuncio a un'ora configurabile (default 8:00)
+
+### ⏸️ Pausa intelligente della riproduzione
+- Se il player sta riproducendo, viene messo in pausa prima dell'annuncio e ripreso automaticamente dopo
+
+### 📣 Più dispositivi player
+- Seleziona più entità `media_player`; l'annuncio viene inviato a tutte simultaneamente
 
 ### 🧪 Funzione di test
 - per provare immediatamente l'annuncio
@@ -70,7 +84,7 @@ fallback automatico in italiano
 ### 🎯 Comportamento
 
 **Campana (Chime):**
-- **Preset disponibili**: 12 suoni tra cui church-bell, simple-bell, clock-chime, ecc.
+- **Preset disponibili**: 14 suoni tra cui church-bell, clock-chime, ecc.
 - **Suono personalizzato**: Seleziona "custom" e inserisci il path del tuo file audio
 - **Default**: Suono "announce" di Alexa (se non selezioni nulla)
 - **Disattivato**: Disabilita "use_chime" per nessun suono prima dell'annuncio
@@ -81,124 +95,61 @@ fallback automatico in italiano
 - Sostituisce il chime normale a quell'ora
 
 **Annuncio vocale:**
-- **Abilitato** (default): Alexa pronuncia l'ora dopo la campana
+- **Abilitato** (default): Player pronuncia l'ora dopo la campana
 - **Disabilitato**: Solo suono campana, nessun annuncio vocale
 
-**Annunci mezz'ora:**
-- **Abilitato** (default): Annunci alle :00 e :30
-- **Disabilitato**: Solo annunci alle :00
+**Intervallo annunci:**
+- **60 min** (default): Solo alla :00
+- **30 min**: Alle :00 e :30
+- **15 min**: Alle :00, :15, :30 e :45
 
 ## ⚙️ Come funziona
 
 Digital Pendulum si sincronizza con l'orologio di sistema e controlla automaticamente ogni minuto se è il momento di fare un annuncio.
 
 **Quando scatta l'annuncio:**
-1. 🔔 Riproduce la campana scelta (se abilitata)
-2. ⏱️ Attende 1,2 secondi
-3. 🗣️ Alexa pronuncia l'ora nella lingua di Home Assistant (se abilitata)
+1. ⏸️ Mette in pausa la riproduzione attiva (se abilitato)
+2. 🔔 Riproduce la campana scelta (se abilitata)
+3. ⏱️ Attende il ritardo configurato
+4. 🗣️ Player pronuncia l'ora nella lingua di Home Assistant (se abilitata)
+5. ▶️ Riprende la riproduzione in pausa
 
 Tutto avviene automaticamente senza bisogno di configurare automazioni!
 
 ## 🗣️ Gestione delle lingue
 
-La lingua viene rilevata automaticamente da:
-
-self.hass.config.language
+La lingua viene rilevata automaticamente da `self.hass.config.language`
 
 Esempi di annunci:
 
-| Lingua | Orario | Annuncio |
-|------|------|--------|
-| 🇮🇹 IT | 10:30 | Ore 10 e trenta |
-| 🇬🇧 EN | 14:00 | It's 14 o'clock |
-| 🇫🇷 FR | 9:30 | Il est 9 heures trente |
-| 🇩🇪 DE | 16:30 | Es ist halb 17 |
-| 🇪🇸 ES | 11:00 | Son las 11 |
-
-## 🔔 Chime (campana iniziale)
-
-Se l'opzione use_chime è attiva:
-- viene riprodotto il suono di notifica di Alexa o il suono scelto
-- il sistema attende 1,2 secondi
-- parte l'annuncio vocale (se abilitato)
-
-Questo crea un effetto simile a un vero pendolo 🎶.
+| Orario | Annuncio |
+|--------|----------|
+| 10:00 | Ore 10 |
+| 10:15 | Ore 10 e quindici |
+| 10:30 | Ore 10 e trenta |
+| 10:45 | Ore 10 e quarantacinque |
 
 ## 🧩 Opzioni di configurazione
 
-| Opzione | Descrizione |
-|------|------------|
-| player | Dispositivo Alexa target |
-| start_hour | Ora di inizio funzionamento |
-| end_hour | Ora di fine funzionamento |
-| enabled | Abilita/disabilita il pendolo |
-| announce_half_hours | Abilita annunci ogni mezz'ora (altrimenti solo ogni ora) |
-| voice_announcement | Abilita/disabilita l'annuncio vocale dell'ora |
-| tower_clock | Abilita melodia Westminster alle ore 12:00 |
-| use_chime | Attiva/disattiva la campana prima dell'annuncio |
-| preset_chime | Scelta del suono campana (12 preset disponibili) |
-| custom_chime_path | Path per suono campana personalizzato |
-
-Valori di default:
-
-- ⏰ start_hour → 8
-- ⏰ end_hour → 22
-- 🔔 use_chime → True
-- 🗣️ voice_announcement → True
-- ⏰ announce_half_hours → True
-- 🏰 tower_clock → False
-- ✅ enabled → True
-
-## 🧪 Test immediato
-
-È disponibile un metodo di test manuale:
-
-Che:
-- legge l'orario attuale
-- genera una frase completa (es. "Ore 15 e 42")
-- la riproduce subito sul dispositivo Alexa  
-
-Utile per verificare: lingua, volume, chime, corretto funzionamento del TTS
-
-## 📦 Requisiti
-
-> ✨ **Disponibile su HACS** - installazione e aggiornamenti semplificati!
-
-- 🏠 Home Assistant 2024.1.0 o superiore
-- 🔊 Alexa Media Player installato e funzionante
-- 📡 Dispositivo Alexa configurato come player
-
-## 💾 Installazione
-
-### Via HACS (consigliato)
-
-1. Apri **HACS** nel menu laterale
-2. Vai su **Integrazioni**
-3. Cerca **"Digital Pendulum"**
-4. Clicca **Scarica**
-5. **Riavvia Home Assistant**
-6. Vai in **Impostazioni** → **Dispositivi e Servizi** → **Aggiungi Integrazione**
-7. Cerca **"Digital Pendulum"**
-8. Segui la configurazione guidata
-
-### Installazione manuale
-
-1. Scarica l'ultima release da [GitHub](https://github.com/Dregi56/digital_pendulum/releases)
-2. Estrai i file
-3. Copia la cartella `digital_pendulum` in `config/custom_components/`
-4. Riavvia Home Assistant
-5. Vai in **Impostazioni** → **Dispositivi e Servizi** → **Aggiungi Integrazione**
-6. Cerca **"Digital Pendulum"**
-7. Segui la configurazione guidata
-
-
-## 🎯 Uso ideale
-
-- ✔️ Case intelligenti
-- ✔️ Uffici
-- ✔️ Ambienti comuni
-- ✔️ Effetto "pendolo moderno"
-- ✔️ Promemoria temporale non invasivo
+| Opzione | Default | Descrizione |
+|---------|---------|-------------|
+| `player_type` | alexa | Tipo player (Alexa / Media Player / Browser Mod) |
+| `player_device` | — | Dispositivo/i target — supporta selezione multipla |
+| `tts_entity` | — | Entità TTS (solo per tipo Media Player) |
+| `start_hour` | 8 | Ora di inizio funzionamento |
+| `end_hour` | 22 | Ora di fine funzionamento |
+| `enabled` | true | Abilita/disabilita il pendolo |
+| `announce_interval` | 60 | Intervallo in minuti: 60, 30 o 15 |
+| `voice_announcement` | true | Abilita/disabilita l'annuncio vocale dell'ora |
+| `tower_clock` | false | Abilita melodia Westminster alle ore 12:00 |
+| `use_chime` | true | Attiva/disattiva la campana prima dell'annuncio |
+| `preset_chime` | church-bell | Scelta del suono campana (14 preset disponibili) |
+| `custom_chime_path` | — | Path per suono campana personalizzato |
+| `chime_delay` | 3 s | Attesa tra campana e annuncio vocale |
+| `volume` | 15 % | Volume annuncio (0 = mantieni volume dispositivo) |
+| `announce_day_of_week` | false | Annuncia il giorno corrente all'ora scelta |
+| `day_announce_hour` | 8 | Ora in cui viene aggiunto il nome del giorno |
+| `pause_for_announcement` | true | Mette in pausa la riproduzione durante l'annuncio e la riprende dopo |
 
 ## 🔧 Risoluzione problemi
 
@@ -215,10 +166,8 @@ Problema di **Alexa Media Player**, non di Digital Pendulum.
 
 ### Lingua sbagliata
 
-Digital Pendulum usa automaticamente la lingua di Home Assistant.
-
 1. Verifica: Impostazioni → Sistema → Generali → Lingua
-2. Lingue supportate: 🇮🇹 🇬🇧 🇫🇷 🇩🇪 🇪🇸
+2. Lingue supportate: 🇮🇹 🇬🇧 🇫🇷 🇩🇪 🇪🇸 🇨🇿
 3. Dopo aver cambiato lingua, riavvia Home Assistant
 
 ---
@@ -227,16 +176,9 @@ Digital Pendulum usa automaticamente la lingua di Home Assistant.
 
 **Controlla:**
 - Integrazione abilitata? (Interruttore ON)
-- Sei nell'orario configurato? (default 8:00-22:00)
-- Dispositivo Alexa online?
+- Nell'orario configurato? (default 8:00-22:00)
+- Dispositivo online?
 - Prova il pulsante "Test"
-
----
-
-### Solo campana o solo voce
-
-- **Solo campana:** Attiva "Voice announcement"
-- **Solo voce:** Attiva "Use chime"
 
 ---
 
@@ -247,16 +189,18 @@ Digital Pendulum usa automaticamente la lingua di Home Assistant.
 
 ---
 
-## 🚀 Possibili evoluzioni future
+### La riproduzione riprende troppo presto o tardi
 
-- ⏳ Annunci ogni 15 minuti
-- 🔇 Volume automatico notturno
-- 🗓️ Annuncio del giorno
-- 📣 Supporto ad altri TTS
+- La durata della pausa è stimata in base alla lunghezza del testo
+- Se riprende troppo presto, aumenta il **ritardo del chime**
 
 ---
 
-## 
+## 🚀 Possibili evoluzioni future
+
+- 🔇 Volume automatico notturno
+
+---
 
 ## ☕ Supporta il progetto
 
