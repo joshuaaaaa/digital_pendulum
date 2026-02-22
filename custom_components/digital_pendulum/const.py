@@ -10,10 +10,16 @@ CONF_PRESET_CHIME = "preset_chime"
 CONF_TOWER_CLOCK = "tower_clock"
 CONF_ANNOUNCE_HALF_HOURS = "announce_half_hours"
 CONF_VOICE_ANNOUNCEMENT = "voice_announcement"
+CONF_PLAYER_TYPE = "player_type"
+CONF_TTS_ENTITY = "tts_entity"
 
 # Defaults
 DEFAULT_ANNOUNCE_HALF_HOURS = True
 DEFAULT_VOICE_ANNOUNCEMENT = True
+DEFAULT_PLAYER_TYPE = "alexa"
+DEFAULT_TTS_ENTITY = ""
+
+PLAYER_TYPES = ["alexa", "media_player", "browser_mod"]
 DEFAULT_START_HOUR = 8
 DEFAULT_END_HOUR = 22
 DEFAULT_USE_CHIME = True

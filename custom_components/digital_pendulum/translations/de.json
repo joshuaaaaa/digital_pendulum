@@ -5,7 +5,9 @@
         "title": "Digital Pendulum Einrichtung",
         "description": "Das Pendel arbeitet zwischen den eingestellten Start- und Endzeiten",
         "data": {
-          "player_device": "Alexa Gerät",
+          "player_type": "Gerätetyp",
+          "player_device": "Abspielgerät",
+          "tts_entity": "TTS-Entität (für Media Player / Browser Mod)",
           "start_hour": "Startstunde",
           "end_hour": "Endstunde",
           "enabled": "Aktiviert",
@@ -17,6 +19,7 @@
           "custom_chime_path": "Benutzerdefinierter Glockenpfad (optional)"
         },
         "data_description": {
+          "tts_entity": "Nur für Gerätetyp Media Player erforderlich (z.B. tts.google_translate_de)",
           "custom_chime_path": "Z.B.: www/sounds/bell.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standard)"
         }
       }
@@ -28,7 +31,9 @@
         "title": "Digital Pendulum Optionen",
         "description": "Das Pendel arbeitet zwischen den eingestellten Start- und Endzeiten",
         "data": {
-          "player_device": "Alexa Gerät",
+          "player_type": "Gerätetyp",
+          "player_device": "Abspielgerät",
+          "tts_entity": "TTS-Entität (für Media Player / Browser Mod)",
           "start_hour": "Startstunde",
           "end_hour": "Endstunde",
           "enabled": "Aktiviert",
@@ -40,6 +45,7 @@
           "custom_chime_path": "Benutzerdefinierter Glockenpfad (optional)"
         },
         "data_description": {
+          "tts_entity": "Nur für Gerätetyp Media Player erforderlich (z.B. tts.google_translate_de)",
           "custom_chime_path": "Z.B.: www/sounds/bell.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standard)"
         }
       }
