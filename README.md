@@ -2,6 +2,7 @@
 
 A talking digital pendulum for Home Assistant
 <br>**Author:** Egidio Ziggiotto (Dregi56)  e-mail: [dregi@cyberservices.com](mailto:dregi@cyberservices.com)
+<br>**Edited by :**https://github.com/joshuaaaaa
 
 
 
