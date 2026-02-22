@@ -14,6 +14,8 @@ from .const import (
     CONF_TOWER_CLOCK,
     CONF_ANNOUNCE_HALF_HOURS,
     CONF_VOICE_ANNOUNCEMENT,
+    CONF_PLAYER_TYPE,
+    CONF_TTS_ENTITY,
     DEFAULT_START_HOUR,
     DEFAULT_END_HOUR,
     DEFAULT_ENABLED,
@@ -23,8 +25,24 @@ from .const import (
     DEFAULT_TOWER_CLOCK,
     DEFAULT_ANNOUNCE_HALF_HOURS,
     DEFAULT_VOICE_ANNOUNCEMENT,
+    DEFAULT_PLAYER_TYPE,
+    DEFAULT_TTS_ENTITY,
     PRESET_CHIMES,
+    PLAYER_TYPES,
 )
+
+
+def _player_type_options():
+    labels = {
+        "alexa": "Amazon Alexa",
+        "media_player": "Media Player (Google Home, Sonos, …)",
+        "browser_mod": "Browser Mod",
+    }
+    return [
+        selector.SelectOptionDict(value=pt, label=labels.get(pt, pt))
+        for pt in PLAYER_TYPES
+    ]
+
 
 class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 1
@@ -37,7 +55,6 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 data=user_input,
             )
 
-        # Crea lista opzioni per dropdown
         chime_options = [
             selector.SelectOptionDict(value=key, label=info["name"])
             for key, info in PRESET_CHIMES.items()
@@ -45,16 +62,34 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         schema = vol.Schema(
             {
-                # 1) Device
+                # 1) Player type
+                vol.Required(
+                    CONF_PLAYER_TYPE,
+                    default=DEFAULT_PLAYER_TYPE,
+                ): selector.SelectSelector(
+                    selector.SelectSelectorConfig(
+                        options=_player_type_options(),
+                        mode=selector.SelectSelectorMode.DROPDOWN,
+                    )
+                ),
+                # 2) Player device (any media_player)
                 vol.Required(
                     CONF_PLAYER_DEVICE
                 ): selector.EntitySelector(
                     selector.EntitySelectorConfig(
                         domain="media_player",
-                        integration="alexa_media"
                     )
                 ),
-                # 2) Orario di lavoro
+                # 3) TTS entity (for media_player / browser_mod types)
+                vol.Optional(
+                    CONF_TTS_ENTITY,
+                    default=DEFAULT_TTS_ENTITY,
+                ): selector.EntitySelector(
+                    selector.EntitySelectorConfig(
+                        domain="tts",
+                    )
+                ),
+                # 4) Operating window
                 vol.Required(
                     CONF_START_HOUR,
                     default=DEFAULT_START_HOUR,
@@ -75,12 +110,12 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         mode=selector.NumberSelectorMode.BOX,
                     )
                 ),
-                # 3) Enabled
+                # 5) Enabled
                 vol.Required(
                     CONF_ENABLED,
                     default=DEFAULT_ENABLED,
                 ): bool,
-                # 4) NUOVE OPZIONI - Annunci
+                # 6) Announcement options
                 vol.Required(
                     CONF_ANNOUNCE_HALF_HOURS,
                     default=DEFAULT_ANNOUNCE_HALF_HOURS,
@@ -89,17 +124,17 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     CONF_VOICE_ANNOUNCEMENT,
                     default=DEFAULT_VOICE_ANNOUNCEMENT,
                 ): bool,
-                # 5) Tower Clock
+                # 7) Tower Clock
                 vol.Required(
                     CONF_TOWER_CLOCK,
                     default=DEFAULT_TOWER_CLOCK,
                 ): bool,
-                # 6) Chime
+                # 8) Chime
                 vol.Required(
                     CONF_USE_CHIME,
                     default=DEFAULT_USE_CHIME,
                 ): bool,
-                # 7) Scelta chimes
+                # 9) Preset chime
                 vol.Required(
                     CONF_PRESET_CHIME,
                     default=DEFAULT_PRESET_CHIME,
@@ -109,7 +144,7 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         mode=selector.SelectSelectorMode.DROPDOWN,
                     )
                 ),
-                # 8) Percorso path (opzionale)
+                # 10) Custom chime path
                 vol.Optional(
                     CONF_CUSTOM_CHIME_PATH,
                     default=DEFAULT_CUSTOM_CHIME_PATH,
@@ -147,7 +182,6 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
 
         current_options = self.entry.options or self.entry.data
 
-        # Crea lista opzioni per dropdown
         chime_options = [
             selector.SelectOptionDict(value=key, label=info["name"])
             for key, info in PRESET_CHIMES.items()
@@ -155,17 +189,35 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
 
         schema = vol.Schema(
             {
-                # 1) Device
+                # 1) Player type
+                vol.Required(
+                    CONF_PLAYER_TYPE,
+                    default=current_options.get(CONF_PLAYER_TYPE, DEFAULT_PLAYER_TYPE),
+                ): selector.SelectSelector(
+                    selector.SelectSelectorConfig(
+                        options=_player_type_options(),
+                        mode=selector.SelectSelectorMode.DROPDOWN,
+                    )
+                ),
+                # 2) Player device (any media_player)
                 vol.Required(
                     CONF_PLAYER_DEVICE,
-                    default=current_options.get(CONF_PLAYER_DEVICE)
+                    default=current_options.get(CONF_PLAYER_DEVICE),
                 ): selector.EntitySelector(
                     selector.EntitySelectorConfig(
                         domain="media_player",
-                        integration="alexa_media"
                     )
                 ),
-                # 2) Orario di lavoro
+                # 3) TTS entity (for media_player / browser_mod types)
+                vol.Optional(
+                    CONF_TTS_ENTITY,
+                    default=current_options.get(CONF_TTS_ENTITY, DEFAULT_TTS_ENTITY),
+                ): selector.EntitySelector(
+                    selector.EntitySelectorConfig(
+                        domain="tts",
+                    )
+                ),
+                # 4) Operating window
                 vol.Required(
                     CONF_START_HOUR,
                     default=current_options.get(CONF_START_HOUR, DEFAULT_START_HOUR),
@@ -186,12 +238,12 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                         mode=selector.NumberSelectorMode.BOX,
                     )
                 ),
-                # 3) Enabled
+                # 5) Enabled
                 vol.Required(
                     CONF_ENABLED,
                     default=current_options.get(CONF_ENABLED, DEFAULT_ENABLED),
                 ): bool,
-                # 4) NUOVE OPZIONI - Annunci
+                # 6) Announcement options
                 vol.Required(
                     CONF_ANNOUNCE_HALF_HOURS,
                     default=current_options.get(CONF_ANNOUNCE_HALF_HOURS, DEFAULT_ANNOUNCE_HALF_HOURS),
@@ -200,17 +252,17 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                     CONF_VOICE_ANNOUNCEMENT,
                     default=current_options.get(CONF_VOICE_ANNOUNCEMENT, DEFAULT_VOICE_ANNOUNCEMENT),
                 ): bool,
-                # 5) Tower Clock
+                # 7) Tower Clock
                 vol.Required(
                     CONF_TOWER_CLOCK,
                     default=current_options.get(CONF_TOWER_CLOCK, DEFAULT_TOWER_CLOCK),
                 ): bool,
-                # 6) Chime
+                # 8) Chime
                 vol.Required(
                     CONF_USE_CHIME,
                     default=current_options.get(CONF_USE_CHIME, DEFAULT_USE_CHIME),
                 ): bool,
-                # 7) Scelta chimes
+                # 9) Preset chime
                 vol.Required(
                     CONF_PRESET_CHIME,
                     default=current_options.get(CONF_PRESET_CHIME, DEFAULT_PRESET_CHIME),
@@ -220,7 +272,7 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                         mode=selector.SelectSelectorMode.DROPDOWN,
                     )
                 ),
-                # 8) Percorso path (opzionale)
+                # 10) Custom chime path
                 vol.Optional(
                     CONF_CUSTOM_CHIME_PATH,
                     default=current_options.get(CONF_CUSTOM_CHIME_PATH, DEFAULT_CUSTOM_CHIME_PATH),
@@ -236,4 +288,3 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
             step_id="init",
             data_schema=schema,
         )
-

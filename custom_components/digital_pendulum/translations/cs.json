@@ -1,0 +1,77 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Nastavení Digital Pendulum",
+        "description": "Kyvadlo bude fungovat mezi nastaveným začátkem a koncem",
+        "data": {
+          "player_type": "Typ přehrávače",
+          "player_device": "Zařízení přehrávače",
+          "tts_entity": "Entita TTS (pro Media Player / Browser Mod)",
+          "start_hour": "Hodina začátku",
+          "end_hour": "Hodina konce",
+          "enabled": "Zapnuto",
+          "announce_half_hours": "Hlásit půlhodiny",
+          "voice_announcement": "Hlasové hlášení",
+          "tower_clock": "Věžní hodiny (Westminster ve 12:00)",
+          "use_chime": "Použít zvuk zvonu",
+          "preset_chime": "Zvuk zvonu",
+          "custom_chime_path": "Vlastní cesta ke zvonu (volitelné)"
+        },
+        "data_description": {
+          "tts_entity": "Potřebné pouze pro typ přehrávače Media Player (např. tts.google_translate_cs)",
+          "custom_chime_path": "Např.: www/sounds/bell.mp3 (Formáty: MP3, WAV, OGG – ponechte prázdné pro výchozí)"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Možnosti Digital Pendulum",
+        "description": "Kyvadlo bude fungovat mezi nastaveným začátkem a koncem",
+        "data": {
+          "player_type": "Typ přehrávače",
+          "player_device": "Zařízení přehrávače",
+          "tts_entity": "Entita TTS (pro Media Player / Browser Mod)",
+          "start_hour": "Hodina začátku",
+          "end_hour": "Hodina konce",
+          "enabled": "Zapnuto",
+          "announce_half_hours": "Hlásit půlhodiny",
+          "voice_announcement": "Hlasové hlášení",
+          "tower_clock": "Věžní hodiny (Westminster ve 12:00)",
+          "use_chime": "Použít zvuk zvonu",
+          "preset_chime": "Zvuk zvonu",
+          "custom_chime_path": "Vlastní cesta ke zvonu (volitelné)"
+        },
+        "data_description": {
+          "tts_entity": "Potřebné pouze pro typ přehrávače Media Player (např. tts.google_translate_cs)",
+          "custom_chime_path": "Např.: www/sounds/bell.mp3 (Formáty: MP3, WAV, OGG – ponechte prázdné pro výchozí)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "switch": {
+      "digital_pendulum_enabled": {
+        "name": "Zapnuto"
+      }
+    },
+    "button": {
+      "test_announcement": {
+        "name": "Testovat hlášení"
+      }
+    },
+    "binary_sensor": {
+      "status_warning": {
+        "name": "Stavové varování"
+      }
+    }
+  },
+  "services": {
+    "test_announcement": {
+      "name": "Testovat hlášení",
+      "description": "Okamžitě otestuje hlášení aktuálního času"
+    }
+  }
+}

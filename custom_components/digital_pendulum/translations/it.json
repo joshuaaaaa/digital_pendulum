@@ -5,7 +5,9 @@
         "title": "Configurazione Digital Pendulum",
         "description": "Il pendolo funzionerà tra l'ora di inizio e fine impostate",
         "data": {
-          "player_device": "Dispositivo Alexa",
+          "player_type": "Tipo di dispositivo",
+          "player_device": "Dispositivo di riproduzione",
+          "tts_entity": "Entità TTS (per Media Player / Browser Mod)",
           "start_hour": "Ora Inizio",
           "end_hour": "Ora Fine",
           "enabled": "Abilitato",
@@ -17,6 +19,7 @@
           "custom_chime_path": "Percorso campana personalizzata (opzionale)"
         },
         "data_description": {
+          "tts_entity": "Necessario solo per tipo Media Player (es. tts.google_translate_it)",
           "custom_chime_path": "Es.: www/sounds/bell.mp3 (Formati: MP3, WAV, OGG - lascia vuoto per default)"
         }
       }
@@ -28,7 +31,9 @@
         "title": "Opzioni Digital Pendulum",
         "description": "Il pendolo funzionerà tra l'ora di inizio e fine impostate",
         "data": {
-          "player_device": "Dispositivo Alexa",
+          "player_type": "Tipo di dispositivo",
+          "player_device": "Dispositivo di riproduzione",
+          "tts_entity": "Entità TTS (per Media Player / Browser Mod)",
           "start_hour": "Ora Inizio",
           "end_hour": "Ora Fine",
           "enabled": "Abilitato",
@@ -40,6 +45,7 @@
           "custom_chime_path": "Percorso campana personalizzata (opzionale)"
         },
         "data_description": {
+          "tts_entity": "Necessario solo per tipo Media Player (es. tts.google_translate_it)",
           "custom_chime_path": "Es.: www/sounds/bell.mp3 (Formati: MP3, WAV, OGG - lascia vuoto per default)"
         }
       }
