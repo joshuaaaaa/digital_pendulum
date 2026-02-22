@@ -304,10 +304,3 @@ Digital Pendulum automatically uses the Home Assistant language.
 ---
 
 
-
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/dregi56)
-
-💡 **Prefer other methods?** You can use:
-
-[![revolut](https://img.shields.io/badge/Revolut-0075EB?style=for-the-badge&logo=revolut&logoColor=white)](https://revolut.me/egidio5t9d)
