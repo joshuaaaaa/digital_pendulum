@@ -16,6 +16,8 @@ from .const import (
     CONF_VOICE_ANNOUNCEMENT,
     CONF_PLAYER_TYPE,
     CONF_TTS_ENTITY,
+    CONF_VOLUME,
+    CONF_CHIME_DELAY,
     DEFAULT_START_HOUR,
     DEFAULT_END_HOUR,
     DEFAULT_ENABLED,
@@ -27,6 +29,8 @@ from .const import (
     DEFAULT_VOICE_ANNOUNCEMENT,
     DEFAULT_PLAYER_TYPE,
     DEFAULT_TTS_ENTITY,
+    DEFAULT_VOLUME,
+    DEFAULT_CHIME_DELAY,
     PRESET_CHIMES,
     DOMAIN,
 )
@@ -111,6 +115,8 @@ class DigitalPendulum:
         self.voice_announcement = config.get(CONF_VOICE_ANNOUNCEMENT, DEFAULT_VOICE_ANNOUNCEMENT)
         self.player_type = config.get(CONF_PLAYER_TYPE, DEFAULT_PLAYER_TYPE)
         self.tts_entity = config.get(CONF_TTS_ENTITY, DEFAULT_TTS_ENTITY)
+        self.volume = int(config.get(CONF_VOLUME, DEFAULT_VOLUME))
+        self.chime_delay = float(config.get(CONF_CHIME_DELAY, DEFAULT_CHIME_DELAY))
 
     def update_config(self):
         """Update configuration when options change."""
@@ -256,12 +262,15 @@ class DigitalPendulum:
     async def _play_default_chime(self):
         """Play default announce chime (Alexa only; skipped for other player types)."""
         if self.player_type == "alexa":
+            data = {"type": "announce"}
+            if self.volume > 0:
+                data["volume"] = self.volume
             await self.hass.services.async_call(
                 "notify",
                 "alexa_media",
                 {
                     "target": self.player,
-                    "data": {"type": "announce"},
+                    "data": data,
                     "message": " ",
                 },
                 blocking=False,
@@ -273,13 +282,16 @@ class DigitalPendulum:
 
         if self.player_type == "alexa":
             try:
+                data = {"type": "tts"}
+                if self.volume > 0:
+                    data["volume"] = self.volume
                 await self.hass.services.async_call(
                     "notify",
                     "alexa_media",
                     {
                         "target": self.player,
                         "message": f"<audio src='{westminster_url}'/>",
-                        "data": {"type": "tts"},
+                        "data": data,
                     },
                     blocking=False,
                 )
@@ -305,13 +317,16 @@ class DigitalPendulum:
 
         if self.player_type == "alexa":
             try:
+                data = {"type": "tts"}
+                if self.volume > 0:
+                    data["volume"] = self.volume
                 await self.hass.services.async_call(
                     "notify",
                     "alexa_media",
                     {
                         "target": self.player,
                         "message": f"<audio src='{chime_url}'/>",
-                        "data": {"type": "tts"},
+                        "data": data,
                     },
                     blocking=False,
                 )
@@ -322,6 +337,8 @@ class DigitalPendulum:
 
     async def _play_media_url(self, url: str):
         """Play an audio URL on a generic HA media_player or browser_mod entity."""
+        if self.volume > 0:
+            await self._set_volume_media_player()
         await self.hass.services.async_call(
             "media_player",
             "play_media",
@@ -333,6 +350,18 @@ class DigitalPendulum:
             blocking=False,
         )
 
+    async def _set_volume_media_player(self):
+        """Set volume on generic media_player entity (0–100 → 0.0–1.0)."""
+        await self.hass.services.async_call(
+            "media_player",
+            "volume_set",
+            {
+                "entity_id": self.player,
+                "volume_level": round(self.volume / 100, 2),
+            },
+            blocking=False,
+        )
+
     # ------------------------------------------------------------------
     # Voice announcement
     # ------------------------------------------------------------------
@@ -340,7 +369,7 @@ class DigitalPendulum:
     async def _speak(self, text: str, hour: int = None, minute: int = None):
         if self.use_chime:
             await self._play_chime(hour, minute)
-            await asyncio.sleep(1.2)
+            await asyncio.sleep(self.chime_delay)
 
         if self.voice_announcement:
             if self.player_type == "alexa":
@@ -352,13 +381,16 @@ class DigitalPendulum:
 
     async def _speak_alexa(self, text: str):
         """Announce via Alexa Media Player."""
+        data = {"type": "tts"}
+        if self.volume > 0:
+            data["volume"] = self.volume
         await self.hass.services.async_call(
             "notify",
             "alexa_media",
             {
                 "target": self.player,
                 "message": text,
-                "data": {"type": "tts"},
+                "data": data,
             },
             blocking=False,
         )
@@ -367,6 +399,8 @@ class DigitalPendulum:
         """Announce via any HA media_player using tts.speak (e.g. Google Home)."""
         if not self.tts_entity:
             return
+        if self.volume > 0:
+            await self._set_volume_media_player()
         await self.hass.services.async_call(
             "tts",
             "speak",

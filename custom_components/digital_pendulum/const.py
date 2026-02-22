@@ -12,12 +12,16 @@ CONF_ANNOUNCE_HALF_HOURS = "announce_half_hours"
 CONF_VOICE_ANNOUNCEMENT = "voice_announcement"
 CONF_PLAYER_TYPE = "player_type"
 CONF_TTS_ENTITY = "tts_entity"
+CONF_VOLUME = "volume"
+CONF_CHIME_DELAY = "chime_delay"
 
 # Defaults
 DEFAULT_ANNOUNCE_HALF_HOURS = True
 DEFAULT_VOICE_ANNOUNCEMENT = True
 DEFAULT_PLAYER_TYPE = "alexa"
 DEFAULT_TTS_ENTITY = ""
+DEFAULT_VOLUME = 0        # 0 = keep device volume unchanged
+DEFAULT_CHIME_DELAY = 3   # seconds between chime and voice announcement
 
 PLAYER_TYPES = ["alexa", "media_player", "browser_mod"]
 DEFAULT_START_HOUR = 8

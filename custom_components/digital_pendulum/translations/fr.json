@@ -16,11 +16,15 @@
           "tower_clock": "Horloge de Tour (Westminster à 12h00)",
           "use_chime": "Utiliser le Carillon",
           "preset_chime": "Son de Carillon",
-          "custom_chime_path": "Chemin du carillon personnalisé (optionnel)"
+          "custom_chime_path": "Chemin du carillon personnalisé (optionnel)",
+          "chime_delay": "Délai carillon (s)",
+          "volume": "Volume (0 = conserver le réglage de l'appareil)"
         },
         "data_description": {
           "tts_entity": "Requis uniquement pour le type Media Player (ex. tts.google_translate_fr)",
-          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)"
+          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)",
+          "chime_delay": "Délai entre le carillon et l'annonce vocale. Par défaut : 3 s.",
+          "volume": "Volume 1–100 %. 0 = ne pas modifier le volume de l'appareil."
         }
       }
     }
@@ -42,11 +46,15 @@
           "tower_clock": "Horloge de Tour (Westminster à 12h00)",
           "use_chime": "Utiliser le Carillon",
           "preset_chime": "Son de Carillon",
-          "custom_chime_path": "Chemin du carillon personnalisé (optionnel)"
+          "custom_chime_path": "Chemin du carillon personnalisé (optionnel)",
+          "chime_delay": "Délai carillon (s)",
+          "volume": "Volume (0 = conserver le réglage de l'appareil)"
         },
         "data_description": {
           "tts_entity": "Requis uniquement pour le type Media Player (ex. tts.google_translate_fr)",
-          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)"
+          "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)",
+          "chime_delay": "Délai entre le carillon et l'annonce vocale. Par défaut : 3 s.",
+          "volume": "Volume 1–100 %. 0 = ne pas modifier le volume de l'appareil."
         }
       }
     }
@@ -75,7 +83,3 @@
     }
   }
 }
-
-
-
-
