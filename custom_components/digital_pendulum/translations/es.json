@@ -16,11 +16,15 @@
           "tower_clock": "Reloj de Torre (Westminster a las 12:00)",
           "use_chime": "Usar Sonido de Campana",
           "preset_chime": "Sonido de Campana",
-          "custom_chime_path": "Ruta de campana personalizada (opcional)"
+          "custom_chime_path": "Ruta de campana personalizada (opcional)",
+          "chime_delay": "Retraso del carillon (s)",
+          "volume": "Volumen (0 = mantener predeterminado del dispositivo)"
         },
         "data_description": {
           "tts_entity": "Solo necesario para tipo Media Player (ej. tts.google_translate_es)",
-          "custom_chime_path": "Ej.: www/sounds/bell.mp3 (Formatos: MP3, WAV, OGG - dejar vacío para predeterminado)"
+          "custom_chime_path": "Ej.: www/sounds/bell.mp3 (Formatos: MP3, WAV, OGG - dejar vacío para predeterminado)",
+          "chime_delay": "Tiempo de espera entre el carillon y el anuncio de voz. Predeterminado: 3 s.",
+          "volume": "Volumen 1–100 %. 0 = no cambiar el volumen del dispositivo."
         }
       }
     }
@@ -42,11 +46,15 @@
           "tower_clock": "Reloj de Torre (Westminster a las 12:00)",
           "use_chime": "Usar Sonido de Campana",
           "preset_chime": "Sonido de Campana",
-          "custom_chime_path": "Ruta de campana personalizada (opcional)"
+          "custom_chime_path": "Ruta de campana personalizada (opcional)",
+          "chime_delay": "Retraso del carillon (s)",
+          "volume": "Volumen (0 = mantener predeterminado del dispositivo)"
         },
         "data_description": {
           "tts_entity": "Solo necesario para tipo Media Player (ej. tts.google_translate_es)",
-          "custom_chime_path": "Ej.: www/sounds/bell.mp3 (Formatos: MP3, WAV, OGG - dejar vacío para predeterminado)"
+          "custom_chime_path": "Ej.: www/sounds/bell.mp3 (Formatos: MP3, WAV, OGG - dejar vacío para predeterminado)",
+          "chime_delay": "Tiempo de espera entre el carillon y el anuncio de voz. Predeterminado: 3 s.",
+          "volume": "Volumen 1–100 %. 0 = no cambiar el volumen del dispositivo."
         }
       }
     }

@@ -16,6 +16,8 @@ from .const import (
     CONF_VOICE_ANNOUNCEMENT,
     CONF_PLAYER_TYPE,
     CONF_TTS_ENTITY,
+    CONF_VOLUME,
+    CONF_CHIME_DELAY,
     DEFAULT_START_HOUR,
     DEFAULT_END_HOUR,
     DEFAULT_ENABLED,
@@ -27,6 +29,8 @@ from .const import (
     DEFAULT_VOICE_ANNOUNCEMENT,
     DEFAULT_PLAYER_TYPE,
     DEFAULT_TTS_ENTITY,
+    DEFAULT_VOLUME,
+    DEFAULT_CHIME_DELAY,
     PRESET_CHIMES,
     PLAYER_TYPES,
 )
@@ -151,6 +155,32 @@ class DigitalPendulumConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 ): selector.TextSelector(
                     selector.TextSelectorConfig(
                         type=selector.TextSelectorType.TEXT,
+                    )
+                ),
+                # 11) Chime-to-voice delay
+                vol.Required(
+                    CONF_CHIME_DELAY,
+                    default=DEFAULT_CHIME_DELAY,
+                ): selector.NumberSelector(
+                    selector.NumberSelectorConfig(
+                        min=1,
+                        max=15,
+                        step=0.5,
+                        mode=selector.NumberSelectorMode.SLIDER,
+                        unit_of_measurement="s",
+                    )
+                ),
+                # 12) Volume (0 = keep device default)
+                vol.Required(
+                    CONF_VOLUME,
+                    default=DEFAULT_VOLUME,
+                ): selector.NumberSelector(
+                    selector.NumberSelectorConfig(
+                        min=0,
+                        max=100,
+                        step=5,
+                        mode=selector.NumberSelectorMode.SLIDER,
+                        unit_of_measurement="%",
                     )
                 ),
             }
@@ -279,6 +309,32 @@ class DigitalPendulumOptionsFlow(config_entries.OptionsFlow):
                 ): selector.TextSelector(
                     selector.TextSelectorConfig(
                         type=selector.TextSelectorType.TEXT,
+                    )
+                ),
+                # 11) Chime-to-voice delay
+                vol.Required(
+                    CONF_CHIME_DELAY,
+                    default=current_options.get(CONF_CHIME_DELAY, DEFAULT_CHIME_DELAY),
+                ): selector.NumberSelector(
+                    selector.NumberSelectorConfig(
+                        min=1,
+                        max=15,
+                        step=0.5,
+                        mode=selector.NumberSelectorMode.SLIDER,
+                        unit_of_measurement="s",
+                    )
+                ),
+                # 12) Volume (0 = keep device default)
+                vol.Required(
+                    CONF_VOLUME,
+                    default=current_options.get(CONF_VOLUME, DEFAULT_VOLUME),
+                ): selector.NumberSelector(
+                    selector.NumberSelectorConfig(
+                        min=0,
+                        max=100,
+                        step=5,
+                        mode=selector.NumberSelectorMode.SLIDER,
+                        unit_of_measurement="%",
                     )
                 ),
             }

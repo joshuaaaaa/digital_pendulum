@@ -14,11 +14,15 @@
           "tower_clock": "Tower Clock (Westminster at 12:00)",
           "use_chime": "Use Chime Sound",
           "preset_chime": "Chime Sound",
-          "custom_chime_path": "Custom chime path (optional)"
+          "custom_chime_path": "Custom chime path (optional)",
+          "chime_delay": "Chime delay (s)",
+          "volume": "Volume (0 = keep device default)"
         },
         "data_description": {
           "tts_entity": "Required only for Media Player type (e.g. tts.google_translate_en_com)",
-          "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)"
+          "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)",
+          "chime_delay": "Wait time between chime and voice announcement. Default: 3 s.",
+          "volume": "Volume 1–100 %. Set to 0 to keep device volume unchanged."
         }
       }
     }
@@ -38,11 +42,15 @@
           "tower_clock": "Tower Clock (Westminster at 12:00)",
           "use_chime": "Use Chime Sound",
           "preset_chime": "Chime Sound",
-          "custom_chime_path": "Custom chime path (optional)"
+          "custom_chime_path": "Custom chime path (optional)",
+          "chime_delay": "Chime delay (s)",
+          "volume": "Volume (0 = keep device default)"
         },
         "data_description": {
           "tts_entity": "Required only for Media Player type (e.g. tts.google_translate_en_com)",
-          "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)"
+          "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)",
+          "chime_delay": "Wait time between chime and voice announcement. Default: 3 s.",
+          "volume": "Volume 1–100 %. Set to 0 to keep device volume unchanged."
         }
       }
     }
