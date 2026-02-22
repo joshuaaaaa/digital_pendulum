@@ -19,11 +19,9 @@ Un pendolo digitale parlante per Home Assistant
 <br>👉This is the Italian README. Use the language selector above
 
 
-## ❤️ Ti piace Digital Pendulum?
+## http://buymeacoffee.com/jakubhruby
 
-Se ti è utile, considera di lasciare una ⭐ su GitHub:  
-👉 **https://github.com/Dregi56/digital_pendulum**
-<br>Grazie.
+<img width="150" height="150" alt="qr-code" src="https://github.com/user-attachments/assets/2581bf36-7f7d-4745-b792-d1abaca6e57d" />
 
 ## 📌 Descrizione
 
@@ -201,16 +199,3 @@ Problema di **Alexa Media Player**, non di Digital Pendulum.
 - 🔇 Volume automatico notturno
 
 ---
-
-## ☕ Supporta il progetto
-
-Ti piace questo progetto? Se lo trovi utile, offrimi un caffè virtuale per sostenere le evoluzioni future! Ogni piccolo contributo è super apprezzato. 🙏
-
-**Digital Pendulum è e rimarrà sempre gratuito e open source.** Le donazioni sono completamente volontarie! ❤️
-
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/dregi56)
-
-💡 **Preferisci altri metodi?** Puoi usare:
-
-[![revolut](https://img.shields.io/badge/Revolut-0075EB?style=for-the-badge&logo=revolut&logoColor=white)](https://revolut.me/egidio5t9d)
