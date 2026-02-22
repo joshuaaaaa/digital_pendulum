@@ -6,25 +6,31 @@
         "description": "Il pendolo funzionerà tra l'ora di inizio e fine impostate",
         "data": {
           "player_type": "Tipo di dispositivo",
-          "player_device": "Dispositivo di riproduzione",
+          "player_device": "Dispositivo(i) player",
           "tts_entity": "Entità TTS (per Media Player / Browser Mod)",
           "start_hour": "Ora Inizio",
           "end_hour": "Ora Fine",
           "enabled": "Abilitato",
-          "announce_half_hours": "Annuncia le mezz'ore",
           "voice_announcement": "Annuncio vocale",
           "tower_clock": "Orologio a Torre (Westminster alle 12:00)",
           "use_chime": "Usa Suono Campana",
           "preset_chime": "Suono Campana",
           "custom_chime_path": "Percorso campana personalizzata (opzionale)",
           "chime_delay": "Ritardo campana (s)",
-          "volume": "Volume (0 = mantieni default dispositivo)"
+          "volume": "Volume (0 = mantieni default dispositivo)",
+          "announce_interval": "Intervallo annunci",
+          "announce_day_of_week": "Annuncia giorno della settimana",
+          "day_announce_hour": "Ora annuncio giorno",
+          "pause_for_announcement": "Metti in pausa durante l'annuncio"
         },
         "data_description": {
           "tts_entity": "Necessario solo per tipo Media Player (es. tts.google_translate_it)",
           "custom_chime_path": "Es.: www/sounds/bell.mp3 (Formati: MP3, WAV, OGG - lascia vuoto per default)",
           "chime_delay": "Tempo di attesa tra il suono della campana e l'annuncio vocale. Default: 3 s.",
-          "volume": "Volume 1–100 %. 0 = non modificare il volume del dispositivo."
+          "volume": "Volume 1–100 %. 0 = non modificare il volume del dispositivo. Default: 15 %.",
+          "announce_interval": "Con quale frequenza annunciare l'ora: ogni ora, ogni 30 o 15 minuti.",
+          "day_announce_hour": "A quale ora intera viene aggiunto il nome del giorno all'annuncio.",
+          "pause_for_announcement": "Se il player sta riproducendo, verrà messo in pausa prima dell'annuncio e ripreso dopo."
         }
       }
     }
@@ -36,25 +42,31 @@
         "description": "Il pendolo funzionerà tra l'ora di inizio e fine impostate",
         "data": {
           "player_type": "Tipo di dispositivo",
-          "player_device": "Dispositivo di riproduzione",
+          "player_device": "Dispositivo(i) player",
           "tts_entity": "Entità TTS (per Media Player / Browser Mod)",
           "start_hour": "Ora Inizio",
           "end_hour": "Ora Fine",
           "enabled": "Abilitato",
-          "announce_half_hours": "Annuncia le mezz'ore",
           "voice_announcement": "Annuncio vocale",
           "tower_clock": "Orologio a Torre (Westminster alle 12:00)",
           "use_chime": "Usa Suono Campana",
           "preset_chime": "Suono Campana",
           "custom_chime_path": "Percorso campana personalizzata (opzionale)",
           "chime_delay": "Ritardo campana (s)",
-          "volume": "Volume (0 = mantieni default dispositivo)"
+          "volume": "Volume (0 = mantieni default dispositivo)",
+          "announce_interval": "Intervallo annunci",
+          "announce_day_of_week": "Annuncia giorno della settimana",
+          "day_announce_hour": "Ora annuncio giorno",
+          "pause_for_announcement": "Metti in pausa durante l'annuncio"
         },
         "data_description": {
           "tts_entity": "Necessario solo per tipo Media Player (es. tts.google_translate_it)",
           "custom_chime_path": "Es.: www/sounds/bell.mp3 (Formati: MP3, WAV, OGG - lascia vuoto per default)",
           "chime_delay": "Tempo di attesa tra il suono della campana e l'annuncio vocale. Default: 3 s.",
-          "volume": "Volume 1–100 %. 0 = non modificare il volume del dispositivo."
+          "volume": "Volume 1–100 %. 0 = non modificare il volume del dispositivo. Default: 15 %.",
+          "announce_interval": "Con quale frequenza annunciare l'ora: ogni ora, ogni 30 o 15 minuti.",
+          "day_announce_hour": "A quale ora intera viene aggiunto il nome del giorno all'annuncio.",
+          "pause_for_announcement": "Se il player sta riproducendo, verrà messo in pausa prima dell'annuncio e ripreso dopo."
         }
       }
     }

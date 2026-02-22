@@ -6,25 +6,31 @@
         "description": "The pendulum will operate between the set start and end times",
         "data": {
           "player_type": "Player Type",
-          "player_device": "Player Device",
+          "player_device": "Player Device(s)",
           "tts_entity": "TTS Entity (for Media Player / Browser Mod)",
           "start_hour": "Start Hour",
           "end_hour": "End Hour",
           "enabled": "Enabled",
-          "announce_half_hours": "Announce Half Hours",
           "voice_announcement": "Voice Announcement",
           "tower_clock": "Tower Clock (Westminster at 12:00)",
           "use_chime": "Use Chime Sound",
           "preset_chime": "Chime Sound",
           "custom_chime_path": "Custom chime path (optional)",
           "chime_delay": "Chime delay (s)",
-          "volume": "Volume (0 = keep device default)"
+          "volume": "Volume (0 = keep device default)",
+          "announce_interval": "Announce Interval",
+          "announce_day_of_week": "Announce Day of Week",
+          "day_announce_hour": "Day Announce Hour",
+          "pause_for_announcement": "Pause playback during announcement"
         },
         "data_description": {
           "tts_entity": "Required only for Media Player type (e.g. tts.google_translate_en_com)",
           "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)",
           "chime_delay": "Wait time between chime and voice announcement. Default: 3 s.",
-          "volume": "Volume 1–100 %. Set to 0 to keep device volume unchanged."
+          "volume": "Volume 1–100 %. Set to 0 to keep device volume unchanged. Default: 15 %.",
+          "announce_interval": "How often to announce the time: every hour, every 30 or 15 minutes.",
+          "day_announce_hour": "At which full hour the day-of-week name is appended to the announcement.",
+          "pause_for_announcement": "If the player is playing, it will be paused before the announcement and resumed afterwards."
         }
       }
     }
@@ -36,25 +42,31 @@
         "description": "The pendulum will operate between the set start and end times",
         "data": {
           "player_type": "Player Type",
-          "player_device": "Player Device",
+          "player_device": "Player Device(s)",
           "tts_entity": "TTS Entity (for Media Player / Browser Mod)",
           "start_hour": "Start Hour",
           "end_hour": "End Hour",
           "enabled": "Enabled",
-          "announce_half_hours": "Announce Half Hours",
           "voice_announcement": "Voice Announcement",
           "tower_clock": "Tower Clock (Westminster at 12:00)",
           "use_chime": "Use Chime Sound",
           "preset_chime": "Chime Sound",
           "custom_chime_path": "Custom chime path (optional)",
           "chime_delay": "Chime delay (s)",
-          "volume": "Volume (0 = keep device default)"
+          "volume": "Volume (0 = keep device default)",
+          "announce_interval": "Announce Interval",
+          "announce_day_of_week": "Announce Day of Week",
+          "day_announce_hour": "Day Announce Hour",
+          "pause_for_announcement": "Pause playback during announcement"
         },
         "data_description": {
           "tts_entity": "Required only for Media Player type (e.g. tts.google_translate_en_com)",
           "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)",
           "chime_delay": "Wait time between chime and voice announcement. Default: 3 s.",
-          "volume": "Volume 1–100 %. Set to 0 to keep device volume unchanged."
+          "volume": "Volume 1–100 %. Set to 0 to keep device volume unchanged. Default: 15 %.",
+          "announce_interval": "How often to announce the time: every hour, every 30 or 15 minutes.",
+          "day_announce_hour": "At which full hour the day-of-week name is appended to the announcement.",
+          "pause_for_announcement": "If the player is playing, it will be paused before the announcement and resumed afterwards."
         }
       }
     }

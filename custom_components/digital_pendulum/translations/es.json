@@ -6,25 +6,31 @@
         "description": "El péndulo funcionará entre las horas de inicio y fin establecidas",
         "data": {
           "player_type": "Tipo de dispositivo",
-          "player_device": "Dispositivo de reproducción",
+          "player_device": "Dispositivo(s) reproductor",
           "tts_entity": "Entidad TTS (para Media Player / Browser Mod)",
           "start_hour": "Hora de Inicio",
           "end_hour": "Hora de Fin",
           "enabled": "Habilitado",
-          "announce_half_hours": "Anunciar las medias horas",
           "voice_announcement": "Anuncio de voz",
           "tower_clock": "Reloj de Torre (Westminster a las 12:00)",
           "use_chime": "Usar Sonido de Campana",
           "preset_chime": "Sonido de Campana",
           "custom_chime_path": "Ruta de campana personalizada (opcional)",
           "chime_delay": "Retraso del carillon (s)",
-          "volume": "Volumen (0 = mantener predeterminado del dispositivo)"
+          "volume": "Volumen (0 = mantener predeterminado del dispositivo)",
+          "announce_interval": "Intervalo de anuncio",
+          "announce_day_of_week": "Anunciar día de la semana",
+          "day_announce_hour": "Hora del anuncio del día",
+          "pause_for_announcement": "Pausar reproducción durante el anuncio"
         },
         "data_description": {
           "tts_entity": "Solo necesario para tipo Media Player (ej. tts.google_translate_es)",
           "custom_chime_path": "Ej.: www/sounds/bell.mp3 (Formatos: MP3, WAV, OGG - dejar vacío para predeterminado)",
           "chime_delay": "Tiempo de espera entre el carillon y el anuncio de voz. Predeterminado: 3 s.",
-          "volume": "Volumen 1–100 %. 0 = no cambiar el volumen del dispositivo."
+          "volume": "Volumen 1–100 %. 0 = no cambiar el volumen del dispositivo. Predeterminado: 15 %.",
+          "announce_interval": "Con qué frecuencia anunciar la hora: cada hora, cada 30 o 15 minutos.",
+          "day_announce_hour": "A qué hora en punto se añade el nombre del día al anuncio.",
+          "pause_for_announcement": "Si el reproductor está en marcha, se pausará antes del anuncio y se reanudará después."
         }
       }
     }
@@ -36,25 +42,31 @@
         "description": "El péndulo funcionará entre las horas de inicio y fin establecidas",
         "data": {
           "player_type": "Tipo de dispositivo",
-          "player_device": "Dispositivo de reproducción",
+          "player_device": "Dispositivo(s) reproductor",
           "tts_entity": "Entidad TTS (para Media Player / Browser Mod)",
           "start_hour": "Hora de Inicio",
           "end_hour": "Hora de Fin",
           "enabled": "Habilitado",
-          "announce_half_hours": "Anunciar las medias horas",
           "voice_announcement": "Anuncio de voz",
           "tower_clock": "Reloj de Torre (Westminster a las 12:00)",
           "use_chime": "Usar Sonido de Campana",
           "preset_chime": "Sonido de Campana",
           "custom_chime_path": "Ruta de campana personalizada (opcional)",
           "chime_delay": "Retraso del carillon (s)",
-          "volume": "Volumen (0 = mantener predeterminado del dispositivo)"
+          "volume": "Volumen (0 = mantener predeterminado del dispositivo)",
+          "announce_interval": "Intervalo de anuncio",
+          "announce_day_of_week": "Anunciar día de la semana",
+          "day_announce_hour": "Hora del anuncio del día",
+          "pause_for_announcement": "Pausar reproducción durante el anuncio"
         },
         "data_description": {
           "tts_entity": "Solo necesario para tipo Media Player (ej. tts.google_translate_es)",
           "custom_chime_path": "Ej.: www/sounds/bell.mp3 (Formatos: MP3, WAV, OGG - dejar vacío para predeterminado)",
           "chime_delay": "Tiempo de espera entre el carillon y el anuncio de voz. Predeterminado: 3 s.",
-          "volume": "Volumen 1–100 %. 0 = no cambiar el volumen del dispositivo."
+          "volume": "Volumen 1–100 %. 0 = no cambiar el volumen del dispositivo. Predeterminado: 15 %.",
+          "announce_interval": "Con qué frecuencia anunciar la hora: cada hora, cada 30 o 15 minutos.",
+          "day_announce_hour": "A qué hora en punto se añade el nombre del día al anuncio.",
+          "pause_for_announcement": "Si el reproductor está en marcha, se pausará antes del anuncio y se reanudará después."
         }
       }
     }

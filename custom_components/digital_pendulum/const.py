@@ -9,6 +9,10 @@ CONF_CUSTOM_CHIME_PATH = "custom_chime_path"
 CONF_PRESET_CHIME = "preset_chime"
 CONF_TOWER_CLOCK = "tower_clock"
 CONF_ANNOUNCE_HALF_HOURS = "announce_half_hours"
+CONF_ANNOUNCE_INTERVAL = "announce_interval"       # minutes: 15 | 30 | 60
+CONF_ANNOUNCE_DAY_OF_WEEK = "announce_day_of_week"
+CONF_DAY_ANNOUNCE_HOUR = "day_announce_hour"
+CONF_PAUSE_FOR_ANNOUNCEMENT = "pause_for_announcement"
 CONF_VOICE_ANNOUNCEMENT = "voice_announcement"
 CONF_PLAYER_TYPE = "player_type"
 CONF_TTS_ENTITY = "tts_entity"
@@ -17,10 +21,14 @@ CONF_CHIME_DELAY = "chime_delay"
 
 # Defaults
 DEFAULT_ANNOUNCE_HALF_HOURS = True
+DEFAULT_ANNOUNCE_INTERVAL = 60
+DEFAULT_ANNOUNCE_DAY_OF_WEEK = False
+DEFAULT_DAY_ANNOUNCE_HOUR = 8
+DEFAULT_PAUSE_FOR_ANNOUNCEMENT = True
 DEFAULT_VOICE_ANNOUNCEMENT = True
 DEFAULT_PLAYER_TYPE = "alexa"
 DEFAULT_TTS_ENTITY = ""
-DEFAULT_VOLUME = 0        # 0 = keep device volume unchanged
+DEFAULT_VOLUME = 15       # 15 % default announcement volume
 DEFAULT_CHIME_DELAY = 3   # seconds between chime and voice announcement
 
 PLAYER_TYPES = ["alexa", "media_player", "browser_mod"]
