@@ -24,7 +24,7 @@
           "tts_entity": "Requis uniquement pour le type Media Player (ex. tts.google_translate_fr)",
           "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)",
           "chime_delay": "Délai entre le carillon et l'annonce vocale. Par défaut : 3 s.",
-          "volume": "Volume 1–100 %. 0 = ne pas modifier le volume de l'appareil."
+          "volume": "Volume 1–100 %. 0 = ne pas modifier le volume de l'appareil. Par défaut : 15 %."
         }
       }
     }
@@ -54,7 +54,7 @@
           "tts_entity": "Requis uniquement pour le type Media Player (ex. tts.google_translate_fr)",
           "custom_chime_path": "Ex.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - laisser vide pour défaut)",
           "chime_delay": "Délai entre le carillon et l'annonce vocale. Par défaut : 3 s.",
-          "volume": "Volume 1–100 %. 0 = ne pas modifier le volume de l'appareil."
+          "volume": "Volume 1–100 %. 0 = ne pas modifier le volume de l'appareil. Par défaut : 15 %."
         }
       }
     }

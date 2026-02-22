@@ -24,7 +24,7 @@
           "tts_entity": "Required only for Media Player type (e.g. tts.google_translate_en_com)",
           "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)",
           "chime_delay": "Wait time between chime and voice announcement. Default: 3 s.",
-          "volume": "Volume 1–100 %. Set to 0 to keep device volume unchanged."
+          "volume": "Volume 1–100 %. Set to 0 to keep device volume unchanged. Default: 15 %."
         }
       }
     }
@@ -54,7 +54,7 @@
           "tts_entity": "Required only for Media Player type (e.g. tts.google_translate_en_com)",
           "custom_chime_path": "E.g.: www/sounds/bell.mp3 (Formats: MP3, WAV, OGG - leave empty for default)",
           "chime_delay": "Wait time between chime and voice announcement. Default: 3 s.",
-          "volume": "Volume 1–100 %. Set to 0 to keep device volume unchanged."
+          "volume": "Volume 1–100 %. Set to 0 to keep device volume unchanged. Default: 15 %."
         }
       }
     }

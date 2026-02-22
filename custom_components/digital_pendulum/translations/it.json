@@ -24,7 +24,7 @@
           "tts_entity": "Necessario solo per tipo Media Player (es. tts.google_translate_it)",
           "custom_chime_path": "Es.: www/sounds/bell.mp3 (Formati: MP3, WAV, OGG - lascia vuoto per default)",
           "chime_delay": "Tempo di attesa tra il suono della campana e l'annuncio vocale. Default: 3 s.",
-          "volume": "Volume 1–100 %. 0 = non modificare il volume del dispositivo."
+          "volume": "Volume 1–100 %. 0 = non modificare il volume del dispositivo. Default: 15 %."
         }
       }
     }
@@ -54,7 +54,7 @@
           "tts_entity": "Necessario solo per tipo Media Player (es. tts.google_translate_it)",
           "custom_chime_path": "Es.: www/sounds/bell.mp3 (Formati: MP3, WAV, OGG - lascia vuoto per default)",
           "chime_delay": "Tempo di attesa tra il suono della campana e l'annuncio vocale. Default: 3 s.",
-          "volume": "Volume 1–100 %. 0 = non modificare il volume del dispositivo."
+          "volume": "Volume 1–100 %. 0 = non modificare il volume del dispositivo. Default: 15 %."
         }
       }
     }

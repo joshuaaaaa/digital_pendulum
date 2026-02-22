@@ -24,7 +24,7 @@
           "tts_entity": "Potřebné pouze pro typ přehrávače Media Player (např. tts.google_translate_cs)",
           "custom_chime_path": "Např.: www/sounds/bell.mp3 (Formáty: MP3, WAV, OGG – ponechte prázdné pro výchozí)",
           "chime_delay": "Doba čekání mezi zvukem zvonu a hlasovým hlášením. Výchozí: 3 s.",
-          "volume": "Hlasitost 1–100 %. Hodnota 0 nechá hlasitost zařízení beze změny."
+          "volume": "Hlasitost 1–100 %. Hodnota 0 nechá hlasitost zařízení beze změny. Výchozí: 15 %."
         }
       }
     }
@@ -54,7 +54,7 @@
           "tts_entity": "Potřebné pouze pro typ přehrávače Media Player (např. tts.google_translate_cs)",
           "custom_chime_path": "Např.: www/sounds/bell.mp3 (Formáty: MP3, WAV, OGG – ponechte prázdné pro výchozí)",
           "chime_delay": "Doba čekání mezi zvukem zvonu a hlasovým hlášením. Výchozí: 3 s.",
-          "volume": "Hlasitost 1–100 %. Hodnota 0 nechá hlasitost zařízení beze změny."
+          "volume": "Hlasitost 1–100 %. Hodnota 0 nechá hlasitost zařízení beze změny. Výchozí: 15 %."
         }
       }
     }

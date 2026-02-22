@@ -24,7 +24,7 @@
           "tts_entity": "Nur für Gerätetyp Media Player erforderlich (z.B. tts.google_translate_de)",
           "custom_chime_path": "Z.B.: www/sounds/bell.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standard)",
           "chime_delay": "Wartezeit zwischen Glockenton und Sprachansage. Standard: 3 s.",
-          "volume": "Lautstärke 1–100 %. 0 bedeutet keine Änderung der Gerätelautstärke."
+          "volume": "Lautstärke 1–100 %. 0 bedeutet keine Änderung der Gerätelautstärke. Standard: 15 %."
         }
       }
     }
@@ -54,7 +54,7 @@
           "tts_entity": "Nur für Gerätetyp Media Player erforderlich (z.B. tts.google_translate_de)",
           "custom_chime_path": "Z.B.: www/sounds/bell.mp3 (Formate: MP3, WAV, OGG - leer lassen für Standard)",
           "chime_delay": "Wartezeit zwischen Glockenton und Sprachansage. Standard: 3 s.",
-          "volume": "Lautstärke 1–100 %. 0 bedeutet keine Änderung der Gerätelautstärke."
+          "volume": "Lautstärke 1–100 %. 0 bedeutet keine Änderung der Gerätelautstärke. Standard: 15 %."
         }
       }
     }
